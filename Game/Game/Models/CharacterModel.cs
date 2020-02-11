@@ -35,6 +35,9 @@ namespace Game.Models
         // The Attack attribute of the Character
         public int Attack { get; set; } = 0;
 
+        // The amount of health points the Character possesses
+        public int CurrentHealth { get; set; } = 0;
+
         // Add Unique attributes for Item
 
         /// <summary>
