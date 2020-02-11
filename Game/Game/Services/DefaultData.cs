@@ -72,8 +72,8 @@ namespace Game.Services
                 {
                     Name = "Bugs Bunny",
                     Description = "Bunny",
+                    ImageURI= "bugs_bunny.png",
                     Level = 0,
-
                 }
             };
             return datalist;

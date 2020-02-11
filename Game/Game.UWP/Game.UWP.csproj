@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="battleboard.jpg" />
+    <Content Include="bugs_bunny.png" />
     <Content Include="cauldren.png" />
     <Content Include="d12.png" />
     <Content Include="dice_20.png" />
