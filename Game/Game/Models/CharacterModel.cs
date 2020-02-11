@@ -50,6 +50,9 @@ namespace Game.Models
         // The Item equipped to the Character's primary hand
         public ItemModel PrimaryHand { get; set; } = null;
 
+        // The Item equipped to the Character's off hand
+        public ItemModel OffHand { get; set; } = null;
+
         // Add Unique attributes for Item
 
         /// <summary>
