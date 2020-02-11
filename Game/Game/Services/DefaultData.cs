@@ -71,9 +71,23 @@ namespace Game.Services
                 new CharacterModel
                 {
                     Name = "Bugs Bunny",
-                    Description = "Bunny",
+                    Description = "Grey Bunny",
                     ImageURI= "bugs_bunny.png",
                     Level = 0,
+                },
+                new CharacterModel
+                {
+                    Name = "Tweety Bird",
+                    Description = "Yellow Bird",
+                    ImageURI = "tweety_bird.png",
+                    Level = 4,
+                },
+                new CharacterModel
+                {
+                    Name = "Porky Pig",
+                    Description = "Baby Pig",
+                    ImageURI = "porky_pig.png",
+                    Level = 2
                 }
             };
             return datalist;
