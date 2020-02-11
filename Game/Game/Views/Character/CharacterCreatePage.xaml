@@ -37,7 +37,7 @@
                         Text="Name" 
                         Style="{StaticResource LabelStyle}"/>
 
-                    <Entry 
+                    <Entry
                         Text="{Binding Data.Name}" 
                         Style="{StaticResource EntryStyle}"/>
 
