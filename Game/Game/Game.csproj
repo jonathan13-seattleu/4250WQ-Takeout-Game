@@ -36,6 +36,9 @@
     <Compile Update="Views\Battle\BattlePage.xaml.cs">
       <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Character\CharacterIndexPage.xaml.cs">
+      <DependentUpon>CharacterIndexPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
@@ -57,9 +60,5 @@
     <Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Character\" />
   </ItemGroup>
 </Project>
