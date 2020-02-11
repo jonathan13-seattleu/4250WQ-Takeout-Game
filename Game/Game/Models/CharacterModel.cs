@@ -41,6 +41,9 @@ namespace Game.Models
         // The maximum amount of health points the Character can possess
         public int MaxHealth { get; set; } = 0;
 
+        // The Item equipped to the Character's head
+        public ItemModel Head { get; set; } = null;
+
         // Add Unique attributes for Item
 
         /// <summary>
