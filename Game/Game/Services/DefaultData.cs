@@ -64,5 +64,19 @@ namespace Game.Services
 
             return datalist;
         }
+        public static List<CharacterModel> LoadData(CharacterModel Temp)
+        {
+            var datalist = new List<CharacterModel>()
+            {
+                new CharacterModel
+                {
+                    Name = "Bugs Bunny",
+                    Description = "Bunny",
+                    Level = 0,
+
+                }
+            };
+            return datalist;
+        }
     }
 }
