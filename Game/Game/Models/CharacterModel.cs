@@ -56,6 +56,9 @@ namespace Game.Models
         // The Item equipped to the Character's left finger
         public ItemModel LeftFinger { get; set; } = null;
 
+        // The Item equipped to the Character's right finger
+        public ItemModel RightFinger { get; set; } = null;
+
         // Add Unique attributes for Item
 
         /// <summary>
