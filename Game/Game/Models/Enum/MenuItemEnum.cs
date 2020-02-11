@@ -10,6 +10,7 @@
         Score,
         Items,
         Game,
-        About
+        About,
+        Characters
     }
 }
