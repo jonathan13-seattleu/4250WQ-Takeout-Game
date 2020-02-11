@@ -17,10 +17,10 @@ namespace Game.ViewModels
         #region Singleton
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
-        private static volatile ItemIndexViewModel instance;
+        private static volatile CharacterIndexViewModel instance;
         private static readonly object syncRoot = new Object();
 
-        public static ItemIndexViewModel Instance
+        public static CharacterIndexViewModel Instance
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Game.ViewModels
                     {
                         if (instance == null)
                         {
-                            instance = new ItemIndexViewModel();
+                            instance = new CharacterIndexViewModel();
                             instance.Initialize();
                         }
                     }
