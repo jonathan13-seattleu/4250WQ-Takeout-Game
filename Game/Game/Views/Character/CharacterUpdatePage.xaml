@@ -23,12 +23,10 @@
 
     <ContentPage.Content>
 
-        <StackLayout Style="{StaticResource OuterBoxStack}"
-                Spacing="10">
+        <StackLayout Orientation="Vertical" Spacing="10">
 
             <Label Text="Update Page" Style="{StaticResource HeaderStyle}"/>
 
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand"/>
 
             <Label
                     Text="Name" 
