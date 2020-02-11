@@ -23,8 +23,8 @@ namespace Game.Models
         // The Level of the Character based on their ExperienceTotal
         public int Level { get; set; } = 0;
 
-        // Enum of the different attributes that the item modifies, Items can only modify one item
-        public AttributeEnum Attribute { get; set; } = AttributeEnum.Unknown;
+        // The total amount of experience points the Character possesses
+        public int ExperienceTotal { get; set; } = 0;
 
         // Where the Item goes on the character.  Head, Foot etc.
         public ItemLocationEnum Location { get; set; } = ItemLocationEnum.Unknown;
