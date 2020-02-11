@@ -115,7 +115,7 @@ namespace Game.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " , " /*+
+            var myReturn = Name /*+ " , " +
                             Description + " for " +
                             Location.ToString() + " with " +
                             Attribute.ToString() +
