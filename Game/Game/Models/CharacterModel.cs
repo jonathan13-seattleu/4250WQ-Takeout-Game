@@ -17,8 +17,8 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BaseModel<CharacterModel>
     {
-        // Range of the item, swords are 1, hats/rings are 0, bows are >1
-        public int Range { get; set; } = 0;
+        // The living status of the Character
+        public bool Alive { get; set; } = true;
 
         // The Damage the Item can do if it is used as a weapon in the primary hand
         public int Damage { get; set; } = 0;
@@ -63,7 +63,7 @@ namespace Game.Models
             }
 
             // Update all the fields in the Data, except for the Id and guid
-            Name = newData.Name;
+            /*Name = newData.Name;
             Description = newData.Description;
             Value = newData.Value;
             Attribute = newData.Attribute;
@@ -72,19 +72,19 @@ namespace Game.Models
             Description = newData.Description;
             ImageURI = newData.ImageURI;
             Range = newData.Range;
-            Damage = newData.Damage;
+            Damage = newData.Damage;*/
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " , " +
+            var myReturn = Name + " , " /*+
                             Description + " for " +
                             Location.ToString() + " with " +
                             Attribute.ToString() +
                             "+" + Value + " , " +
                             "Damage : " + Damage + " , " +
-                            "Range : " + Range;
+                            "Range : " + Range*/;
 
             return myReturn.Trim();
         }
