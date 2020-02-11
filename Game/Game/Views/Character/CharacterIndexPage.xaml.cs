@@ -26,6 +26,7 @@ namespace Game.Views
             InitializeComponent();
 
             BindingContext = ViewModel = CharacterIndexViewModel.Instance;
+            this.ViewModel.Title = "Characters";
         }
 
         /// <summary>
