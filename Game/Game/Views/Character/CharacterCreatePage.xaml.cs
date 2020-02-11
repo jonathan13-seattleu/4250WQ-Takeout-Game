@@ -13,24 +13,24 @@ namespace Game.Views
     public partial class CharacterCreatePage : ContentPage
     {
         // The item to create
-        GenericViewModel<ItemModel> ViewModel { get; set; }
+        GenericViewModel<CharacterModel> ViewModel { get; set; }
 
         /// <summary>
         /// Constructor for Create makes a new model
         /// </summary>
-        public CharacterCreatePage(GenericViewModel<ItemModel> data)
+        public CharacterCreatePage(GenericViewModel<CharacterModel> data)
         {
             InitializeComponent();
 
-            data.Data = new ItemModel();
+            data.Data = new CharacterModel();
 
             BindingContext = this.ViewModel = data;
 
             this.ViewModel.Title = "Create";
 
             //Need to make the SelectedItem a string, so it can select the correct item.
-            LocationPicker.SelectedItem = data.Data.Location.ToString();
-            AttributePicker.SelectedItem = data.Data.Attribute.ToString();
+            //LocationPicker.SelectedItem = data.Data.Location.ToString();
+            //AttributePicker.SelectedItem = data.Data.Attribute.ToString();
         }
 
         /// <summary>
