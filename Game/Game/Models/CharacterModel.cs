@@ -32,6 +32,9 @@ namespace Game.Models
         // The Defense attribute of the Character
         public int Defense { get; set; } = 0;
 
+        // The Attack attribute of the Character
+        public int Attack { get; set; } = 0;
+
         // Add Unique attributes for Item
 
         /// <summary>
