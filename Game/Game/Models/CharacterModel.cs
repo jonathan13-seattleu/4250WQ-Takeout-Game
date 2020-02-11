@@ -26,8 +26,8 @@ namespace Game.Models
         // The total amount of experience points the Character possesses
         public int ExperienceTotal { get; set; } = 0;
 
-        // Where the Item goes on the character.  Head, Foot etc.
-        public ItemLocationEnum Location { get; set; } = ItemLocationEnum.Unknown;
+        // The Speed attribute of the Character
+        public int Speed { get; set; } = 0;
 
         // The Value item modifies.  So a ring of Health +3, has a Value of 3
         public int Value { get; set; } = 0;
