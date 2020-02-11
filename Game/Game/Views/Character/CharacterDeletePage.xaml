@@ -16,8 +16,6 @@
 
             <Label Text="Delete Page" Style="{StaticResource HeaderStyle}"/>
 
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
-
             <StackLayout Orientation="Horizontal">
                 <Label 
                    Text="Name : " 
