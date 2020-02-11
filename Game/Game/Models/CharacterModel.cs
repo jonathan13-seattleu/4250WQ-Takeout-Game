@@ -44,6 +44,9 @@ namespace Game.Models
         // The Item equipped to the Character's head
         public ItemModel Head { get; set; } = null;
 
+        // The Item equipped to the Character's body
+        public ItemModel Body { get; set; } = null;
+
         // Add Unique attributes for Item
 
         /// <summary>
