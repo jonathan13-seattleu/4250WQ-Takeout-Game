@@ -53,7 +53,7 @@ namespace Game.ViewModels
         {
             Title = "Characters";
 
-            // #region Messages
+            #region Messages
 
             
             // Register the Create Message
@@ -61,9 +61,9 @@ namespace Game.ViewModels
             {
                 await CreateAsync(data as CharacterModel);
             });
-            /*
+            
             // Register the Update Message
-            MessagingCenter.Subscribe<CharacterUpdatePage, ItemModel>(this, "Update", async (obj, data) =>
+            MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
             {
                 // Have the item update itself
                 data.Update(data);
@@ -72,10 +72,10 @@ namespace Game.ViewModels
             });
 
             // Register the Delete Message
-            MessagingCenter.Subscribe<ItemDeletePage, ItemModel>(this, "Delete", async (obj, data) =>
-            {
-                await DeleteAsync(data as CharacterModel);
-            });
+           // MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
+            //{
+            //    await DeleteAsync(data as CharacterModel);
+            //});
 
             // Register the Set Data Source Message
             MessagingCenter.Subscribe<AboutPage, int>(this, "SetDataSource", async (obj, data) =>
@@ -90,10 +90,10 @@ namespace Game.ViewModels
             });
 
             #endregion Messages
+            
         }
-
         #endregion Constructor
-        
+
         #region DataOperations_CRUDi
 
         /// <summary>
@@ -129,23 +129,22 @@ namespace Game.ViewModels
         }
 
         #endregion DataOperations_CRUDi
-
+        
         #region SortDataSet
 
-        /// <summary>
-        /// The Sort Order for the ItemModel
-        /// </summary>
-        /// <param name="dataset"></param>
-        /// <returns></returns>
+            /// <summary>
+            /// The Sort Order for the ItemModel
+            /// </summary>
+            /// <param name="dataset"></param>
+            /// <returns></returns>
         public override List<CharacterModel> SortDataset(List<CharacterModel> dataset)
         {
             return dataset
                     .OrderBy(a => a.Name)
                     .ThenBy(a => a.Description)
                     .ToList();
-        }*/
-
         }
+
         #endregion SortDataSet
     }
     
