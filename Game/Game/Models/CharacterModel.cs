@@ -93,16 +93,23 @@ namespace Game.Models
             }
 
             // Update all the fields in the Data, except for the Id and guid
-            /*Name = newData.Name;
-            Description = newData.Description;
-            Value = newData.Value;
-            Attribute = newData.Attribute;
-            Location = newData.Location;
             Name = newData.Name;
             Description = newData.Description;
-            ImageURI = newData.ImageURI;
-            Range = newData.Range;
-            Damage = newData.Damage;*/
+            Alive = newData.Alive;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            Speed = newData.Speed;
+            Defense = newData.Defense;
+            Attack = newData.Attack;
+            CurrentHealth = newData.CurrentHealth;
+            MaxHealth = newData.MaxHealth;
+            Head = newData.Head;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            LeftFinger = newData.LeftFinger;
+            RightFinger = newData.RightFinger;
+            Feet = newData.Feet;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
