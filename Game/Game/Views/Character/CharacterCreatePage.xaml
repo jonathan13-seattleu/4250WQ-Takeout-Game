@@ -49,15 +49,23 @@
                         Text="{Binding Data.Description}" 
                         Style="{StaticResource EntryStyle}"/>
 
-                    <Label
-                        Text="Level" 
-                        Style="{StaticResource LabelStyle}"/>
+                <StackLayout Orientation="Horizontal" >
 
                     <Label 
-                        Text="{Binding Data.Level}"
-                        Style="{StaticResource LabelStyle}"/>
+                            Text="{Binding Data.Level}" 
+                            x:Name="LevelValue"
+                            Style="{StaticResource ValueStyle}"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"/>
 
-                    <Label 
+                    <Stepper 
+                            Value="{Binding Data.Level, Mode=TwoWay}"
+                            ValueChanged="Range_OnStepperValueChanged"/>
+
+                </StackLayout>
+
+
+                <Label 
                         Text="Max Health" 
                         Style="{StaticResource LabelStyle}"/>
 

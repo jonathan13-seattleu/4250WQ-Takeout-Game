@@ -64,20 +64,13 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+        void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            LevelValue.Text = String.Format("{0}", e.NewValue);
+        }
 
-        /// <summary>
-        /// Catch the change to the stepper for Value
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-       
 
-        /// <summary>
-        /// Catch the change to the stepper for Damage
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-       
+
+
     }
 }
