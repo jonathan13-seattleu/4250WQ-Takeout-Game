@@ -43,7 +43,7 @@
             <Entry 
                     Text="{Binding Data.Description}" 
                     Style="{StaticResource EntryStyle}"/>
-            <StackLayout>
+            <StackLayout Orientation="Horizontal">
             <Label 
                     Text="{Binding Data.Level}" 
                     x:Name="LevelValue"
