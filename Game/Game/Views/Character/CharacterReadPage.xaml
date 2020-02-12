@@ -17,9 +17,11 @@
         <StackLayout Style="{StaticResource OuterBoxStack}"
             Spacing="10">
 
-            <Label Text="Detail Page" Style="{StaticResource HeaderStyle}"/>
+            <Label Text="Character Details" Style="{StaticResource HeaderStyle}"/>
 
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+            <StackLayout Orientation="Horizontal">
+
+            <StackLayout Orientation="Vertical">
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
@@ -41,58 +43,60 @@
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Location : " 
+                    Text="Level : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Location}" 
+                    Text="{Binding Data.Level}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Attribute : " 
+                    Text="Max Health : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Attribute}" 
+                    Text="{Binding Data.MaxHealth}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Range : " 
+                    Text="Attack : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Range}" 
+                    Text="{Binding Data.Attack}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Range : " 
+                    Text="Defense : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Range}" 
+                    Text="{Binding Data.Defense}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Value : " 
+                    Text="Speed : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Value}" 
+                    Text="{Binding Data.Speed}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label 
-                    Text="Damage : " 
-                    Style="{StaticResource LabelStyle}"/>
-                <Label 
-                    Text="{Binding Data.Damage}" 
-                    Style="{StaticResource ValueStyle}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+
+                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+
+            </StackLayout>
+
             </StackLayout>
 
         </StackLayout>
+        
     </ScrollView>
 </ContentPage>
