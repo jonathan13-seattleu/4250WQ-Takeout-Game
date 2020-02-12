@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.Services;
+using System;
 
 namespace Game.Models
 {
@@ -18,28 +19,51 @@ namespace Game.Models
     public class MonsterModel : BaseModel<MonsterModel>
     {
         // This battle number, incremental int from the last int in the database
-        public int BattleNumber { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public override string Name { get; set; } = "Unkown";
+        public override string Description { get; set; } = "Unknown";
 
+        public bool Alive { get; set; } = true;
         // Total Score
-        public int ScoreTotal { get; set; }
+        public int Level { get; set; }
 
         // The Date the game played, and when the score was saved
-        public DateTime GameDate { get; set; }
+        public int ExperienceTotal { get; set; }
 
         // Tracks if auto battle is true, or if user battle = false
-        public bool AutoBattle { get; set; }
+        public int Speed { get; set; }
 
         // The number of turns the battle took to finish
-        public int TurnCount { get; set; }
+        public int Defense { get; set; }
 
         // The number of rounds the battle took to finish
-        public int RoundCount { get; set; }
+        public int Attack { get; set; }
 
         // The count of monsters slain during battle
-        public int MonsterSlainNumber { get; set; }
+        public int CurrentHealth { get; set; }
 
         // The total experience points all the characters received during the battle
-        public int ExperienceGainedTotal { get; set; }
+        public int MaxHealth { get; set; }
+
+        public ItemModel Head { get; set; } = null;
+
+        // The Item equipped to the Character's body
+        public ItemModel Body { get; set; } = null;
+
+        // The Item equipped to the Character's primary hand
+        public ItemModel PrimaryHand { get; set; } = null;
+
+        // The Item equipped to the Character's off hand
+        public ItemModel OffHand { get; set; } = null;
+
+        // The Item equipped to the Character's left finger
+        public ItemModel LeftFinger { get; set; } = null;
+
+        // The Item equipped to the Character's right finger
+        public ItemModel RightFinger { get; set; } = null;
+
+        // The Item equipped to the Character's feet
+        public ItemModel Feet { get; set; } = null;
 
         // A list of all the characters at the time of death and their stats.  
         // Only use Get only, set will be done by the Add feature.
@@ -53,102 +77,58 @@ namespace Game.Models
         // Only use Get only, set will be done by the Add feature.
         public string ItemsDroppedList { get; set; }
 
-        /// <summary>
-        /// Instantiate new Score 
-        /// </summary>
-        public ScoreModel()
+        public MonsterModel()
         {
-            GameDate = DateTime.Now;    // Set to be now by default.
-            AutoBattle = false;         //assume user battle
-
-            CharacterAtDeathList = null;
-            MonstersKilledList = null;
-            ItemsDroppedList = null;
-
-            TurnCount = 0;
-            RoundCount = 0;
-            ExperienceGainedTotal = 0;
-            MonsterSlainNumber = 0;
+            ImageURI = ItemService.DefaultImageURI;
         }
-
-        /// <summary>
-        /// Constructor for loading score from SQL
-        /// Takes a Score and make a scopy of it.
-        /// </summary>
-        /// <param name="data"></param>
-        public ScoreModel(ScoreModel data)
+        public MonsterModel(MonsterModel data)
         {
-            Id = data.Id;
             Update(data);
         }
 
         /// <summary>
-        /// Update the score based on the passed in values. 
+        /// Update the Record
         /// </summary>
-        /// <param name="newData"></param>
-        public override void Update(ScoreModel newData)
+        /// <param name="newData">The new data</param>
+        public override void Update(MonsterModel newData)
         {
             if (newData == null)
             {
                 return;
             }
 
-            // Update all the fields in the Data, except for the Id
+            // Update all the fields in the Data, except for the Id and guid
             Name = newData.Name;
             Description = newData.Description;
-
-            BattleNumber = newData.BattleNumber;
-            ScoreTotal = newData.ScoreTotal;
-            GameDate = newData.GameDate;
-            AutoBattle = newData.AutoBattle;
-            TurnCount = newData.TurnCount;
-            RoundCount = newData.RoundCount;
-            MonsterSlainNumber = newData.MonsterSlainNumber;
-            ExperienceGainedTotal = newData.ExperienceGainedTotal;
-            CharacterAtDeathList = newData.CharacterAtDeathList;
-            MonstersKilledList = newData.MonstersKilledList;
-            ItemsDroppedList = newData.ItemsDroppedList;
+            Alive = newData.Alive;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            Speed = newData.Speed;
+            Defense = newData.Defense;
+            Attack = newData.Attack;
+            CurrentHealth = newData.CurrentHealth;
+            MaxHealth = newData.MaxHealth;
+            Head = newData.Head;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            LeftFinger = newData.LeftFinger;
+            RightFinger = newData.RightFinger;
+            Feet = newData.Feet;
         }
 
-        #region ScoreItems
-
-        //public bool AddToList(CharacterModel data)
-        //{
-        //    if (data == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    CharacterAtDeathList += data.FormatOutput() + "\n";
-        //    return true;
-        //}
-
-        //public bool AddToList(MonsterModel data)
-        //{
-        //    if (data == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    MonstersKilledList += data.FormatOutput() + "\n";
-        //    return true;
-        //}
-
-        /// <summary>
-        /// All an item to the list of items for score and their stats
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public bool AddToList(ItemModel data)
+        // Helper to combine the attributes into a single line, to make it easier to display the item as a string
+        public string FormatOutput()
         {
-            if (data == null)
-            {
-                return false;
-            }
+            var myReturn = Name /*+ " , " +
+                            Description + " for " +
+                            Location.ToString() + " with " +
+                            Attribute.ToString() +
+                            "+" + Value + " , " +
+                            "Damage : " + Damage + " , " +
+                            "Range : " + Range*/;
 
-            ItemsDroppedList += data.FormatOutput() + "\n";
-            return true;
+            return myReturn.Trim();
         }
-        #endregion ScoreItems
     }
 }
