@@ -26,12 +26,28 @@
     
             <StackLayout>
 
-                <Label Text="Create Page" Style="{StaticResource HeaderStyle}"/>
+                <Label Text="Create a New Character" Style="{StaticResource HeaderStyle}"/>
 
 
                 <StackLayout>
 
-                    <Label 
+                <Label 
+                        Text="Image" 
+                        Style="{StaticResource LabelStyle}"/>
+
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                    <Image 
+                            Source="{Binding Data.ImageURI}"
+                            Style="{StaticResource ImageSmallStyle}"/>
+
+                    <Entry 
+                            Text="{Binding Data.ImageURI}" 
+                            Style="{StaticResource EntryStyle}"/>
+
+                </StackLayout>
+                    
+                <Label 
                         Text="Name" 
                         Style="{StaticResource LabelStyle}"/>
 
@@ -69,25 +85,9 @@
                         Text="Max Health" 
                         Style="{StaticResource LabelStyle}"/>
 
-                    <Label
+                <Label
                            Text="{Binding Data.MaxHealth}"
                            Style="{StaticResource LabelStyle}"/>
-
-                    <Label 
-                        Text="Image" 
-                        Style="{StaticResource LabelStyle}"/>
-
-                    <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-
-                        <Image 
-                            Source="{Binding Data.ImageURI}"
-                            Style="{StaticResource ImageSmallStyle}"/>
-
-                        <Entry 
-                            Text="{Binding Data.ImageURI}" 
-                            Style="{StaticResource EntryStyle}"/>
-
-                    </StackLayout>
 
                 <Label 
                             Text="Attack" 
