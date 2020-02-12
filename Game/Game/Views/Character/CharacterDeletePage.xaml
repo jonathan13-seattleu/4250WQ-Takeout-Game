@@ -16,6 +16,10 @@
 
             <Label Text="Delete Character" Style="{StaticResource HeaderStyle}"/>
 
+        <StackLayout Orientation="Horizontal">
+
+        <StackLayout Orientation="Vertical">
+
             <StackLayout Orientation="Horizontal">
                 <Label 
                    Text="Name : " 
@@ -34,8 +38,63 @@
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                    Text="Level : " 
+                    Style="{StaticResource LabelStyle}"/>
+            <Label 
+                    Text="{Binding Data.Level}" 
+                    Style="{StaticResource ValueStyle}"/>
+        </StackLayout>
 
-            <StackLayout 
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                    Text="Max Health : " 
+                    Style="{StaticResource LabelStyle}"/>
+            <Label 
+                    Text="{Binding Data.MaxHealth}" 
+                    Style="{StaticResource ValueStyle}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                    Text="Attack : " 
+                    Style="{StaticResource LabelStyle}"/>
+            <Label 
+                    Text="{Binding Data.Attack}" 
+                    Style="{StaticResource ValueStyle}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                    Text="Defense : " 
+                    Style="{StaticResource LabelStyle}"/>
+            <Label 
+                    Text="{Binding Data.Defense}" 
+                    Style="{StaticResource ValueStyle}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                    Text="Speed : " 
+                    Style="{StaticResource LabelStyle}"/>
+            <Label 
+                    Text="{Binding Data.Speed}" 
+                    Style="{StaticResource ValueStyle}"/>
+        </StackLayout>
+
+        </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+
+                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+
+        <StackLayout 
             HorizontalOptions="Center" 
             Padding="20">
 
