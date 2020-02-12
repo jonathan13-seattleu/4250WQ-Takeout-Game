@@ -17,6 +17,10 @@ namespace Game.Models
     /// </summary>
     public class CharacterModel : BaseModel<CharacterModel>
     {
+       //The Name of the Character
+        public override string Name { get; set; } = "Character Name";
+        //The Description of the Character
+        public override string Description { get; set; } = "Character Description";
         // The living status of the Character
         public bool Alive { get; set; } = true;
 
