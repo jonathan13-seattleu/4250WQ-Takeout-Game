@@ -19,7 +19,9 @@
 
             <Label Text="Character Details" Style="{StaticResource HeaderStyle}"/>
 
-            <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+            <StackLayout Orientation="Horizontal">
+
+            <StackLayout Orientation="Vertical">
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
@@ -84,6 +86,17 @@
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+
+                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}"/>
+
+            </StackLayout>
+
+            </StackLayout>
+
         </StackLayout>
+        
     </ScrollView>
 </ContentPage>
