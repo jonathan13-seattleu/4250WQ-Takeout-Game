@@ -53,20 +53,28 @@
 
                                 <StackLayout Grid.Column="1" Grid.Row="1"
                                     Orientation="Horizontal">
-                                    
+
                                     <Label 
-                                       Text="{Binding Attribute}" 
+                                       Text="{Binding Description}" 
+                                        FontSize="Micro"
                                        Style="{StaticResource ListStyle}"/>
 
-                                    <Label Text="{Binding Value}" 
-                                        Style="{StaticResource ListStyle}"/>
-                                
                                 </StackLayout>
 
-                                <Label Grid.Column="1" Grid.Row="2"
-                                       Text="{Binding Description}" 
-                                       Style="{StaticResource ListStyle}"
-                                       FontSize="Micro"/>
+                                <StackLayout Grid.Column="1" Grid.Row="2"
+                                    Orientation="Horizontal">
+
+                                    <Label 
+                                       Text="Level: "
+                                       FontSize="Micro"
+                                       Style="{StaticResource ListStyle}"/>
+
+                                    <Label 
+                                       Text="{Binding Level}" 
+                                       FontSize="Micro"
+                                       Style="{StaticResource ListStyle}"/>
+
+                                </StackLayout>
 
                             </Grid>
                         </ViewCell>
