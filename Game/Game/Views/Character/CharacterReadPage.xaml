@@ -41,55 +41,46 @@
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Location : " 
+                    Text="Level : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Location}" 
+                    Text="{Binding Data.Level}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Attribute : " 
+                    Text="Max Health : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Attribute}" 
+                    Text="{Binding Data.MaxHealth}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Range : " 
+                    Text="Attack : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Range}" 
+                    Text="{Binding Data.Attack}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Range : " 
+                    Text="Defense : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Range}" 
+                    Text="{Binding Data.Defense}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
             <StackLayout Style="{StaticResource HorizontalStack}">
                 <Label 
-                    Text="Value : " 
+                    Text="Speed : " 
                     Style="{StaticResource LabelStyle}"/>
                 <Label 
-                    Text="{Binding Data.Value}" 
-                    Style="{StaticResource ValueStyle}"/>
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Label 
-                    Text="Damage : " 
-                    Style="{StaticResource LabelStyle}"/>
-                <Label 
-                    Text="{Binding Data.Damage}" 
+                    Text="{Binding Data.Speed}" 
                     Style="{StaticResource ValueStyle}"/>
             </StackLayout>
 
