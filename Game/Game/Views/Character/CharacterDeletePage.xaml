@@ -12,9 +12,9 @@
         <ToolbarItem Text="Delete" Clicked="Delete_Clicked" IconImageSource="icon_delete.png"/>
     </ContentPage.ToolbarItems>
 
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical">
 
-            <Label Text="Delete Page" Style="{StaticResource HeaderStyle}"/>
+            <Label Text="Delete Character" Style="{StaticResource HeaderStyle}"/>
 
             <StackLayout Orientation="Horizontal">
                 <Label 
