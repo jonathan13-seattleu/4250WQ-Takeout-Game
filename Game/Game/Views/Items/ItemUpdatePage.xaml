@@ -29,8 +29,6 @@
 
                 <Label Text="Update Page" Style="{StaticResource HeaderStyle}"/>
 
-                <Image Source="{Binding Data.ImageURI}" Style="{StaticResource ImageLargeStyle}" HorizontalOptions="CenterAndExpand"/>
-
                 <Grid
                     RowSpacing="1"
                     ColumnSpacing="2"
@@ -77,21 +75,6 @@
                         SelectedItem="{Binding Data.Attribute, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
                         x:Name="AttributePicker"/>
 
-                    <Label Grid.Row="4" Grid.Column="0"
-                        Text="Image" 
-                        Style="{StaticResource LabelStyle}"/>
-
-                    <StackLayout Grid.Row="4" Grid.Column="1" Style="{StaticResource HorizontalStack}" HorizontalOptions="FillAndExpand">
-
-                        <Image 
-                            Source="{Binding Data.ImageURI}"
-                            Style="{StaticResource ImageSmallStyle}"/>
-
-                        <Entry 
-                            Text="{Binding Data.ImageURI}" 
-                            Style="{StaticResource EntryStyle}"/>
-
-                    </StackLayout>
                 </Grid>
 
                 <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="FillAndExpand">
@@ -100,21 +83,6 @@
                         Text="Range" 
                         Style="{StaticResource LabelStyle}"/>
 
-                    <StackLayout Style="{StaticResource HorizontalStack}" Padding="10,0,10,0">
-
-                        <Label 
-                            Text="{Binding Data.Range}" 
-                            x:Name="RangeValue"
-                            Style="{StaticResource ValueStyle}"
-                            Padding="0,0,10,0"
-                            HorizontalOptions="End"
-                            HorizontalTextAlignment="End"/>
-
-                        <Stepper 
-                            Value="{Binding Data.Range, Mode=TwoWay}"
-                            ValueChanged="Range_OnStepperValueChanged"/>
-
-                    </StackLayout>
 
                     <Label 
                         Text="Value"
@@ -136,25 +104,6 @@
 
                     </StackLayout>
 
-                    <Label 
-                        Text="Damage" 
-                        Style="{StaticResource LabelStyle}"/>
-
-                    <StackLayout Style="{StaticResource HorizontalStack}" Padding="10,0,10,0">
-
-                        <Label 
-                            Text="{Binding Data.Damage}" 
-                            x:Name="DamageValue"
-                            Style="{StaticResource ValueStyle}"
-                            Padding="0,0,10,0"
-                            HorizontalOptions="End"
-                            HorizontalTextAlignment="End"/>
-
-                        <Stepper 
-                            Value="{Binding Data.Damage, Mode=TwoWay}"
-                            ValueChanged="Damage_OnStepperValueChanged"/>
-
-                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
