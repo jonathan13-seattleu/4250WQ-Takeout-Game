@@ -100,6 +100,7 @@ namespace Game.Services
                 {
                     Name = "Nawt",
                     Description = "Pink Monster",
+                    ImageURI = "nawt_monster.png",
                     Level = 2
                 },
                 
@@ -107,6 +108,7 @@ namespace Game.Services
                 {
                     Name = "Bang",
                     Description = "Green Monster",
+                    ImageURI = "bang_monster.png",
                     Level = 3
                 },
 
@@ -114,6 +116,7 @@ namespace Game.Services
                 {
                     Name = "Blanko",
                     Description ="Blue Monster",
+                    ImageURI = "blanko_monster.png",
                     Level = 5
                 }
             };
