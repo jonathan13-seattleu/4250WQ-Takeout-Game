@@ -16,7 +16,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Headband",
                     Description = "Accessory to keep sweat from running down your face",
-                    ImageURI = "http://www.clker.com/cliparts/e/L/A/m/I/c/sword-md.png",
+                    ImageURI = "headband.png",
                     Range = 0,
                     Damage = 9,
                     Value = 3,
@@ -26,7 +26,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Wristband",
                     Description = "Acessory for your wrist",
-                    ImageURI = "http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png",
+                    ImageURI = "wristband.png",
                     Range = 0,
                     Damage = 0,
                     Value = 2,
@@ -36,7 +36,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Performance Socks",
                     Description = "Socks that help athletic performance",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "performance_socks.png",
                     Range = 0,
                     Damage = 0,
                     Value = 5,
@@ -46,7 +46,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Mouthguard",
                     Description = "To prevent face damage",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "mouthguard.png",
                     Range = 0,
                     Damage = 0,
                     Value = 1,
@@ -56,7 +56,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Ankle Brace",
                     Description = "Helps protect your ankles",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "ankle_brace.png",
                     Range = 0,
                     Damage = 0,
                     Value = 2,
@@ -66,7 +66,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Arm Sleeve",
                     Description = "Provides strength to your arm",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "arm_sleeve.png",
                     Range = 0,
                     Damage = 0,
                     Value = 3,
@@ -76,7 +76,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Knee Brace",
                     Description = "Protects your knees",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "knee_brace.png",
                     Range = 0,
                     Damage = 0,
                     Value = 2,
@@ -86,7 +86,7 @@ namespace Game.Services
                 new ItemModel {
                     Name = "Air Jordans",
                     Description = "Fashionable accessory with a cool boost",
-                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    ImageURI = "air_jordan.png",
                     Range = 0,
                     Damage = 0,
                     Value = 4,
