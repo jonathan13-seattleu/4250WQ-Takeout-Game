@@ -64,6 +64,10 @@ namespace Game.Views
                     case (int)MenuItemEnum.Characters:
                         MenuPages.Add(id, new NavigationPage(new CharacterIndexPage()));
                         break;
+
+                    case (int)MenuItemEnum.Monsters:
+                        MenuPages.Add(id, new NavigationPage(new MonsterIndexPage()));
+                        break;
                 }
             }
 
