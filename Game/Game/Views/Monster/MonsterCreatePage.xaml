@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="using:Game.Models"
+             xmlns:local_helpers="clr-namespace:Game.Helpers"
+             xmlns:local_enum="clr-namespace:Game.Models"
+             x:Class="Game.Views.MonsterCreatePage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png"/>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" IconImageSource="icon_save.png"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local_helpers:StringEnumConverter x:Key="StringEnum"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+    
+            <StackLayout>
+
+            <Label Text="Create a New Monster" Style="{StaticResource HeaderStyle}"/>
+
+
+                <StackLayout>
+
+                <Label 
+                        Text="Image" 
+                        Style="{StaticResource LabelStyle}"/>
+
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                    <Image 
+                            Source="{Binding Data.ImageURI}"
+                            Style="{StaticResource ImageSmallStyle}"/>
+
+                    <Entry 
+                            Text="{Binding Data.ImageURI}" 
+                            Style="{StaticResource EntryStyle}"/>
+
+                </StackLayout>
+                    
+                <Label 
+                        Text="Name" 
+                        Style="{StaticResource LabelStyle}"/>
+
+                    <Entry
+                        Text="{Binding Data.Name}" 
+                        Style="{StaticResource EntryStyle}"/>
+
+                    <Label
+                        Text="Description" 
+                        Style="{StaticResource LabelStyle}"/>
+
+                    <Entry 
+                        Text="{Binding Data.Description}" 
+                        Style="{StaticResource EntryStyle}"/>
+                <Label
+                        Text="Level:"
+                        Style="{StaticResource LabelStyle}"/>
+                <StackLayout Orientation="Horizontal" >
+
+                    <Label 
+                            Text="{Binding Data.Level}" 
+                            x:Name="LevelValue"
+                            Style="{StaticResource ValueStyle}"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"/>
+
+                    <Stepper 
+                            Value="{Binding Data.Level, Mode=TwoWay}"
+                            ValueChanged="Range_OnStepperValueChanged"/>
+
+                </StackLayout>
+
+
+                <Label 
+                        Text="Max Health" 
+                        Style="{StaticResource LabelStyle}"/>
+
+                <Label
+                           Text="{Binding Data.MaxHealth}"
+                           Style="{StaticResource LabelStyle}"/>
+
+                <Label 
+                            Text="Attack" 
+                            Style="{StaticResource LabelStyle}"/>
+
+                <Label 
+                            Text="{Binding Data.Attack}" 
+                            Style="{StaticResource LabelStyle}"
+                           />
+                <Label 
+                        Text="Defense"
+                        Style="{StaticResource LabelStyle}"/>
+
+                <Label 
+                            Text="{Binding Data.Defense}" 
+                            Style="{StaticResource LabelStyle}"/>
+                <Label 
+                        Text="Speed" 
+                        Style="{StaticResource LabelStyle}"/>
+                <Label 
+                            Text="{Binding Data.Speed}" 
+                            Style="{StaticResource LabelStyle}"/>
+
+                
+                </StackLayout>
+            </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
