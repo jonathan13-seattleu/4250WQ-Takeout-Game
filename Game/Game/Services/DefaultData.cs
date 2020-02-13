@@ -14,33 +14,83 @@ namespace Game.Services
             var datalist = new List<ItemModel>()
             {
                 new ItemModel {
-                    Name = "Gold Sword",
-                    Description = "Sword made of Gold, really expensive looking",
+                    Name = "Headband",
+                    Description = "Accessory to keep sweat from running down your face",
                     ImageURI = "http://www.clker.com/cliparts/e/L/A/m/I/c/sword-md.png",
                     Range = 0,
                     Damage = 9,
-                    Value = 9,
-                    Location = ItemLocationEnum.PrimaryHand,
+                    Value = 3,
+                    Location = ItemLocationEnum.Head,
                     Attribute = AttributeEnum.Defense},
 
                 new ItemModel {
-                    Name = "Strong Shield",
-                    Description = "Enough to hide behind",
+                    Name = "Wristband",
+                    Description = "Acessory for your wrist",
                     ImageURI = "http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png",
                     Range = 0,
                     Damage = 0,
-                    Value = 9,
+                    Value = 2,
                     Location = ItemLocationEnum.OffHand,
                     Attribute = AttributeEnum.Defense},
 
                 new ItemModel {
-                    Name = "Bunny Hat",
-                    Description = "Pink hat with fluffy ears",
+                    Name = "Performance Socks",
+                    Description = "Socks that help athletic performance",
                     ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
                     Range = 0,
                     Damage = 0,
-                    Value = 9,
+                    Value = 5,
+                    Location = ItemLocationEnum.Feet,
+                    Attribute = AttributeEnum.Speed},
+
+                new ItemModel {
+                    Name = "Mouthguard",
+                    Description = "To prevent face damage",
+                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    Range = 0,
+                    Damage = 0,
+                    Value = 1,
                     Location = ItemLocationEnum.Head,
+                    Attribute = AttributeEnum.Defense},
+
+                new ItemModel {
+                    Name = "Ankle Brace",
+                    Description = "Helps protect your ankles",
+                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    Range = 0,
+                    Damage = 0,
+                    Value = 2,
+                    Location = ItemLocationEnum.Feet,
+                    Attribute = AttributeEnum.Defense},
+
+                new ItemModel {
+                    Name = "Arm Sleeve",
+                    Description = "Provides strength to your arm",
+                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    Range = 0,
+                    Damage = 0,
+                    Value = 3,
+                    Location = ItemLocationEnum.PrimaryHand,
+                    Attribute = AttributeEnum.Attack},
+
+                new ItemModel {
+                    Name = "Knee Brace",
+                    Description = "Protects your knees",
+                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    Range = 0,
+                    Damage = 0,
+                    Value = 2,
+                    Location = ItemLocationEnum.Feet,
+                    Attribute = AttributeEnum.Speed},
+
+                new ItemModel {
+                    Name = "Air Jordans",
+                    Description = "Fashionable accessory with a cool boost",
+                    ImageURI = "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png",
+                    Range = 0,
+                    Damage = 0,
+                    Value = 4,
+                    Location = ItemLocationEnum.Feet,
                     Attribute = AttributeEnum.Speed},
             };
 
