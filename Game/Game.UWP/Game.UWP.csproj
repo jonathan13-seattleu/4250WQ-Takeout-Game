@@ -104,6 +104,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="air_jordan.png" />
+    <Content Include="ankle_brace.png" />
+    <Content Include="arm_sleeve.png" />
     <Content Include="bang_monster.png" />
     <Content Include="battleboard.jpg" />
     <Content Include="blanko_monster.png" />
@@ -117,6 +120,7 @@
     <Content Include="dungeon_door.png" />
     <Content Include="gameover.png" />
     <Content Include="grey_door.png" />
+    <Content Include="headband.png" />
     <Content Include="home_background.png" />
     <Content Include="icon_add.png" />
     <Content Include="icon_cancel.png" />
@@ -125,12 +129,15 @@
     <Content Include="icon_save.png" />
     <Content Include="item.png" />
     <Content Include="items.png" />
+    <Content Include="knee_brace.png" />
     <Content Include="knight.png" />
     <Content Include="icon_new.png" />
     <Content Include="marvin_the_martian.png" />
     <Content Include="michael_jordan.png" />
+    <Content Include="mouthguard.png" />
     <Content Include="mr._swackhammer_monster.png" />
     <Content Include="nawt_monster.png" />
+    <Content Include="performance_socks.png" />
     <Content Include="porky_pig.png" />
     <Content Include="pound_monster.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -169,6 +176,7 @@
     <Content Include="tweety_bird.png" />
     <Content Include="village.jpg" />
     <Content Include="village.png" />
+    <Content Include="wristband.png" />
     <Content Include="xamarin_logo.png" />
     <Content Include="add.png" />
     <Content Include="save.png" />
