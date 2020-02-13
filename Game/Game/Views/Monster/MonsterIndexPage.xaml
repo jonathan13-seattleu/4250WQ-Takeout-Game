@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Name="BrowseCharactersPage"
+             x:Name="BrowseMonstersPage"
              x:Class="Game.Views.MonsterIndexPage"
              Title="{Binding Title}">
 
@@ -15,7 +15,7 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource OuterBoxStack}">
 
-            <Label Text="Characters" Style="{StaticResource HeaderStyle}"/>
+            <Label Text="Monsters" Style="{StaticResource HeaderStyle}"/>
 
             <ListView x:Name="ItemsListView" 
                     ItemsSource="{Binding Dataset}"
