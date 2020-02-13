@@ -116,5 +116,61 @@ namespace Game.Models
 
             return myReturn.Trim();
         }
+
+        // Force leveling up to a level, say start a new monster at level 5
+        public void LevelUpToValue(int value)
+        {
+            Level = value; 
+        }
+
+        // Monster receives damage
+        public void TakeDamage(int damage)
+        {
+            CurrentHealth -= damage;
+        }
+
+
+        // Return the calculated attack value
+        public int GetAttack()
+        {
+            return Attack;
+        }
+
+        // Return the calculated speed value
+        public int GetSpeed()
+        {
+            return Speed;
+        }
+
+        // Return the calculated defense value
+        public int GetDefense()
+        {
+            return Defense;
+        }
+
+        // Return the calculated max health
+        public int GetHealthMax()
+        {
+            return MaxHealth;
+        }
+
+        // Return the calculated current health
+        public int GetHealthCurrent()
+        {
+            return CurrentHealth;
+        }
+
+        // Get the Dice to roll for the weapon used
+        public int GetDamageDice()
+        {
+            return 0;
+        }
+
+        // Get the calculated damage that this weapon rolled
+        public int GetDamageRollValue()
+        {
+            return 0;
+        }
+
     }
 }
