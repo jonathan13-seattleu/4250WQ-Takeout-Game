@@ -104,8 +104,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bang_monster.png" />
     <Content Include="battleboard.jpg" />
+    <Content Include="blanko_monster.png" />
     <Content Include="bugs_bunny.png" />
+    <Content Include="bupkus_monster.png" />
     <Content Include="cauldren.png" />
     <Content Include="d12.png" />
     <Content Include="daffy_duck.png" />
@@ -126,7 +129,10 @@
     <Content Include="icon_new.png" />
     <Content Include="marvin_the_martian.png" />
     <Content Include="michael_jordan.png" />
+    <Content Include="mr._swackhammer_monster.png" />
+    <Content Include="nawt_monster.png" />
     <Content Include="porky_pig.png" />
+    <Content Include="pound_monster.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
