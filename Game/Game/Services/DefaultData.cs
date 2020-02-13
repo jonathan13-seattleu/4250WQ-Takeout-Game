@@ -92,5 +92,32 @@ namespace Game.Services
             };
             return datalist;
         }
+        public static List<MonsterModel> LoadData(MonsterModel Temp)
+        {
+            var datalist = new List<MonsterModel>()
+            {
+                new MonsterModel
+                {
+                    Name = "Nawt",
+                    Description = "Pink Monster",
+                    Level = 2
+                },
+                
+                new MonsterModel
+                {
+                    Name = "Bang",
+                    Description = "Green Monster",
+                    Level = 3
+                },
+
+                new MonsterModel
+                {
+                    Name = "Blanko",
+                    Description ="Blue Monster",
+                    Level = 5
+                }
+            };
+            return datalist;
+        }
     }
 }
