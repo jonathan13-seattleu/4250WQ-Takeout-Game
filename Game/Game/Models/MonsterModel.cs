@@ -22,45 +22,45 @@ namespace Game.Models
         public override string Description { get; set; } = "Unknown";
 
         public bool Alive { get; set; } = true;
-        // Total Score
+        // Current Level
         public int Level { get; set; }
 
-        // The Date the game played, and when the score was saved
+        // Total Amount of Experience earned
         public int ExperienceTotal { get; set; }
 
-        // Tracks if auto battle is true, or if user battle = false
+        // The speed of the monster
         public int Speed { get; set; }
 
-        // The number of turns the battle took to finish
+        // The defense attribute for the monster
         public int Defense { get; set; }
 
-        // The number of rounds the battle took to finish
+        // The attack attribute for the monster
         public int Attack { get; set; }
 
-        // The count of monsters slain during battle
+        // The current health of the monster
         public int CurrentHealth { get; set; }
 
-        // The total experience points all the characters received during the battle
+        // The max health of the monster
         public int MaxHealth { get; set; }
 
         public ItemModel Head { get; set; } = null;
 
-        // The Item equipped to the Character's body
+        // The Item equipped to the monster's body
         public ItemModel Body { get; set; } = null;
 
-        // The Item equipped to the Character's primary hand
+        // The Item equipped to the monster's primary hand
         public ItemModel PrimaryHand { get; set; } = null;
 
-        // The Item equipped to the Character's off hand
+        // The Item equipped to the monster's off hand
         public ItemModel OffHand { get; set; } = null;
 
-        // The Item equipped to the Character's left finger
+        // The Item equipped to the monster's left finger
         public ItemModel LeftFinger { get; set; } = null;
 
-        // The Item equipped to the Character's right finger
+        // The Item equipped to the monster's right finger
         public ItemModel RightFinger { get; set; } = null;
 
-        // The Item equipped to the Character's feet
+        // The Item equipped to the monster's feet
         public ItemModel Feet { get; set; } = null;
 
         public MonsterModel()
