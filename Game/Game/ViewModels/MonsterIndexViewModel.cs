@@ -63,16 +63,16 @@ namespace Game.ViewModels
             });
             
             // Register the Update Message
-            /*MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
+            MessagingCenter.Subscribe<MonsterUpdatePage, MonsterModel>(this, "Update", async (obj, data) =>
             {
                 // Have the item update itself
                 data.Update(data);
 
-                await UpdateAsync(data as CharacterModel);
+                await UpdateAsync(data as MonsterModel);
             });
 
             // Register the Delete Message
-            MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
+            /*MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
             {
                 await DeleteAsync(data as CharacterModel);
             });
@@ -90,7 +90,7 @@ namespace Game.ViewModels
             });
 
             #endregion Messages*/
-            
+
         }
         #endregion Constructor
 
