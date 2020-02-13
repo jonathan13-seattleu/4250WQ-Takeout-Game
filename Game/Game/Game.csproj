@@ -73,4 +73,8 @@
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Monster\" />
+  </ItemGroup>
 </Project>
