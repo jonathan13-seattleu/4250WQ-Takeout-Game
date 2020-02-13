@@ -53,17 +53,17 @@ namespace Game.ViewModels
         {
             Title = "Monsters";
 
-            /*#region Messages
+            //#region Messages
 
             
             // Register the Create Message
-            MessagingCenter.Subscribe<CharacterCreatePage, CharacterModel>(this, "Create", async (obj, data) =>
+            MessagingCenter.Subscribe<MonsterCreatePage, MonsterModel>(this, "Create", async (obj, data) =>
             {
-                await CreateAsync(data as CharacterModel);
+                await CreateAsync(data as MonsterModel);
             });
             
             // Register the Update Message
-            MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
+            /*MessagingCenter.Subscribe<CharacterUpdatePage, CharacterModel>(this, "Update", async (obj, data) =>
             {
                 // Have the item update itself
                 data.Update(data);
