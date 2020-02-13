@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local_helpers="clr-namespace:Game.Helpers"
+             xmlns:local="using:Game.Models"
+             xmlns:local_enum="clr-namespace:Game.Models"
+             x:Class="Game.Views.MonsterUpdatePage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" IconImageSource="icon_cancel.png"/>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" IconImageSource="icon_save.png"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local_helpers:StringEnumConverter x:Key="StringEnum"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" Spacing="10">
+
+            <Label Text="Update Page" Style="{StaticResource HeaderStyle}"/>
+
+
+            <Label
+                    Text="Name" 
+                    Style="{StaticResource LabelStyle}"/>
+
+            <Entry
+                    Text="{Binding Data.Name}" 
+                    Style="{StaticResource EntryStyle}"/>
+
+            <Label 
+                    Text="Description" 
+                    Style="{StaticResource LabelStyle}"/>
+
+            <Entry 
+                    Text="{Binding Data.Description}" 
+                    Style="{StaticResource EntryStyle}"/>
+            <Label
+                        Text="Level:"
+                        Style="{StaticResource LabelStyle}"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
