@@ -51,6 +51,9 @@
     <Compile Update="Views\Character\CharacterDeletePage.xaml.cs">
       <DependentUpon>CharacterDeletePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Monster\MonsterIndexPage.xaml.cs">
+      <DependentUpon>MonsterIndexPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Village\VillagePage.xaml.cs">
       <DependentUpon>VillagePage.xaml</DependentUpon>
     </Compile>
@@ -72,9 +75,5 @@
     <Compile Update="Views\Score\ScoreUpdatePage.xaml.cs">
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Monster\" />
   </ItemGroup>
 </Project>
