@@ -53,7 +53,7 @@ namespace Game.ViewModels
         {
             Title = "Monsters";
 
-            //#region Messages
+            #region Messages
 
             
             // Register the Create Message
@@ -72,9 +72,9 @@ namespace Game.ViewModels
             });
 
             // Register the Delete Message
-            /*MessagingCenter.Subscribe<CharacterDeletePage, CharacterModel>(this, "Delete", async (obj, data) =>
+            MessagingCenter.Subscribe<MonsterDeletePage, MonsterModel>(this, "Delete", async (obj, data) =>
             {
-                await DeleteAsync(data as CharacterModel);
+                await DeleteAsync(data as MonsterModel);
             });
 
             // Register the Set Data Source Message
@@ -89,19 +89,19 @@ namespace Game.ViewModels
                 await WipeDataListAsync();
             });
 
-            #endregion Messages*/
+            #endregion Messages
 
         }
         #endregion Constructor
 
-        /*#region DataOperations_CRUDi
+        #region DataOperations_CRUDi
 
         /// <summary>
         /// Returns the item passed in
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public CharacterModel CheckIfItemExists(CharacterModel data)
+        public MonsterModel CheckIfItemExists(MonsterModel data)
         {
             // This will walk the items and find if there is one that is the same.
             // If so, it returns the item...
@@ -122,11 +122,11 @@ namespace Game.ViewModels
         /// <summary>
         /// Load the Default Data
         /// </summary>
-        /// <returns></returns>
-        public override List<CharacterModel> GetDefaultData() 
+        // <returns></returns>
+        /*public override List<MonsterModel> GetDefaultData() 
         {
-            return DefaultData.LoadData(new CharacterModel());
-        }
+            return DefaultData.LoadData(new MonsterModel());
+        }*/
 
         #endregion DataOperations_CRUDi
         
@@ -137,7 +137,7 @@ namespace Game.ViewModels
             /// </summary>
             /// <param name="dataset"></param>
             /// <returns></returns>
-        public override List<CharacterModel> SortDataset(List<CharacterModel> dataset)
+        public override List<MonsterModel> SortDataset(List<MonsterModel> dataset)
         {
             return dataset
                     .OrderBy(a => a.Name)
@@ -145,7 +145,7 @@ namespace Game.ViewModels
                     .ToList();
         }
 
-        #endregion SortDataSet*/
+        #endregion SortDataSet
     }
     
 }
