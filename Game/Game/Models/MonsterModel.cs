@@ -18,8 +18,6 @@ namespace Game.Models
     /// </summary>
     public class MonsterModel : BaseModel<MonsterModel>
     {
-        // This battle number, incremental int from the last int in the database
-        public string Id { get; set; } = Guid.NewGuid().ToString();
         public override string Name { get; set; } = "Unkown";
         public override string Description { get; set; } = "Unknown";
 
@@ -64,18 +62,6 @@ namespace Game.Models
 
         // The Item equipped to the Character's feet
         public ItemModel Feet { get; set; } = null;
-
-        // A list of all the characters at the time of death and their stats.  
-        // Only use Get only, set will be done by the Add feature.
-        public string CharacterAtDeathList { get; set; }
-
-        // All of the monsters killed and their stats. 
-        // Only use Get only, set will be done by the Add feature.
-        public string MonstersKilledList { get; set; }
-
-        // All of the items dropped and their stats. 
-        // Only use Get only, set will be done by the Add feature.
-        public string ItemsDroppedList { get; set; }
 
         public MonsterModel()
         {
