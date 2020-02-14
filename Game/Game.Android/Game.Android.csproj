@@ -229,5 +229,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\headband.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\basketball_court.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
