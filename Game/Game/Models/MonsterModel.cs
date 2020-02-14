@@ -1,5 +1,6 @@
 ﻿using Game.Services;
 using System;
+using System.Collections.Generic;
 
 namespace Game.Models
 {
@@ -153,12 +154,49 @@ namespace Game.Models
         // Get the Dice to roll for the weapon used
         public int GetDamageDice()
         {
+            // temporary implementation
             return 0;
         }
 
         // Get the calculated damage that this weapon rolled
         public int GetDamageRollValue()
         {
+            // temporary implementation
+            return 0;
+        }
+
+        // The set of items the monster drops when dead
+        public List<ItemModel> DropAllItems()
+        {
+            // temporary implementation
+            return null;
+        }
+
+        // Remove the item from the location
+        public ItemModel RemoveItem(ItemLocationEnum location)
+        {
+            // temporary implementation
+            return null;
+        }
+
+        // Get the item from a location.  What Boots does the monster have...
+        public ItemModel GetItemByLocation(ItemModel item)
+        {
+            // temporary implementation
+            return null;
+        }
+
+        // Add an Item to the location
+        public ItemModel AddItem(ItemLocationEnum location, ItemModel item)
+        {
+            // temporary implementation
+            return null;
+        }
+
+        // Get all the bonuses for the attribute.  
+        public int GetItemBonus(string attribute)
+        {
+            // temporary implementation
             return 0;
         }
 
