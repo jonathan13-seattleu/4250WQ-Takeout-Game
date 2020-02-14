@@ -16,31 +16,31 @@
                 <StackLayout Style="{StaticResource CardImageTextBox}">
 
                     <ImageButton
-                        Source="village.png"
+                        Source="space_jam.png"
                         Style="{StaticResource ImageLargeStyle}"
                         Clicked="VillageButton_Clicked"/>
 
                     <Label 
-                        Text="Village"
+                        Text="Moron Mountain"
                         Style="{StaticResource CenterMessageStyle}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
 
                     <ImageButton
-                        Source="dungeon_door.png"
+                        Source="basketball_court.png"
                         Style="{StaticResource ImageLargeStyle}"
                         Clicked="DungeonButton_Clicked"/>
 
                     <Label 
-                        Text="Dungeon"
+                        Text="Court"
                         Style="{StaticResource CenterMessageStyle}"/>
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource CardImageTextBox}">
 
                     <ImageButton
-                        Source="dungeon_door.png"
+                        Source="basketball_clock.png"
                         Style="{StaticResource ImageLargeStyle}"
                         Clicked="AutobattleButton_Clicked"/>
 
