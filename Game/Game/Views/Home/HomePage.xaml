@@ -23,21 +23,15 @@
                 
                 </StackLayout>
                 
-                <StackLayout HorizontalOptions="Center" Padding="75,5,75,5"> 
-               
-                    <Label 
-                        Text="In a far away land there was a tribe of warrior elves."
-                        Style="{StaticResource CenterMessageStyle}"
-                        FontSize="Micro"
-                        LineBreakMode="WordWrap"
-                        />
+                <StackLayout HorizontalOptions="Center" Padding="75,5,75,5">
 
                     <Label 
-                        Text="The elves entered the woods to eraticate the monsters that threatened their villages."
+                        Text="The evil Mr. Swackhammer has sent his diminutive minions, the Monstars, on a mission to steal the talent held by the NBA's finest players. The Looney Tunes must stop at nothing to prevent the Monstars from ending the NBA as we know it. Together with Michael Jordan, defeat the Monstars and stop the Mr. Swackhammer from fulfilling his evil plans!"
                         Style="{StaticResource CenterMessageStyle}"
                         FontSize="Micro"
                         LineBreakMode="WordWrap"
                         />
+                    
                 </StackLayout>
 
                 <Button
