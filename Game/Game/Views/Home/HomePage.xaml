@@ -14,11 +14,11 @@
 
                 <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="Center">
                     <Image
-                         Source="knight.png"
+                         Source="michael_jordan.png"
                          Style="{StaticResource ImageLargeStyle}"/>
 
                     <Image
-                         Source="troll.png"
+                         Source="bang_monster.png"
                          Style="{StaticResource ImageLargeStyle}"/>
                 
                 </StackLayout>
