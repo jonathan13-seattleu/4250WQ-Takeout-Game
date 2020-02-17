@@ -20,6 +20,8 @@ namespace Game.Models
         // This battle number, incremental int from the last int in the database
         public int BattleNumber { get; set; }
 
+        public override string Name { get; set; } = "Score Name";
+        // Description of the Score
         public override string Description { get; set; } = "Score Description";
         // Total Score
         public int ScoreTotal { get; set; }
