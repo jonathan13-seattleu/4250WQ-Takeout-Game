@@ -19,7 +19,7 @@
             <Label Text="Delete Page" Style="{StaticResource HeaderStyle}"/>
 
             <StackLayout>
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                        Text="Name : " 
                         Style="{StaticResource LabelStyle}"/>
@@ -28,7 +28,7 @@
                         Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
                 
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                        Text="Description : " 
                         Style="{StaticResource LabelStyle}"/>
@@ -37,7 +37,7 @@
                         Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
                 
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                         Text="Game Date:"
                         Style="{StaticResource LabelStyle}"/>
@@ -47,7 +47,7 @@
                         Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                         Text="AutoBattle:"                      
                         Style="{StaticResource LabelStyle}"/>
@@ -57,7 +57,7 @@
                         Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                         Text="Score:" 
                         Style="{StaticResource LabelStyle}"/>
@@ -66,7 +66,7 @@
                         Style="{StaticResource ValueStyle}"/>
                 </StackLayout>
 
-                <StackLayout Style="{StaticResource HorizontalStack}">
+                <StackLayout Style="{StaticResource VerticalStack}">
                     <Label 
                         Text="Number of Rounds:"                      
                         Style="{StaticResource LabelStyle}"/>
