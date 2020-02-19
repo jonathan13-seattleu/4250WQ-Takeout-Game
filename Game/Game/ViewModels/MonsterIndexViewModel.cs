@@ -160,7 +160,7 @@ namespace Game.ViewModels
         /// Takes an item string ID and looks it up and returns the item
         /// This is because the Items on a character are stores as strings of the GUID.  That way it can be saved to the DB.
         /// </summary>
-        /// <param name="ItemID"></param>
+        /// <param name="MonsterID"></param>
         /// <returns></returns>
         public MonsterModel GetItem(string id)
         {
