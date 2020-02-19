@@ -25,41 +25,25 @@
                     ItemSelected="OnItemSelected"
                     HasUnevenRows="true"
                     Margin="5,0,5,0"
-                    RowHeight="80"
                     >
                 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid ColumnSpacing="1" RowSpacing="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
+                            <StackLayout Orientation="Vertical">
 
-                                <Label Grid.Column="0" Grid.Row="0"
-                                       Text="{Binding Name}" 
+                                <Label Text="{Binding Name}" 
                                        Style="{StaticResource ListStyle}"/>
 
-                                <Label Grid.Column="0" Grid.Row="1"
-                                       Text="Rounds" 
+                                <Label Text="{Binding GameDate}" 
                                        Style="{StaticResource ListStyle}"/>
 
-                                <Label Grid.Column="1" Grid.Row="1"
-                                       Text="{Binding RoundCount}" 
-                                       Style="{StaticResource ListStyle}"/>
+                                <Label Text="{Binding ScoreTotal}" 
+                                       FontSize="Large"/>
 
-                                <Label Grid.Column="0" Grid.Row="2"
-                                       Text="Score" 
-                                       Style="{StaticResource ListStyle}"/>
-                                
-                                <Label Grid.Column="1" Grid.Row="2"
-                                       Text="{Binding ScoreTotal}" 
-                                       Style="{StaticResource ListStyle}"/>
+                                <Label Text=" "/>
 
-                            </Grid>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
