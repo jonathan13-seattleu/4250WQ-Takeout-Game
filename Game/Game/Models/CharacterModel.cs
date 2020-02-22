@@ -1,4 +1,5 @@
 ﻿using Game.Services;
+using SQLite;
 
 namespace Game.Models
 {
@@ -22,6 +23,7 @@ namespace Game.Models
         //The Description of the Character
         public override string Description { get; set; } = "Character Description";
         // The living status of the Character
+        [Ignore]
         public bool Alive { get; set; } = true;
 
         // The Level of the Character based on their ExperienceTotal
@@ -46,25 +48,25 @@ namespace Game.Models
         public int MaxHealth { get; set; } = 0;
 
         // The Item equipped to the Character's head
-        public ItemModel Head { get; set; } = null;
+        public string Head { get; set; } = null;
 
         // The Item equipped to the Character's body
-        public ItemModel Body { get; set; } = null;
+        public string Body { get; set; } = null;
 
         // The Item equipped to the Character's primary hand
-        public ItemModel PrimaryHand { get; set; } = null;
+        public string PrimaryHand { get; set; } = null;
 
         // The Item equipped to the Character's off hand
-        public ItemModel OffHand { get; set; } = null;
+        public string OffHand { get; set; } = null;
 
         // The Item equipped to the Character's left finger
-        public ItemModel LeftFinger { get; set; } = null;
+        public string LeftFinger { get; set; } = null;
 
         // The Item equipped to the Character's right finger
-        public ItemModel RightFinger { get; set; } = null;
+        public string RightFinger { get; set; } = null;
 
         // The Item equipped to the Character's feet
-        public ItemModel Feet { get; set; } = null;
+        public string Feet { get; set; } = null;
 
         // Add Unique attributes for Item
 

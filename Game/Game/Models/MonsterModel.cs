@@ -34,25 +34,25 @@ namespace Game.Models
         // The max health of the monster
         public int MaxHealth { get; set; }
 
-        public ItemModel Head { get; set; } = null;
+        public string Head { get; set; } = null;
 
         // The Item equipped to the monster's body
-        public ItemModel Body { get; set; } = null;
+        public string Body { get; set; } = null;
 
         // The Item equipped to the monster's primary hand
-        public ItemModel PrimaryHand { get; set; } = null;
+        public string PrimaryHand { get; set; } = null;
 
         // The Item equipped to the monster's off hand
-        public ItemModel OffHand { get; set; } = null;
+        public string OffHand { get; set; } = null;
 
         // The Item equipped to the monster's left finger
-        public ItemModel LeftFinger { get; set; } = null;
+        public string LeftFinger { get; set; } = null;
 
         // The Item equipped to the monster's right finger
-        public ItemModel RightFinger { get; set; } = null;
+        public string RightFinger { get; set; } = null;
 
         // The Item equipped to the monster's feet
-        public ItemModel Feet { get; set; } = null;
+        public string Feet { get; set; } = null;
 
         public MonsterModel()
         {
