@@ -13,7 +13,7 @@ namespace Game.Models
     {
         // The ID for the item
         [PrimaryKey]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; } = System.Guid.NewGuid().ToString();
 
         // The Name of the Item 
         public virtual string Name { get; set; } = "This is an Item";
