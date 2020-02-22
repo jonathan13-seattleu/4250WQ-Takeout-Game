@@ -19,6 +19,10 @@ namespace Game.Models
         [Ignore]
         public bool Alive { get; set; } = true;
 
+        // The type of player, character comes before monster
+        [Ignore]
+        public PlayerTypeEnum PlayerType { get; set; } = PlayerTypeEnum.Unknown;
+
         // TurnOrder
         [Ignore]
         public int Order { get; set; } = 0;
