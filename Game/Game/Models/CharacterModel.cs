@@ -16,120 +16,16 @@ namespace Game.Models
     /// When characters or monsters die, they drop items into the Items Pool for the Battle
     /// 
     /// </summary>
-    public class CharacterModel : BaseModel<CharacterModel>
+    public class CharacterModel : BasePlayerModel<CharacterModel>
     {
-       //The Name of the Character
-        public override string Name { get; set; } = "Character Name";
-        //The Description of the Character
-        public override string Description { get; set; } = "Character Description";
-        // The living status of the Character
-        [Ignore]
-        public bool Alive { get; set; } = true;
-
-        // The Level of the Character based on their ExperienceTotal
-        public int Level { get; set; } = 0;
-
-        // The total amount of experience points the Character possesses
-        public int ExperienceTotal { get; set; } = 0;
-
-        // The Speed attribute of the Character
-        public int Speed { get; set; } = 0;
-
-        // The Defense attribute of the Character
-        public int Defense { get; set; } = 0;
-
-        // The Attack attribute of the Character
-        public int Attack { get; set; } = 0;
-
-        // The amount of health points the Character possesses
-        public int CurrentHealth { get; set; } = 0;
-
-        // The maximum amount of health points the Character can possess
-        public int MaxHealth { get; set; } = 0;
-
-        // The Item equipped to the Character's head
-        public string Head { get; set; } = null;
-
-        // The Item equipped to the Character's body
-        public string Body { get; set; } = null;
-
-        // The Item equipped to the Character's primary hand
-        public string PrimaryHand { get; set; } = null;
-
-        // The Item equipped to the Character's off hand
-        public string OffHand { get; set; } = null;
-
-        // The Item equipped to the Character's left finger
-        public string LeftFinger { get; set; } = null;
-
-        // The Item equipped to the Character's right finger
-        public string RightFinger { get; set; } = null;
-
-        // The Item equipped to the Character's feet
-        public string Feet { get; set; } = null;
-
-        // Add Unique attributes for Item
-
-        /// <summary>
-        /// Default ItemModel
-        /// Establish the Default Image Path
-        /// </summary>
-        public CharacterModel() {
-            ImageURI = ItemService.DefaultImageURI;
-        }
-
-        /// <summary>
-        /// Constructor to create an item based on what is passed in
-        /// </summary>
-        /// <param name="data"></param>
-        public CharacterModel(CharacterModel data)
+        //Default Character. The model will get a guid, name, and description
+        public CharacterModel() 
         {
-            Update(data);
-        }
-
-        /// <summary>
-        /// Update the Record
-        /// </summary>
-        /// <param name="newData">The new data</param>
-        public override void Update(CharacterModel newData)
-        {
-            if (newData == null)
-            {
-                return;
-            }
-
-            // Update all the fields in the Data, except for the Id and guid
-            Name = newData.Name;
-            Description = newData.Description;
-            Alive = newData.Alive;
-            Level = newData.Level;
-            ExperienceTotal = newData.ExperienceTotal;
-            Speed = newData.Speed;
-            Defense = newData.Defense;
-            Attack = newData.Attack;
-            CurrentHealth = newData.CurrentHealth;
-            MaxHealth = newData.MaxHealth;
-            Head = newData.Head;
-            Body = newData.Body;
-            PrimaryHand = newData.PrimaryHand;
-            OffHand = newData.OffHand;
-            LeftFinger = newData.LeftFinger;
-            RightFinger = newData.RightFinger;
-            Feet = newData.Feet;
-        }
-
-        // Helper to combine the attributes into a single line, to make it easier to display the item as a string
-        public string FormatOutput()
-        {
-            var myReturn = Name /*+ " , " +
-                            Description + " for " +
-                            Location.ToString() + " with " +
-                            Attribute.ToString() +
-                            "+" + Value + " , " +
-                            "Damage : " + Damage + " , " +
-                            "Range : " + Range*/;
-
-            return myReturn.Trim();
+            Guid = Id;
+            Name = "New Character";
+            Description = "Character Description";
+            Level = 1;
+            ImageURI = "icon_new.png";
         }
     }
 }
