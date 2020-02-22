@@ -171,6 +171,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="score.png" />
+    <Content Include="scoreboard.png" />
     <Content Include="space_jam.png" />
     <Content Include="splashscreen.jpg" />
     <Content Include="tasmanian_devil.png" />
