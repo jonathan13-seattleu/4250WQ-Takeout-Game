@@ -12,6 +12,7 @@ namespace Game.Models
         public CharacterModel() 
         {
             Guid = Id;
+            PlayerType = PlayerTypeEnum.Character;
             Name = "New Character";
             Description = "Character Description";
             Level = 1;
