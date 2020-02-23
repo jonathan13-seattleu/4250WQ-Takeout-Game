@@ -75,10 +75,12 @@
                             HorizontalTextAlignment="End"/>
 
                     <Stepper 
+                            x:Name="LevelStepper"
                             Value="{Binding Data.Level, Mode=TwoWay}"
                             Minimum="0"
                             Maximum="20"
-                            ValueChanged="Range_OnStepperValueChanged"/>
+                            ValueChanged="Range_OnStepperValueChanged"
+                        />
 
                 </StackLayout>
 
@@ -88,7 +90,8 @@
                         Style="{StaticResource LabelStyle}"/>
 
                 <Label
-                           Text="{Binding Data.MaxHealth}"
+                           x:Name="MaxHealthValue"
+                           Text=""
                            Style="{StaticResource LabelStyle}"/>
 
                 <Label 

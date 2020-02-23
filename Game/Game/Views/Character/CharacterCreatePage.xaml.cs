@@ -1,4 +1,5 @@
-﻿using Game.Models;
+﻿using Game.Helpers;
+using Game.Models;
 using Game.ViewModels;
 using System;
 using System.ComponentModel;
@@ -28,8 +29,7 @@ namespace Game.Views
 
             this.ViewModel.Title = "Create";
 
-            //Need to make the SelectedItem a string, so it can select the correct item.
-            
+            MaxHealthValue.Text = string.Format("{0:G}", ViewModel.Data.MaxHealth);
         }
 
         /// <summary>
@@ -60,14 +60,22 @@ namespace Game.Views
         }
 
         /// <summary>
-        /// Catch the change to the Stepper for Range
+        /// Catch the change to the Stepper for Range and update MaxHealth accordingly
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             LevelValue.Text = String.Format("{0}", e.NewValue);
+            var level = LevelStepper.Value + 1;
+            int Templevel = Convert.ToInt32(level);
+
+            // Roll the Dice and reset the Health
+            ViewModel.Data.MaxHealth = DiceHelper.RollDice(Templevel, 10);
+
+            MaxHealthValue.Text = string.Format(" {0:G}", ViewModel.Data.MaxHealth);
         }
+
 
 
 
