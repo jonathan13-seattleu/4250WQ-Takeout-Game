@@ -44,9 +44,21 @@ namespace Game.Views
             {
                 ViewModel.Data.ImageURI = Services.ItemService.DefaultImageURI;
             }
-
-            MessagingCenter.Send(this, "Create", ViewModel.Data);
-            await Navigation.PopModalAsync();
+            //If the name is empty, then display an alert and have users enter a valid string.
+            if (string.IsNullOrEmpty(ViewModel.Data.Name))
+            {
+                await DisplayAlert("Alert", "Name needs to have a string in it", "Ok");
+            }
+            //If the description is null, then display an alert and have users enter a valid string
+            if (string.IsNullOrEmpty(ViewModel.Data.Description))
+            {
+                await DisplayAlert("Alert", "Description needs to have a string in it", "Ok");
+            }
+            else
+            {
+                MessagingCenter.Send(this, "Update", ViewModel.Data);
+                await Navigation.PopModalAsync();
+            }
         }
 
         /// <summary>
