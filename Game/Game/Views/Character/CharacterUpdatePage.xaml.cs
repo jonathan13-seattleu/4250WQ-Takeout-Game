@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Game.ViewModels;
 using Game.Models;
+using Game.Helpers;
 
 namespace Game.Views
 {
@@ -26,8 +27,8 @@ namespace Game.Views
 
             this.ViewModel.Title = "Update " + data.Title;
 
-            //Need to make the SelectedItem a string, so it can select the correct item.
-            
+            MaxHealthValue.Text = string.Format("{0:G}", ViewModel.Data.MaxHealth);
+
         }
 
         /// <summary>
@@ -65,8 +66,17 @@ namespace Game.Views
       void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             LevelValue.Text = String.Format("{0}", e.NewValue);
+
+            var level = LevelStepper.Value + 1;
+            int Templevel = Convert.ToInt32(level);
+
+            // Roll the Dice and reset the Health
+            ViewModel.Data.MaxHealth = DiceHelper.RollDice(Templevel, 10);
+
+            MaxHealthValue.Text = string.Format(" {0:G}", ViewModel.Data.MaxHealth);
+
         }
 
-        
+
     }
 }

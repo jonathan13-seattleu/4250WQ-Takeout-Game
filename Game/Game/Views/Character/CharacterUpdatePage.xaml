@@ -54,9 +54,20 @@
                     HorizontalOptions="End"
                     HorizontalTextAlignment="End"/>
             <Stepper 
+                    x:Name="LevelStepper"
                     Value="{Binding Data.Range, Mode=TwoWay}"
                     ValueChanged="Range_OnStepperValueChanged"/>
+               
             </StackLayout>
+            <Label 
+                        Text="Max Health" 
+                        Style="{StaticResource LabelStyle}"/>
+
+            <Label
+                           x:Name="MaxHealthValue"
+                           Text=""
+                           Style="{StaticResource LabelStyle}"/>
+
 
         </StackLayout>
     </ContentPage.Content>
