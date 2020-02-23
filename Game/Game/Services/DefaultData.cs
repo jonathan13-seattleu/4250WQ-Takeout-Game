@@ -1,5 +1,7 @@
 ﻿using Game.Models;
+using Game.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game.Services
 {
@@ -116,6 +118,13 @@ namespace Game.Services
         }
         public static List<CharacterModel> LoadData(CharacterModel Temp)
         {
+            string HeadString = ItemIndexViewModel.Instance.Dataset.Where(m => m.Location == ItemLocationEnum.Head).FirstOrDefault().Id;
+            string PrimaryHandString = ItemIndexViewModel.Instance.Dataset.Where(m => m.Location == ItemLocationEnum.PrimaryHand).FirstOrDefault().Id;
+            string OffHandString = null;
+            string FeetString = null;
+            string RightFingerString = null;
+            string LeftFingerString = null;
+
             var datalist = new List<CharacterModel>()
             {
                 new CharacterModel
@@ -124,6 +133,8 @@ namespace Game.Services
                     Description = "Grey Bunny",
                     ImageURI= "bugs_bunny.png",
                     Level = 0,
+                    Head = HeadString,
+
                 },
                 new CharacterModel
                 {
@@ -131,15 +142,19 @@ namespace Game.Services
                     Description = "Yellow Bird",
                     ImageURI = "tweety_bird.png",
                     Level = 4,
+                    OffHand = OffHandString,
+
                 },
                 new CharacterModel
                 {
                     Name = "Porky Pig",
                     Description = "Baby Pig",
                     ImageURI = "porky_pig.png",
-                    Level = 2
-                }
-            };
+                    Level = 2,
+                    PrimaryHand = PrimaryHandString
+
+        }
+    };
             return datalist;
         }
         public static List<MonsterModel> LoadData(MonsterModel Temp)
