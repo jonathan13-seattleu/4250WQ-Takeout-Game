@@ -80,11 +80,6 @@
                 <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="FillAndExpand">
 
                     <Label 
-                        Text="Range" 
-                        Style="{StaticResource LabelStyle}"/>
-
-
-                    <Label 
                         Text="Value"
                         Style="{StaticResource LabelStyle}"/>
 
