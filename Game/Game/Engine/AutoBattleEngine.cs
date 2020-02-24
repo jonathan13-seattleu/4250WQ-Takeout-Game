@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Game.Models;
+using System.Threading.Tasks;
 
 namespace Game.Engine
 {
@@ -31,7 +32,7 @@ namespace Game.Engine
         #endregion Algrorithm
 
         #region RunAutoBattle
-        public bool RunAutoBattle()
+        public async Task<bool> RunAutoBattle()
         {
 
             // Auto Battle, does all the steps that a human would do.
