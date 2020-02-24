@@ -88,8 +88,4 @@
       <DependentUpon>ScoreUpdatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Engine\" />
-  </ItemGroup>
 </Project>
