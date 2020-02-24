@@ -144,6 +144,7 @@ namespace Game.Services
                     Description = "Grey Bunny",
                     ImageURI= "bugs_bunny.png",
                     Level = 0,
+                    MaxHealth = 40,
                     Head = HeadString,
 
                 },
@@ -153,6 +154,7 @@ namespace Game.Services
                     Description = "Yellow Bird",
                     ImageURI = "tweety_bird.png",
                     Level = 4,
+                    MaxHealth = 5,
                     OffHand = OffHandString,
 
                 },
@@ -162,6 +164,7 @@ namespace Game.Services
                     Description = "Baby Pig",
                     ImageURI = "porky_pig.png",
                     Level = 2,
+                    MaxHealth = 20,
                     PrimaryHand = PrimaryHandString
 
                 },
@@ -171,6 +174,7 @@ namespace Game.Services
                     Description = "Daffy Duck",
                     ImageURI ="daffy_duck.png",
                     Level = 1,
+                    MaxHealth = 12,
                     PrimaryHand = PrimaryHandString
                 },
                 new CharacterModel
@@ -178,12 +182,16 @@ namespace Game.Services
                     Name = "Tasmanian Devil",
                     Description = "Tasmanian Devil",
                     ImageURI = "tasmanian_devil.png",
+                    Level = 1,
+                    MaxHealth = 15,
                     Feet = FeetString
                 },
                 new CharacterModel
                 {
                     Name = "Marvin the Martian",
                     Description = "Marvin the Martian",
+                    Level = 1,
+                    MaxHealth = 10,
                     ImageURI = "marvin_the_martian.png",
                     Feet = FeetString
                 },
@@ -191,6 +199,8 @@ namespace Game.Services
                 {
                     Name = "Michael Jordan",
                     Description = "Michael Jordan",
+                    Level = 5,
+                    MaxHealth = 25,
                     ImageURI = "michael_jordan.png",
                     Feet = FeetString
 
