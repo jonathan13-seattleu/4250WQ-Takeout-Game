@@ -7,11 +7,7 @@
     {
         Battle,
         Village,
-        Score,
-        Items,
         Game,
         About,
-        Characters,
-        Monsters
     }
 }
