@@ -101,6 +101,11 @@ namespace Game.Services
 
         public static List<ScoreModel> LoadData(ScoreModel temp)
         {
+            /// <summary>
+            /// Load the Default data for scores
+            /// </summary>
+            /// <returns></returns>
+
             var datalist = new List<ScoreModel>()
             {
                 new ScoreModel {
@@ -118,12 +123,18 @@ namespace Game.Services
         }
         public static List<CharacterModel> LoadData(CharacterModel Temp)
         {
+            //Sets item name from ItemLocation Enum for each location.
             string HeadString = ItemIndexViewModel.Instance.Dataset.Where(m => m.Location == ItemLocationEnum.Head).FirstOrDefault().Id;
             string PrimaryHandString = ItemIndexViewModel.Instance.Dataset.Where(m => m.Location == ItemLocationEnum.PrimaryHand).FirstOrDefault().Id;
             string OffHandString = null;
-            string FeetString = null;
+            string FeetString = ItemIndexViewModel.Instance.Dataset.Where(m => m.Location == ItemLocationEnum.Feet).FirstOrDefault().Id;
             string RightFingerString = null;
             string LeftFingerString = null;
+
+            /// <summary>
+            /// Load the Default data for characters
+            /// </summary>
+            /// <returns></returns>
 
             var datalist = new List<CharacterModel>()
             {
@@ -153,12 +164,46 @@ namespace Game.Services
                     Level = 2,
                     PrimaryHand = PrimaryHandString
 
-        }
-    };
+                },
+                new CharacterModel
+                {
+                    Name = "Daffy Duck",
+                    Description = "Daffy Duck",
+                    ImageURI ="daffy_duck.png",
+                    Level = 1,
+                    PrimaryHand = PrimaryHandString
+                },
+                new CharacterModel
+                {
+                    Name = "Tasmanian Devil",
+                    Description = "Tasmanian Devil",
+                    ImageURI = "tasmanian_devil.png",
+                    Feet = FeetString
+                },
+                new CharacterModel
+                {
+                    Name = "Marvin the Martian",
+                    Description = "Marvin the Martian",
+                    ImageURI = "marvin_the_martian.png",
+                    Feet = FeetString
+                },
+                new CharacterModel
+                {
+                    Name = "Michael Jordan",
+                    Description = "Michael Jordan",
+                    ImageURI = "michael_jordan.png",
+                    Feet = FeetString
+
+                },
+            };
             return datalist;
         }
         public static List<MonsterModel> LoadData(MonsterModel Temp)
         {
+            /// <summary>
+            /// Load the Default data for characters
+            /// </summary>
+            /// <returns></returns>
             var datalist = new List<MonsterModel>()
             {
                 new MonsterModel
@@ -183,7 +228,31 @@ namespace Game.Services
                     Description ="Blue Monster",
                     ImageURI = "blanko_monster.png",
                     Level = 5
-                }
+                },
+                new MonsterModel
+                {
+                    Name = "Bupkus",
+                    Description ="Purple Monster",
+                    ImageURI = "bupkus_monster.png",
+                    Level = 6
+                },
+                new MonsterModel
+                {
+                    Name = "Pound",
+                    Description ="Orange Monster",
+                    ImageURI = "pound_monster.png",
+                    Level = 8
+                },
+                new MonsterModel
+                {
+                    Name = "Mr. Swackhammer",
+                    Description ="Giant Purple Monster",
+                    ImageURI = "mr._swackhammer_monster.png",
+                    Level = 10
+                },
+
+
+
             };
             return datalist;
         }
