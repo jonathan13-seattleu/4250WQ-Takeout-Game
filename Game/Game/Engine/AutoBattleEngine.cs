@@ -31,7 +31,7 @@ namespace Game.Engine
         // Output Score
         #endregion Algrorithm
 
-        #region RunAutoBattle
+        #region RunAutoBattlePrepare
         public async Task<bool> RunAutoBattle()
         {
 
@@ -56,7 +56,7 @@ namespace Game.Engine
             // Wrap up
             return true;
         }
-        #endregion RunAutoBattle
+        #endregion RunAutoBattlePrepare
 
         #region ScoreInformation
         public int GetScoreValue() { return 0; }
