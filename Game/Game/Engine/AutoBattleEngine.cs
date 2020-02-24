@@ -34,14 +34,20 @@ namespace Game.Engine
         #region RunAutoBattlePrepare
         public async Task<bool> RunAutoBattle()
         {
-
             // Auto Battle, does all the steps that a human would do.
 
             // Perpare for Battle
+            var Engine = new BattleEngine();
 
             // Picks 6 Characters
             // Start
+            Engine.PopulateCharacterList();
+
+            // Start Battle in AutoBattle mode
+            Engine.StartBattle(true);
+
             // Initialize the Rounds
+            Engine.NewRound();
 
             // Fight
 
@@ -54,6 +60,8 @@ namespace Game.Engine
             } while (GameContinueCondition);
 
             // Wrap up
+            Engine.EndBattle();
+
             return true;
         }
         #endregion RunAutoBattlePrepare
