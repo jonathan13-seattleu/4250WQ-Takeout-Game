@@ -5,7 +5,13 @@ using Game.Models;
 
 namespace Game.Engine
 {
-    class AutoBattleEngine
+    /// <summary>
+    /// AutoBattle Engine
+    /// 
+    /// Runs the engine simulation with no user interaction
+    /// 
+    /// </summary>
+    public class AutoBattleEngine
     {
         #region Algrorithm
         // Prepare for Battle
