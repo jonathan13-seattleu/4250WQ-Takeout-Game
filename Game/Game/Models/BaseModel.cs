@@ -16,9 +16,9 @@ namespace Game.Models
         /// </summary>
         /// <param name="newData"></param>
         /// <returns></returns>
-        public virtual void Update(T newData)
+        public virtual bool Update(T newData)
         {
-
+            return true;
         }
     }
 }
