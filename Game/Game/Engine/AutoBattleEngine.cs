@@ -34,13 +34,13 @@ namespace Game.Engine
         #endregion Algrorithm
 
         // The Battle Engine
-        BattleEngine Engine = new BattleEngine();
+        // BattleEngine Engine = new BattleEngine();
 
         /// <summary>
         /// Return the Score Object
         /// </summary>
         /// <returns></returns>
-        public ScoreModel GetScoreObject() { return Engine.BattleScore; }
+        public ScoreModel GetScoreObject() { return BattleScore; }
 
 
         /// <summary>
@@ -51,20 +51,16 @@ namespace Game.Engine
         {
             RoundEnum RoundCondition;
 
+            Debug.WriteLine("Auto Battle Starting");
+
             // Auto Battle, does all the steps that a human would do.
 
             // Perpare for Battle
-            var Engine = new BattleEngine();
 
-            // Picks 6 Characters
-            var data = new CharacterModel();
-            for (int i = 0; i < 6; i++)
-            {
-                Engine.PopulateCharacterList(data);
-            }
+            CreateCharacterParty();
 
             // Start Battle in AutoBattle mode
-            Engine.StartBattle(true);
+            StartBattle(true);
 
             // Fight Loop. Continue until Game is Over...
             do
@@ -73,12 +69,12 @@ namespace Game.Engine
 
                 // Do the turn...
                 // If the round is over start a new one...
-                RoundCondition = Engine.RoundNextTurn();
+                RoundCondition = RoundNextTurn();
 
                 if (RoundCondition == RoundEnum.NewRound)
                 {
-                Engine.NewRound();
-                Debug.WriteLine("New Round");
+                    NewRound();
+                    Debug.WriteLine("New Round");
                 }
 
             } while (RoundCondition != RoundEnum.GameOver);
@@ -86,7 +82,35 @@ namespace Game.Engine
             Debug.WriteLine("Game Over");
 
             // Wrap up
-            Engine.EndBattle();
+            EndBattle();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Create Characters for Party
+        /// </summary>
+        public bool CreateCharacterParty()
+        {
+            // Picks 6 Characters
+
+            // To use your own characters, populate the List before calling RunAutoBattle
+
+            // Will first pull from existing characters
+            foreach (var data in CharacterIndexViewModel.Instance.Dataset)
+            {
+                if (CharacterList.Count() >= MaxNumberPartyCharacters)
+                {
+                    break;
+                }
+                PopulateCharacterList(data);
+            }
+
+            //If there are not enough will add random ones
+            for (int i = CharacterList.Count(); i < MaxNumberPartyCharacters; i++)
+            {
+                PopulateCharacterList(Helpers.RandomPlayerHelper.GetRandomCharacter(1));
+            }
 
             return true;
         }
