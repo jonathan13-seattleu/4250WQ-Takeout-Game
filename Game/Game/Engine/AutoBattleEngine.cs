@@ -4,6 +4,7 @@ using System.Text;
 using Game.Models;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using static Game.Engine.BattleEngine;
 
 namespace Game.Engine
 {
@@ -32,22 +33,23 @@ namespace Game.Engine
         // Output Score
         #endregion Algrorithm
 
-        public bool FlagWhoDies = false;
-
+        // The Battle Engine
         BattleEngine Engine = new BattleEngine();
 
-        #region ScoreInformation
-        public int GetScoreValue() { return 0; }
+        /// <summary>
+        /// Return the Score Object
+        /// </summary>
+        /// <returns></returns>
         public ScoreModel GetScoreObject() { return Engine.BattleScore; }
-        public int GetRoundsValue() { return 0; }
-        public string GetResultsOutput() { return "done"; }
-        #endregion ScoreInformation
 
-        #region RunAutoBattleFight
 
+        /// <summary>
+        /// Run Auto Battle
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> RunAutoBattle()
         {
-            BattleEngine.RoundEnum RoundCondition;
+            RoundEnum RoundCondition;
 
             // Auto Battle, does all the steps that a human would do.
 
@@ -72,15 +74,15 @@ namespace Game.Engine
 
                 // Do the turn...
                 // If the round is over start a new one...
-                RoundCondition = Engine.NextTurn(FlagWhoDies);
+                RoundCondition = Engine.RoundNextTurn();
 
-                if (RoundCondition == BattleEngine.RoundEnum.NewRound)
+                if (RoundCondition == RoundEnum.NewRound)
                 {
                 Engine.NewRound();
                 Debug.WriteLine("New Round");
                 }
 
-            } while (RoundCondition != BattleEngine.RoundEnum.GameOver);
+            } while (RoundCondition != RoundEnum.GameOver);
 
             Debug.WriteLine("Game Over");
 
@@ -89,6 +91,5 @@ namespace Game.Engine
 
             return true;
         }
-        #endregion RunAutoBattleFight
     }
 }
