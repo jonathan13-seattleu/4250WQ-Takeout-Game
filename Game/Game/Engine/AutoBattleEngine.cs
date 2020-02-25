@@ -31,6 +31,13 @@ namespace Game.Engine
         // Output Score
         #endregion Algrorithm
 
+        #region ScoreInformation
+        public int GetScoreValue() { return 0; }
+        public ScoreModel GetScoreObject() { return new ScoreModel(); }
+        public int GetRoundsValue() { return 0; }
+        public string GetResultsOutput() { return "done"; }
+        #endregion ScoreInformation
+
         #region RunAutoBattlePrepare
         public async Task<bool> RunAutoBattle()
         {
@@ -40,7 +47,6 @@ namespace Game.Engine
             var Engine = new BattleEngine();
 
             // Picks 6 Characters
-            // Start
             Engine.PopulateCharacterList();
 
             // Start Battle in AutoBattle mode
@@ -65,12 +71,5 @@ namespace Game.Engine
             return true;
         }
         #endregion RunAutoBattlePrepare
-
-        #region ScoreInformation
-        public int GetScoreValue() { return 0; }
-        public ScoreModel GetScoreObject() { return new ScoreModel(); }
-        public int GetRoundsValue() { return 0; }
-        public string GetResultsOutput() { return "done"; }
-        #endregion ScoreInformation
     }
 }
