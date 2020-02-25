@@ -84,7 +84,7 @@ namespace Game.Engine
                 var data = new MonsterModel();
                 // Help identify which Monster it is
                 data.Name += " " + MonsterList.Count() + 1;
-                MonsterList.Add(data);
+                MonsterList.Add(new PlayerInfoModel(data));
             }
 
             return MonsterList.Count();
@@ -142,26 +142,8 @@ namespace Game.Engine
             // Remember who just went...
             PlayerCurrent = GetNextPlayerTurn();
 
-            // Decide Who to Attack
-            // Do the Turn         
-            if (PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
-            {
-                // Get the player
-                var myPlayer = CharacterList.Where(a => a.Id == PlayerCurrent.Guid).FirstOrDefault();
-
-                // Do the turn....
-                TakeTurn(myPlayer);
-            }
-
-            // Add MonsterModel turn here...
-            else if (PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
-            {
-                // Get the player
-                var myPlayer = MonsterList.Where(a => a.Id == PlayerCurrent.Guid).FirstOrDefault();
-
-                // Do the turn....
-                TakeTurn(myPlayer);
-            }
+            // Do the turn....
+            TakeTurn(PlayerCurrent);
 
             RoundStateEnum = RoundEnum.NextTurn;
 
@@ -294,7 +276,7 @@ namespace Game.Engine
         /// Pickup Items Dropped
         /// </summary>
         /// <param name="character"></param>
-        public bool PickupItemsFromPool(CharacterModel character)
+        public bool PickupItemsFromPool(PlayerInfoModel character)
         {
             // Have the character, walk the items in the pool, and decide if any are better than current one.
 
@@ -316,7 +298,7 @@ namespace Game.Engine
         /// </summary>
         /// <param name="character"></param>
         /// <param name="setLocation"></param>
-        public bool GetItemFromPoolIfBetter(CharacterModel character, ItemLocationEnum setLocation)
+        public bool GetItemFromPoolIfBetter(PlayerInfoModel character, ItemLocationEnum setLocation)
         {
             var myList = ItemPool.Where(a => a.Location == setLocation)
                 .OrderByDescending(a => a.Value)
