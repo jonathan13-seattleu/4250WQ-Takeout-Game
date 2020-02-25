@@ -8,12 +8,12 @@ namespace Game.Views
 	/// The Main Game Page
 	/// </summary>
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomeCourtPage : ContentPage
+	public partial class MoronMountainPage : ContentPage
 	{
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public HomeCourtPage()
+		public MoronMountainPage()
 		{
 			InitializeComponent ();
 		}

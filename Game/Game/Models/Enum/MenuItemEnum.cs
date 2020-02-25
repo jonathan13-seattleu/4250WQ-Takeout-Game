@@ -6,7 +6,7 @@
     public enum MenuItemEnum
     {
         Battle,
-        HomeCourt,
+        MoronMountain,
         Game,
         About,
     }

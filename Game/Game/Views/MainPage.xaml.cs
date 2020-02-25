@@ -37,8 +37,8 @@ namespace Game.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemEnum.HomeCourt:
-                        MenuPages.Add(id, new NavigationPage(new HomeCourtPage()));
+                    case (int)MenuItemEnum.MoronMountain:
+                        MenuPages.Add(id, new NavigationPage(new MoronMountainPage()));
                         break;
 
                     case (int)MenuItemEnum.Battle:

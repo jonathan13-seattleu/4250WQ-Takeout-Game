@@ -35,7 +35,7 @@ namespace Game.Views
 		/// <param name="e"></param>
 		async void VillageButton_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PushAsync(new HomeCourtPage());
+			await Navigation.PushAsync(new MoronMountainPage());
 		}
 
 		/// <summary>
