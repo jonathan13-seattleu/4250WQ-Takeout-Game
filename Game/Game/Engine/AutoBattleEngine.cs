@@ -32,6 +32,10 @@ namespace Game.Engine
         // Output Score
         #endregion Algrorithm
 
+        public bool FlagWhoDies = false;
+
+        BattleEngine Engine = new BattleEngine();
+
         #region ScoreInformation
         public int GetScoreValue() { return 0; }
         public ScoreModel GetScoreObject() { return Engine.BattleScore; }
@@ -40,10 +44,6 @@ namespace Game.Engine
         #endregion ScoreInformation
 
         #region RunAutoBattleFight
-
-        public bool FlagWhoDies = false;
-
-        BattleEngine Engine = new BattleEngine();
 
         public async Task<bool> RunAutoBattle()
         {
