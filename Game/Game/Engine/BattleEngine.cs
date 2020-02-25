@@ -153,8 +153,10 @@ namespace Game.Engine
         // Finally if all of the above are the same, sort based on who was loaded first into the list...
         public int ListOrder;
 
+        // Current Health
         public int CurrentHealth;
 
+        // Max Health
         public int MaxHealth;
 
         // Need because of the instantiation below
@@ -203,14 +205,9 @@ namespace Game.Engine
 
         public bool BattleRunning = false;
 
-        public bool PopulateCharacterList()
+        public bool PopulateCharacterList(CharacterModel data)
         {
-            CharacterList.Add(new CharacterModel());
-            CharacterList.Add(new CharacterModel());
-            CharacterList.Add(new CharacterModel());
-            CharacterList.Add(new CharacterModel());
-            CharacterList.Add(new CharacterModel());
-            CharacterList.Add(new CharacterModel());
+            CharacterList.Add(data);
 
             return true;
         }
@@ -221,6 +218,8 @@ namespace Game.Engine
 
             BattleRunning = true;
 
+            NewRound();
+
             return true;
         }
 
@@ -229,33 +228,6 @@ namespace Game.Engine
             BattleRunning = false;
 
             return true;
-        }
-
-        public RoundEnum NextTurn(bool killme)
-        {
-            if (killme)
-            {
-                CharacterList.RemoveAt(0);
-            }
-            else
-            {
-                MonsterList.RemoveAt(0);
-            }
-
-            if (MonsterList.Count == 0)
-            {
-                // Kill off a character, so the game will end...
-                CharacterList.RemoveAt(0);
-
-                return RoundEnum.NewRound;
-            }
-
-            if (CharacterList.Count == 0)
-            {
-                return RoundEnum.GameOver;
-            }
-
-            return RoundEnum.NextTurn;
         }
     }
 }

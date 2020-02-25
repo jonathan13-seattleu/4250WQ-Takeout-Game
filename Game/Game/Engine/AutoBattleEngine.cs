@@ -57,7 +57,11 @@ namespace Game.Engine
             var Engine = new BattleEngine();
 
             // Picks 6 Characters
-            Engine.PopulateCharacterList();
+            var data = new CharacterModel();
+            for (int i = 0; i < 6; i++)
+            {
+                Engine.PopulateCharacterList(data);
+            }
 
             // Start Battle in AutoBattle mode
             Engine.StartBattle(true);
