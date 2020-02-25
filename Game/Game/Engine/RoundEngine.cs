@@ -21,20 +21,6 @@ namespace Game.Engine
             return true;
         }
 
-        // Start the round, need to get the ItemPool, and Characters
-        public bool StartRound()
-        {
-            // Start on 0, the turns will increment...
-            BattleScore.RoundCount = 0;
-
-            // Start the first round...
-            NewRound();
-
-            Debug.WriteLine("Start Round :" + BattleScore.RoundCount);
-
-            return true;
-        }
-
         // Call to make a new set of monsters...
         public bool NewRound()
         {
@@ -54,17 +40,6 @@ namespace Game.Engine
         }
 
         /// <summary>
-        /// Will return the Min, Max, Average for the Characters in the party
-        /// So the MonsterModel can get scaled to the appropraite level
-        /// </summary>
-        /// <returns></returns>
-        public int GetAverageCharacterLevel()
-        {
-            var data = CharacterList.Average(m => m.Level);
-            return (int)Math.Floor(data);
-        }
-
-        /// <summary>
         /// Add Monsters to the Round
         /// 
         /// Because Monsters can be duplicated, will add 1, 2, 3 to their name
@@ -79,9 +54,9 @@ namespace Game.Engine
         /// <returns></returns>
         public int AddMonstersToRound()
         {
-            for (var i = 0; i < MaxNumberPartyPlayers; i++)
+            for (var i = 0; i < MaxNumberPartyMonsters; i++)
             {
-                var data = new MonsterModel();
+                var data = new MonsterModel { Attack = 10, CurrentHealth = 10 };
                 // Help identify which Monster it is
                 data.Name += " " + MonsterList.Count() + 1;
                 MonsterList.Add(new PlayerInfoModel(data));
@@ -247,30 +222,29 @@ namespace Game.Engine
             // If Player is found, then see if next player exist, if so return that.
             // If not, return first player (looped)
 
-            // No current player, so set the last one, so it rolls over to the first...
+            // If List is empty, return null
+            if (PlayerList.Count == 0)
+            {
+                return null;
+            }
+
+            // No current player, so set the first one
             if (PlayerCurrent == null)
             {
-                PlayerCurrent = PlayerList.LastOrDefault();
+                return PlayerList.FirstOrDefault();
             }
 
-            // Else go and pick the next player in the list...
-            for (var i = 0; i < PlayerList.Count(); i++)
+            // Find current player in the list
+            var index = PlayerList.FindIndex(m => m.Guid.Equals(PlayerCurrent.Guid));
+
+            // If at the end of the list, return the first element
+            if (index == PlayerList.Count() - 1)
             {
-                if (PlayerList[i].Guid.Equals(PlayerCurrent.Guid))
-                {
-                    if (i < PlayerList.Count() - 1) // 0 based...
-                    {
-                        return PlayerList[i + 1];
-                    }
-                    else
-                    {
-                        // Return the first in the list...
-                        return PlayerList.FirstOrDefault();
-                    }
-                }
+                return PlayerList.FirstOrDefault();
             }
 
-            return null;
+            // Return the next element
+            return PlayerList[index + 1];
         }
 
         /// <summary>

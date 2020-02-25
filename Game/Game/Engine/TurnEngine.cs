@@ -6,6 +6,7 @@ using Game.Models;
 using Game.Services;
 using Game.Engine;
 using Game.Helpers;
+using Game.ViewModels;
 
 namespace Game.Engine
 {
@@ -46,6 +47,8 @@ namespace Game.Engine
 
             var result = Attack(Attacker);
 
+            BattleScore.TurnCount++;
+
             return result;
         }
 
@@ -74,9 +77,7 @@ namespace Game.Engine
             }
 
             // Do Attack
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = Target.GetDefense() + Target.Level;
-            TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+            TurnAsAttack(Attacker, Target);
 
             CurrentAttacker = new PlayerInfoModel(Attacker);
             CurrentDefender = new PlayerInfoModel(Target);
@@ -159,14 +160,8 @@ namespace Game.Engine
         /// <param name="Target"></param>
         /// <param name="DefenseScore"></param>
         /// <returns></returns>
-        public bool TurnAsAttack(PlayerInfoModel Attacker, int AttackScore, PlayerInfoModel Target, int DefenseScore)
+        public bool TurnAsAttack(PlayerInfoModel Attacker, PlayerInfoModel Target)
         {
-            BattleMessagesModel.TurnMessage = string.Empty;
-            BattleMessagesModel.TurnMessageSpecial = string.Empty;
-            BattleMessagesModel.AttackStatus = string.Empty;
-
-            BattleMessagesModel.PlayerType = PlayerTypeEnum.Monster;
-
             if (Attacker == null)
             {
                 return false;
@@ -177,36 +172,44 @@ namespace Game.Engine
                 return false;
             }
 
-            BattleScore.TurnCount++;
+            // Set Messages to empty
+            BattleMessagesModel.TurnMessage = string.Empty;
+            BattleMessagesModel.TurnMessageSpecial = string.Empty;
+            BattleMessagesModel.AttackStatus = string.Empty;
+
+            // Remember Current Player
+            BattleMessagesModel.PlayerType = PlayerTypeEnum.Monster;
 
             // Choose who to attack
 
             BattleMessagesModel.TargetName = Target.Name;
             BattleMessagesModel.AttackerName = Attacker.Name;
 
+            // Set Attack and Defense
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = Target.GetDefense() + Target.Level;
+
             BattleMessagesModel.HitStatus = RollToHitTarget(AttackScore, DefenseScore);
 
-            Debug.WriteLine(BattleMessagesModel.GetTurnMessage());
-
-            // It's a Miss
-            if (BattleMessagesModel.HitStatus == HitStatusEnum.Miss)
+            switch (BattleMessagesModel.HitStatus)
             {
-                return true;
+                case HitStatusEnum.Miss:
+                    // It's a Miss
+
+                    break;
+
+                case HitStatusEnum.Hit:
+                    // It's a Hit
+                    //Calculate Damage
+                    BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue();
+
+                    Target.TakeDamage(BattleMessagesModel.DamageAmount);
+                    BattleMessagesModel.CurrentHealth = Target.CurrentHealth;
+                    BattleMessagesModel.TurnMessageSpecial = BattleMessagesModel.GetCurrentHealthMessage();
+
+                    RemoveIfDead(Target);
+                    break;
             }
-
-            // It's a Hit
-            if (BattleMessagesModel.HitStatus == HitStatusEnum.Hit)
-            {
-                //Calculate Damage
-                BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue();
-
-                Target.TakeDamage(BattleMessagesModel.DamageAmount);
-            }
-
-            BattleMessagesModel.CurrentHealth = Target.CurrentHealth;
-            BattleMessagesModel.TurnMessageSpecial = BattleMessagesModel.GetCurrentHealthMessage();
-
-            RemoveIfDead(Target);
 
             BattleMessagesModel.TurnMessage = Attacker.Name + BattleMessagesModel.AttackStatus + Target.Name + BattleMessagesModel.TurnMessageSpecial;
             Debug.WriteLine(BattleMessagesModel.TurnMessage);
@@ -236,7 +239,7 @@ namespace Game.Engine
         /// Process for death...
         /// </summary>
         /// <param name="Target"></param>
-        private int TargetDied(PlayerInfoModel Target)
+        private bool TargetDied(PlayerInfoModel Target)
         {
             // Mark Status in output
             BattleMessagesModel.TurnMessageSpecial = " and causes death";
@@ -252,7 +255,9 @@ namespace Game.Engine
                     // Add the MonsterModel to the killed list
                     BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
 
-                    return DropItems(Target);
+                    DropItems(Target);
+
+                    return true;
 
                 case PlayerTypeEnum.Monster:
                 default:
@@ -264,7 +269,9 @@ namespace Game.Engine
                     // Add the MonsterModel to the killed list
                     BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
 
-                    return DropItems(Target);
+                    DropItems(Target);
+
+                    return true;
             }
         }
 
@@ -274,6 +281,8 @@ namespace Game.Engine
         /// <param name="Target"></param>
         private int DropItems(PlayerInfoModel Target)
         {
+            var DroppedMessage = " Items Dropped : ";
+
             // Drop Items to ItemModel Pool
             var myItemList = Target.DropAllItems();
 
@@ -285,10 +294,19 @@ namespace Game.Engine
             foreach (var ItemModel in myItemList)
             {
                 BattleScore.ItemsDroppedList += ItemModel.FormatOutput() + "\n";
-                BattleMessagesModel.TurnMessageSpecial += " ItemModel " + ItemModel.Name + " dropped";
+                DroppedMessage += ItemModel.Name + " , ";
             }
 
             ItemPool.AddRange(myItemList);
+
+            ItemPool.AddRange(myItemList);
+
+            if (myItemList.Count == 0)
+            {
+                DroppedMessage = " Nothing dropped. ";
+            }
+
+            BattleMessagesModel.TurnMessageSpecial += DroppedMessage;
 
             return myItemList.Count();
         }
@@ -305,6 +323,8 @@ namespace Game.Engine
 
             if (d20 == 1)
             {
+                BattleMessagesModel.AttackStatus = " rolls 1 to completly miss ";
+
                 // Force Miss
                 BattleMessagesModel.HitStatus = HitStatusEnum.CriticalMiss;
                 return BattleMessagesModel.HitStatus;
@@ -312,6 +332,8 @@ namespace Game.Engine
 
             if (d20 == 20)
             {
+                BattleMessagesModel.AttackStatus = " rolls 20 for lucky hit ";
+
                 // Force Hit
                 BattleMessagesModel.HitStatus = HitStatusEnum.CriticalHit;
                 return BattleMessagesModel.HitStatus;
@@ -320,12 +342,15 @@ namespace Game.Engine
             var ToHitScore = d20 + AttackScore;
             if (ToHitScore < DefenseScore)
             {
-                BattleMessagesModel.AttackStatus = " misses ";
+                BattleMessagesModel.AttackStatus = " rolls " + d20 + " and misses ";
+
                 // Miss
                 BattleMessagesModel.HitStatus = HitStatusEnum.Miss;
                 BattleMessagesModel.DamageAmount = 0;
                 return BattleMessagesModel.HitStatus;
             }
+
+            BattleMessagesModel.AttackStatus = " rolls " + d20 + " and hits ";
 
             // Hit
             BattleMessagesModel.HitStatus = HitStatusEnum.Hit;
@@ -340,16 +365,19 @@ namespace Game.Engine
         public List<ItemModel> GetRandomMonsterItemDrops(int round)
         {
             // You decide how to drop monster items, level, etc.
-            var NumberToDrop = DiceHelper.RollDice(1, round);
 
-            var myList = new List<ItemModel>();
+            // The Number drop can be Up to the Round Count, but may be less.  
+            // Negative results in nothing dropped
+            var NumberToDrop = (DiceHelper.RollDice(1, round + 1) - 1);
+
+            var result = new List<ItemModel>();
 
             for (var i = 0; i < NumberToDrop; i++)
             {
-                myList.Add(new ItemModel());
+                result.Add(new ItemModel());
             }
 
-            return myList;
+            return result;
         }
     }
 }
