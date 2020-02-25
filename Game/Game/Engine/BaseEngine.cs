@@ -37,9 +37,14 @@ namespace Game.Engine
         // Player currently engaged
         public PlayerInfoModel PlayerCurrent;
 
+        // Current Round State
         public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
-        public const int MaxNumberPartyPlayers = 6;
+        // Max Number of Characters
+        public int MaxNumberPartyCharacters = 6;
+
+        // Max Number of Monsters
+        public int MaxNumberPartyMonsters = 6;
 
         #endregion Properties
     }
