@@ -223,7 +223,7 @@ namespace Game.Engine
             // Check for alive
             if (Target.Alive == false)
             {
-                TargedDied(Target);
+                TargetDied(Target);
                 return true;
             }
 
