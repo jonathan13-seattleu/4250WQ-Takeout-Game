@@ -38,7 +38,7 @@ namespace Game.Engine
         public string GetResultsOutput() { return "done"; }
         #endregion ScoreInformation
 
-        #region RunAutoBattlePrepare
+        #region RunAutoBattleFight
         public async Task<bool> RunAutoBattle()
         {
             // Auto Battle, does all the steps that a human would do.
@@ -70,6 +70,6 @@ namespace Game.Engine
 
             return true;
         }
-        #endregion RunAutoBattlePrepare
+        #endregion RunAutoBattleFight
     }
 }
