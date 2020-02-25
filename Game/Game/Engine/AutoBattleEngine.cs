@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
 
 using Game.Models;
+using Game.ViewModels;
 
 namespace Game.Engine
 {
@@ -11,7 +14,7 @@ namespace Game.Engine
     /// Runs the engine simulation with no user interaction
     /// 
     /// </summary>
-    public class AutoBattleEngine
+    public class AutoBattleEngine : BattleEngine
     {
         #region Algrorithm
         // Prepare for Battle
@@ -62,11 +65,6 @@ namespace Game.Engine
 
             // Start Battle in AutoBattle mode
             Engine.StartBattle(true);
-
-            // Fight
-
-            // Populate the Round
-            Engine.NewRound();
 
             // Fight Loop. Continue until Game is Over...
             do
