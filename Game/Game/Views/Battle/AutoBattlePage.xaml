@@ -9,12 +9,12 @@
             <StackLayout Style="{StaticResource CardImageTextBox}">
 
                 <ImageButton
-                        Source="dungeon_door.png"
+                        Source="referee.png"
                         Style="{StaticResource ImageLargeStyle}"
                         Clicked="AutobattleButton_Clicked"/>
 
                 <Label 
-                        Text="Begin Battle"
+                        Text="Play Ball!"
                         Style="{StaticResource CenterMessageStyle}"/>
             </StackLayout>
 
