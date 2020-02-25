@@ -1,12 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Game.Models;
-using Game.Models.Enum;
-using Game.ViewModels;
-using Game.Engine;
 
 namespace Game.Engine
 {
@@ -59,7 +54,7 @@ namespace Game.Engine
             var Engine = new BattleEngine();
 
             // Picks 6 Characters
-            var data = new BaseEngine.CharacterModel();
+            var data = new CharacterModel();
             for (int i = 0; i < 6; i++)
             {
                 Engine.PopulateCharacterList(data);

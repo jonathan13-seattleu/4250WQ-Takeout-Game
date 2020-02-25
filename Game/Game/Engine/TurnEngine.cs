@@ -78,8 +78,8 @@ namespace Game.Engine
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
 
-            CurrentAttacker = new PlayerInfo(Attacker);
-            CurrentDefender = new PlayerInfo(Target);
+            CurrentAttacker = new PlayerInfoModel(Attacker);
+            CurrentDefender = new PlayerInfoModel(Target);
 
             return true;
         }
@@ -106,8 +106,8 @@ namespace Game.Engine
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
 
-            CurrentAttacker = new PlayerInfo(Attacker);
-            CurrentDefender = new PlayerInfo(Target);
+            CurrentAttacker = new PlayerInfoModel(Attacker);
+            CurrentDefender = new PlayerInfoModel(Target);
 
             return true;
         }
@@ -127,8 +127,8 @@ namespace Game.Engine
             var DefenseScore = Target.GetDefense() + Target.Level;
             TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
 
-            CurrentAttacker = new PlayerInfo(Attacker);
-            CurrentDefender = new PlayerInfo(Target);
+            CurrentAttacker = new PlayerInfoModel(Attacker);
+            CurrentDefender = new PlayerInfoModel(Target);
 
             return true;
         }
@@ -282,7 +282,7 @@ namespace Game.Engine
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    BattleMessagesModel.LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetHealthMax();
+                    BattleMessagesModel.LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetMaxHealth();
                     Debug.WriteLine(BattleMessagesModel.LevelUpMessage);
                 }
 

@@ -4,7 +4,6 @@ using System.Linq;
 
 using Game.Models;
 using System.Diagnostics;
-using Game.Models.Enum;
 
 namespace Game.Engine
 {
@@ -173,7 +172,7 @@ namespace Game.Engine
         /// Get the Next Player to have a turn
         /// </summary>
         /// <returns></returns>
-        public PlayerInfo GetNextPlayerTurn()
+        public PlayerInfoModel GetNextPlayerTurn()
         {
             // Recalculate Order
             OrderPlayerListByTurnOrder();
@@ -187,7 +186,7 @@ namespace Game.Engine
         /// <summary>
         /// Order the Players in Turn Sequence
         /// </summary>
-        public List<PlayerInfo> OrderPlayerListByTurnOrder()
+        public List<PlayerInfoModel> OrderPlayerListByTurnOrder()
         {
             // Order is based by... 
             // Order by Speed (Desending)
@@ -214,10 +213,10 @@ namespace Game.Engine
         /// <summary>
         /// Who is Playing this round?
         /// </summary>
-        private List<PlayerInfo> MakePlayerList()
+        private List<PlayerInfoModel> MakePlayerList()
         {
-            PlayerList = new List<PlayerInfo>();
-            PlayerInfo tempPlayer;
+            PlayerList = new List<PlayerInfoModel>();
+            PlayerInfoModel tempPlayer;
 
             var ListOrder = 0;
 
@@ -225,7 +224,7 @@ namespace Game.Engine
             {
                 if (data.Alive)
                 {
-                    tempPlayer = new PlayerInfo(data);
+                    tempPlayer = new PlayerInfoModel(data);
 
                     // Remember the order
                     tempPlayer.ListOrder = ListOrder;
@@ -241,7 +240,7 @@ namespace Game.Engine
                 if (data.Alive)
                 {
 
-                    tempPlayer = new PlayerInfo(data);
+                    tempPlayer = new PlayerInfoModel(data);
 
                     // Remember the order
                     tempPlayer.ListOrder = ListOrder;
@@ -259,7 +258,7 @@ namespace Game.Engine
         /// Get the Information about the Player
         /// </summary>
         /// <returns></returns>
-        public PlayerInfo GetNextPlayerInList()
+        public PlayerInfoModel GetNextPlayerInList()
         {
             // Walk the list from top to bottom
             // If Player is found, then see if next player exist, if so return that.
