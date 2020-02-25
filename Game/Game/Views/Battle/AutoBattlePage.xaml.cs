@@ -27,7 +27,9 @@ namespace Game.Views
 
 			var result = await Engine.RunAutoBattle();
 
-			BattleMessage = Engine.GetResultsOutput();
+			var Score = Engine.GetScoreObject();
+
+			BattleMessage = string.Format("Done {0} Rounds", Score.RoundCount);
 
 			// Error Occured
 			if (result == false)

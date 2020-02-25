@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Game.Models;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Game.Engine
 {
@@ -33,7 +34,7 @@ namespace Game.Engine
 
         #region ScoreInformation
         public int GetScoreValue() { return 0; }
-        public ScoreModel GetScoreObject() { return new ScoreModel(); }
+        public ScoreModel GetScoreObject() { return Engine.BattleScore; }
         public int GetRoundsValue() { return 0; }
         public string GetResultsOutput() { return "done"; }
         #endregion ScoreInformation
@@ -41,6 +42,8 @@ namespace Game.Engine
         #region RunAutoBattleFight
 
         public bool FlagWhoDies = false;
+
+        BattleEngine Engine = new BattleEngine();
 
         public async Task<bool> RunAutoBattle()
         {
@@ -65,16 +68,21 @@ namespace Game.Engine
             // Fight Loop. Continue until Game is Over...
             do
             {
+                Debug.WriteLine("Next Turn");
+
                 // Do the turn...
                 // If the round is over start a new one...
                 RoundCondition = Engine.NextTurn(FlagWhoDies);
 
-            if (RoundCondition == BattleEngine.RoundEnum.NewRound)
-            {
+                if (RoundCondition == BattleEngine.RoundEnum.NewRound)
+                {
                 Engine.NewRound();
-            }
+                Debug.WriteLine("New Round");
+                }
 
-        } while (RoundCondition != BattleEngine.RoundEnum.GameOver);
+            } while (RoundCondition != BattleEngine.RoundEnum.GameOver);
+
+            Debug.WriteLine("Game Over");
 
             // Wrap up
             Engine.EndBattle();
