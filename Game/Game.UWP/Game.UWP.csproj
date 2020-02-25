@@ -104,6 +104,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="referee.png" />
     <Content Include="air_jordan.png" />
     <Content Include="ankle_brace.png" />
     <Content Include="arm_sleeve.png" />
