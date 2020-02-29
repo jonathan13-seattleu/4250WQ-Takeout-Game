@@ -86,6 +86,22 @@
             </Style>
 
             <Style TargetType="Label"
+                    x:Key="BattleLabelStyleLeft"
+                    BasedOn="{StaticResource Xamarin.Forms.Label}">
+                    <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                
+            </Style>
+
+            <Style TargetType="Label"
+                    x:Key="BattleLabelStyleRight"
+                    BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+
+            </Style>
+
+            <Style TargetType="Label"
                 x:Key="ValueStyle"
                 BasedOn="{StaticResource LabelStyle}">
                 <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
@@ -163,10 +179,24 @@
             </Style>
 
             <Style TargetType="StackLayout"
+                x:Key="HorizontalStackBattle">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+            </Style>
+
+            <Style TargetType="StackLayout"
                 x:Key="VerticalStack">
                 <Setter Property="Orientation" Value="Vertical" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+
+            <Style TargetType="StackLayout"
+                x:Key="VerticalStackBattle">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
 
             <Style TargetType="StackLayout"
