@@ -12,7 +12,7 @@
                    Style="{StaticResource BattleLabelStyleRight}"/>
         </StackLayout>
         <Grid>
-            <Image Grid.Column="0" Source="icon_new.png"/>
+            <Image Grid.Column="0" Grid.Row="0" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
         </Grid>
         </StackLayout>
 
