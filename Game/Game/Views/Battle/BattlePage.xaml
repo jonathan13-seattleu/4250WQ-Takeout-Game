@@ -70,10 +70,10 @@
             </StackLayout>
             <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
                 <StackLayout>
-                    <Button Text="Attack"/>
+                    <Button Text="Attack" Clicked="AttackButton_Clicked"/>
                 </StackLayout>
                 <StackLayout>
-                    <Label Text="Attack Result" IsVisible="False"/>
+                    <Label Text="Attack Result" IsVisible="False" x:Name="AttackResult"/>
                 </StackLayout>
                 
             </StackLayout>

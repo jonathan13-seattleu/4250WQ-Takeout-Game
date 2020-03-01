@@ -25,7 +25,8 @@ namespace Game.Views
 		/// <param name="e"></param>
 		void AttackButton_Clicked(object sender, EventArgs e)
 		{
-			DisplayAlert("SU", "Attack !!!", "OK");
+			DisplayAlert("Temporary Attack dialog for battle", "Attack !!!", "OK");
+			AttackResult.IsVisible = true;
 		}
 
 		/// <summary>
