@@ -26,6 +26,7 @@ namespace Game.Views
 		void AttackButton_Clicked(object sender, EventArgs e)
 		{
 			DisplayAlert("Temporary Attack dialog for battle", "Attack !!!", "OK");
+			AttackResult.Text = "The result of the attack";
 			AttackResult.IsVisible = true;
 		}
 

@@ -73,7 +73,7 @@
                     <Button Text="Attack" Clicked="AttackButton_Clicked"/>
                 </StackLayout>
                 <StackLayout>
-                    <Label Text="Attack Result" IsVisible="False" x:Name="AttackResult"/>
+                    <Label IsVisible="False" x:Name="AttackResult"/>
                 </StackLayout>
                 
             </StackLayout>
