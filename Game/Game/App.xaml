@@ -107,6 +107,15 @@
             </Style>
 
             <Style TargetType="Label"
+                    x:Key="CurrentBattleLabelStyle"
+                    BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+
+            </Style>
+
+            <Style TargetType="Label"
                 x:Key="ValueStyle"
                 BasedOn="{StaticResource LabelStyle}">
                 <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
@@ -169,11 +178,21 @@
                 <Setter Property="HeightRequest" Value="60" />
 
             </Style>
+            
             <Style TargetType="Image"
                 x:Key="ImageSmallStyle"
                 BasedOn="{StaticResource ImageLargeStyle}">
                 <Setter Property="WidthRequest" Value="30" />
                 <Setter Property="HeightRequest" Value="30" />
+            </Style>
+
+            <Style TargetType="Image"
+                x:Key="CurrentBattleImageStyle"
+                BasedOn="{StaticResource ImageLargeStyle}">
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
 
             <!-- ImageButton -->
@@ -209,6 +228,12 @@
                 <Setter Property="VerticalOptions" Value="StartAndExpand" />
             </Style>
 
+            <Style TargetType="StackLayout"
+                x:Key="CurrentBattleHorizontalStack">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            
             <Style TargetType="StackLayout"
                 x:Key="VerticalStack">
                 <Setter Property="Orientation" Value="Vertical" />

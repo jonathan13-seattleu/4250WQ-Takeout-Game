@@ -15,7 +15,21 @@
             <StackLayout>
                 <Label Text="Current Battle" Style="{StaticResource BattlePageLabel}"/>
             </StackLayout>
-            
+
+            <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
+                <StackLayout>
+                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"/>
+                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                </StackLayout>
+                <StackLayout>
+                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"/>
+                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout>
             <Grid>
                 <Image Grid.Column="0" Grid.Row="0" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
                 <Label Grid.Column="0" Grid.Row="1" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
@@ -53,7 +67,16 @@
                 <Image Grid.Column="7" Grid.Row="10" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
                 <Label Grid.Column="7" Grid.Row="11" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
             </Grid>
-
+            </StackLayout>
+            <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
+                <StackLayout>
+                    <Button Text="Attack"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Attack Result" IsVisible="False"/>
+                </StackLayout>
+                
+            </StackLayout>
         </StackLayout>
 
     </ContentPage.Content>
