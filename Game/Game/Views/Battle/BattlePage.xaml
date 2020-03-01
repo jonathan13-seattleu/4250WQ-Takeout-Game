@@ -12,8 +12,44 @@
                    Style="{StaticResource BattleLabelStyleRight}"/>
         </StackLayout>
         <Grid>
-            <Image Grid.Column="0" Grid.Row="0" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
-        </Grid>
+                <Image Grid.Column="0" Grid.Row="0" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Health"/>
+            
+                <Image Grid.Column="0" Grid.Row="2" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Health"/>
+            
+                <Image Grid.Column="0" Grid.Row="4" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="5" Text="Health"/>
+            
+                <Image Grid.Column="0" Grid.Row="6" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="7" Text="Health"/>
+
+                <Image Grid.Column="0" Grid.Row="8" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="9" Text="Health"/>
+
+                <Image Grid.Column="0" Grid.Row="10" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="11" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="0" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="1" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="2" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="3" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="4" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="5" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="6" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="7" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="8" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="9" Text="Health"/>
+
+                <Image Grid.Column="7" Grid.Row="10" Source="icon_new.png" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="7" Grid.Row="11" Text="Health"/>
+
+
+            </Grid>
         </StackLayout>
 
     </ContentPage.Content>
