@@ -31,18 +31,21 @@
                                 <Image  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                         Source="{Binding ImageURI}"
                                         Style="{StaticResource ImageSmallStyle}"
+                                        IsVisible="True"
                                         VerticalOptions="CenterAndExpand"/>
 
                                 <Label Grid.Column="1" Grid.Row="0"
                                        Text="{Binding Name}" 
-                                       Style="{StaticResource ListStyle}"/>
+                                       Style="{StaticResource ListStyle}"
+                                       IsVisible="True"/>
 
                                 <StackLayout Grid.Column="1" Grid.Row="1"
                                     Orientation="Horizontal">
 
                                     <Label 
                                        Text="{Binding Attribute}" 
-                                       Style="{StaticResource ListStyle}"/>
+                                       Style="{StaticResource ListStyle}"
+                                        IsVisible="True"/>
 
                                     <Label Text="{Binding Value}" 
                                         Style="{StaticResource ListStyle}"/>
