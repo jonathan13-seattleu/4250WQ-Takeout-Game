@@ -20,14 +20,22 @@ namespace Game.Views
 
 		/// <summary>
 		/// Attack Action
+		/// When the Attack button is pressed, the battle engine will be called. Based on the result of the attack,
+		/// the result will be resiplayed in the AttackResult text field. In addition, if a character or monster dies,
+		/// that text field will become visible. A character leveling up will also result in that text field becomming
+		/// visible.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		void AttackButton_Clicked(object sender, EventArgs e)
 		{
+			//Battle engine will be called and appropriate text will be displayed based on the result.
 			DisplayAlert("Temporary Attack dialog for battle", "Attack !!!", "OK");
 			AttackResult.Text = "The result of the attack";
 			AttackResult.IsVisible = true;
+			MonsterDied.IsVisible = true;
+			CharacterDied.IsVisible = true;
+			CharacterLevelUp.IsVisible = true;
 		}
 
 		/// <summary>
