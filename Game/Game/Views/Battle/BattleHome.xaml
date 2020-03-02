@@ -6,7 +6,10 @@
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}" HorizontalOptions="CenterAndExpand">
-
+            <Label Text="Temporary Battle Home Page"/>
+            <Button Text="Pick Characters" Clicked="CharacterButton_Clicked"/>
+            <Button Text="Battle Page" Clicked="BattleButton_Clicked"/>
+            <Button Text="Item Pool Page" Clicked="ItemPool_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
