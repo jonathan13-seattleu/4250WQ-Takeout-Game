@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game.Views.ItemsDroppedPage"
+             >
+
+    <ContentPage.Content>
+        <StackLayout>
+        <ListView x:Name="ItemPoolListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <StackLayout Style="{StaticResource VerticalStack}">
+                                <Image Source="{Binding image}"/>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding title}"/>
+                                </StackLayout>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding Item_Attribute}"/>
+                                </StackLayout>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding Item_Value}"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+            <StackLayout>
+                <Button 
+            Pressed="Button_Clicked"
+            Text="Auto Assign Items"/>
+
+            </StackLayout>
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>
