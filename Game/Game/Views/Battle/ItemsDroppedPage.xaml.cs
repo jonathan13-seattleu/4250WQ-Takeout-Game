@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,13 +11,19 @@ namespace Game.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsDroppedPage : ContentPage
     {
+        //ViewModel used for items
+        readonly ItemIndexViewModel ViewModel;
+
         /// <summary>
         /// Constructor
         /// </summary>
         public ItemsDroppedPage()
         {
             InitializeComponent();
+            BindingContext = ViewModel = ItemIndexViewModel.Instance;
         }
+
+
 
         private void Button_Clicked(object sender, EventArgs e)
         {
