@@ -5,11 +5,32 @@
              >
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}">
-            <Label Text="Pick Items Page..."></Label>
+        <ListView x:Name="ItemPoolListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource HorizontalStack}">
+                            <StackLayout Style="{StaticResource VerticalStack}">
+                                <Image Source="{Binding image}"/>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding title}"/>
+                                </StackLayout>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding Item_Attribute}"/>
+                                </StackLayout>
+                                
+                                <StackLayout Style="{StaticResource HorizontalStack}">
+                                    <Label Text="{Binding Item_Value}"/>
+                                </StackLayout>
+                            </StackLayout>
 
-            <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
-        </StackLayout>
-        
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
