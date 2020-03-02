@@ -5,24 +5,32 @@
              >
 
     <ContentPage.Content>
-        <ListView x:Name="ItemPoolListView">
+        <ListView x:Name="ItemPoolListView"                    
+                    ItemsSource="{Binding Dataset}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="true"
+                    Margin="5,0,5,0"
+                    RowHeight="80"
+>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Style="{StaticResource HorizontalStack}">
                             <StackLayout Style="{StaticResource VerticalStack}">
-                                <Image Source="{Binding image}"/>
+                                <Image Source="{Binding ImageURI}"/>
                                 
                                 <StackLayout Style="{StaticResource HorizontalStack}">
-                                    <Label Text="{Binding title}"/>
+                                    <Label Text="{Binding Name}"/>
                                 </StackLayout>
                                 
                                 <StackLayout Style="{StaticResource HorizontalStack}">
-                                    <Label Text="{Binding Item_Attribute}"/>
+                                    <Label Text="{Binding Attribute}"/>
                                 </StackLayout>
                                 
                                 <StackLayout Style="{StaticResource HorizontalStack}">
-                                    <Label Text="{Binding Item_Value}"/>
+                                    <Label Text="{Binding Value}"/>
                                 </StackLayout>
                             </StackLayout>
 
