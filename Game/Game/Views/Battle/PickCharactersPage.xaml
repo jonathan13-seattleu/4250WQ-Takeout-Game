@@ -6,14 +6,11 @@
              mc:Ignorable="d"
              x:Name="BrowseItemsPage"
              x:Class="Game.Views.PickCharactersPage"
-             Title="{Binding Title}">
+             Title="Choose up to 6 players to join your team.">
 
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Style="{StaticResource OuterBoxStack}">
-
-                <Label Text="Choose up to 6 players to join your team." Style="{StaticResource CenterMessageStyle}"/>
-
                 <StackLayout Style="{StaticResource HorizontalStack}" HorizontalOptions="CenterAndExpand">
 
                     <StackLayout HorizontalOptions="Start">
