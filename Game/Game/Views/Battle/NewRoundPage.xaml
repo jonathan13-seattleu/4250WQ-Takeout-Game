@@ -6,9 +6,9 @@
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}">
-            
+
             <StackLayout Style="{StaticResource HorizontalStack}"
-                     Spacing="100">
+                     Spacing="80">
 
                 <StackLayout Style="{StaticResource VerticalStack}">
 
@@ -46,9 +46,9 @@
             
 
             </StackLayout>
-            
-            <Button Clicked="BeginButton_Clicked" Text="Begin"></Button>
-            
+
+            <Button Clicked="BeginButton_Clicked" Text="Begin Round"/>
+
         </StackLayout>
 
     </ContentPage.Content>
