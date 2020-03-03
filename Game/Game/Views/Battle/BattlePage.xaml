@@ -18,55 +18,109 @@
 
             <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
                 <StackLayout>
-                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"/>
-                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"/>
-                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"
+                           x:Name="AttackerImage"/>
+                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"
+                           x:Name="AttackerName"/>
+                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"
+                           x:Name="AttackerHealth"/>
                 </StackLayout>
                 <StackLayout>
-                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"/>
-                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"/>
-                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"/>
+                    <Image Source="icon_new.png" Style="{StaticResource CurrentBattleImageStyle}"
+                           x:Name="DefenderImage"/>
+                    <Label Text="Name" Style="{StaticResource CurrentBattleLabelStyle}"
+                           x:Name="DefenderName"/>
+                    <Label Text="Health" Style="{StaticResource CurrentBattleLabelStyle}"
+                           x:Name="DefenderHealth"/>
+                    
                 </StackLayout>
             </StackLayout>
 
             <StackLayout>
-            <Grid>
-                <Image Grid.Column="0" Grid.Row="0" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="1" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image  Grid.Column="0" Grid.Row="0"  
+                        x:Name="CharacterOneGrid"
+                        Style="{StaticResource BattlePageCharacterImage}" />
+                <Label Grid.Column="0" Grid.Row="1" 
+                       x:Name="CharacterOneHealth"
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="0" Grid.Row="2" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="3" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image Grid.Column="0" Grid.Row="2" 
+                       x:Name="CharacterTwoGrid"
+                       Style="{StaticResource BattlePageCharacterImage}"/>
+                <Label Grid.Column="0" Grid.Row="3" 
+                       x:Name="CharacterTwoHealth"
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="0" Grid.Row="4" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="5" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image Grid.Column="0" Grid.Row="4" 
+                       x:Name="CharacterThreeGrid"
+                       Style="{StaticResource BattlePageCharacterImage}"/>
+                <Label Grid.Column="0" Grid.Row="5" 
+                       x:Name="CharacterThreeHealth" 
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="0" Grid.Row="6" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="7" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image Grid.Column="0" Grid.Row="6" 
+                       x:Name="CharacterFourGrid"
+                       Style="{StaticResource BattlePageCharacterImage}"/>
+                <Label Grid.Column="0" Grid.Row="7" 
+                       x:Name="CharacterFourHealth" 
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="0" Grid.Row="8" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="9" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image Grid.Column="0" Grid.Row="8" 
+                       x:Name="CharacterFiveGrid"
+                       Style="{StaticResource BattlePageCharacterImage}"/>
+                <Label Grid.Column="0" Grid.Row="9" 
+                       x:Name="CharacterFiveHealth"
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="0" Grid.Row="10" Source="icon_new.png" Style="{StaticResource BattlePageCharacterImage}"/>
-                <Label Grid.Column="0" Grid.Row="11" Text="Health" Style="{StaticResource BattleLabelStyleLeft}"/>
+                <Image Grid.Column="0" Grid.Row="10" 
+                       x:Name="CharacterSixGrid"
+                       Style="{StaticResource BattlePageCharacterImage}"/>
+                <Label Grid.Column="0" Grid.Row="11" 
+                       x:Name="CharacterSixHealth"
+                       Style="{StaticResource BattleLabelStyleLeft}"/>
 
-                <Image Grid.Column="7" Grid.Row="0" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="1" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
+                <Image Grid.Column="7" Grid.Row="0" 
+                       x:Name="MonsterOneGrid"
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="1" 
+                       x:Name="MonsterOneHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
 
-                <Image Grid.Column="7" Grid.Row="2" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="3" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
+                <Image Grid.Column="7" Grid.Row="2" 
+                       x:Name="MonsterTwoGrid" 
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="3" 
+                       x:Name="MonsterTwoHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
 
-                <Image Grid.Column="7" Grid.Row="4" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="5" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
+                <Image Grid.Column="7" Grid.Row="4" 
+                       x:Name="MonsterThreeGrid" 
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="5" 
+                       x:Name="MonsterThreeHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
 
-                <Image Grid.Column="7" Grid.Row="6" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="7" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
+                <Image Grid.Column="7" Grid.Row="6" 
+                       x:Name="MonsterFourGrid"
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="7" 
+                       x:Name="MonsterFourHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
 
-                <Image Grid.Column="7" Grid.Row="8" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="9" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
+                <Image Grid.Column="7" Grid.Row="8" 
+                       x:Name="MonsterFiveGrid"
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="9" 
+                       x:Name="MonsterFiveHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
 
-                <Image Grid.Column="7" Grid.Row="10" Source="icon_new.png" Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="11" Text="Health" Style="{StaticResource BattleLabelStyleRight}"/>
-            </Grid>
+                <Image Grid.Column="7" Grid.Row="10" 
+                       x:Name="MonsterSixGrid" 
+                       Style="{StaticResource BattlePageMonsterImage}"/>
+                <Label Grid.Column="7" Grid.Row="11" 
+                       x:Name="MonsterSixHealth"
+                       Style="{StaticResource BattleLabelStyleRight}"/>
+
             </StackLayout>
             <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
                 <StackLayout>
