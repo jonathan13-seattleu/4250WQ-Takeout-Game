@@ -1,33 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.NewRoundPage">
+             x:Class="Game.Views.NewRoundPage"
+             Title="A new round is about to begin!">
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}">
-            <Label Text="New Round Page..."></Label>
+            
+            <StackLayout Style="{StaticResource HorizontalStack}"
+                     Spacing="100">
 
-            <Label Text="Characters..."></Label>
+                <StackLayout Style="{StaticResource VerticalStack}">
 
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Image Source="knight.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="knight.png" Style="{StaticResource ImageMediumStyle}"></Image>
+                    <Label Text="Here are the remaining Home Players:"></Label>
+
+                    <ListView 
+                                x:Name="PartyCharacterListView" 
+                                ItemsSource="{Binding PartyCharacterList}"
+                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                RefreshCommand="{Binding LoadItemsCommand}"
+                                CachingStrategy="RecycleElement"
+                                HasUnevenRows="true"
+                                Margin="5,0,5,0"
+                                RowHeight="80">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Image  Source="{Binding ImageURI}"
+                                            Style="{StaticResource ImageMediumStyle}"
+                                            VerticalOptions="CenterAndExpand"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource VerticalStack}">
+                
+                    <Label Text="Here are the remaining Away Players:"></Label>
+                
+                </StackLayout>
+
+            
+
             </StackLayout>
             
-            <Label Text="Monsters..."></Label>
-
-            <StackLayout Style="{StaticResource HorizontalStack}">
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-                <Image Source="troll.png" Style="{StaticResource ImageMediumStyle}"></Image>
-            </StackLayout>
-
             <Button Clicked="BeginButton_Clicked" Text="Begin"></Button>
-
+            
         </StackLayout>
-        
+
     </ContentPage.Content>
 </ContentPage>
