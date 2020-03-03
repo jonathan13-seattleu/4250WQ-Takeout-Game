@@ -9,7 +9,10 @@
             <Label Text="Temporary Battle Home Page"/>
             <Button Text="Pick Characters" Clicked="CharacterButton_Clicked"/>
             <Button Text="Battle Page" Clicked="BattleButton_Clicked"/>
+            <Button Text="New Round Page" Clicked="NewRound_Clicked"/>
             <Button Text="Item Pool Page" Clicked="ItemPool_Clicked"/>
+            <Button Text="Round Over Page" Clicked="RoundOver_Clicked"/>
+            <Button Text="Score Page" Clicked="Score_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
