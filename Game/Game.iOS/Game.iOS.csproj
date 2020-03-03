@@ -216,4 +216,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\referee.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gameover.jpg" />
+  </ItemGroup>
 </Project>
