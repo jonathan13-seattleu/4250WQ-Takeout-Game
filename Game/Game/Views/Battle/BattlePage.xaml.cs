@@ -3,6 +3,8 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;
+using Game.Models;
+using System.Diagnostics;
 
 namespace Game.Views
 {
@@ -61,6 +63,9 @@ namespace Game.Views
 			// Add Players to Display
 			DrawGameBoardAttackerDefender();
 
+			//EngineViewModel.Engine.MonsterList.Add(new PlayerInfoModel )
+			
+
 			//Grab Image URIs for the selcted character list.
 			var tempList = EngineViewModel.Engine.CharacterList;
 			var characterOneImage = tempList[0].ImageURI;
@@ -93,22 +98,38 @@ namespace Game.Views
 			CharacterFiveHealth.Text = characterFiveHealth.ToString();
 			CharacterSixHealth.Text = characterSixHealth.ToString();
 
+			//Grab the Image URI for the Monsters
 			var tempMonsterList = EngineViewModel.Engine.MonsterList;
-			var MonsterOneImage = tempMonsterList[0].ImageURI;
-			var MonsterTwoImage = tempMonsterList[1].ImageURI;
-			var MonsterThreeImage = tempMonsterList[2].ImageURI;
-			var MonsterFourImage = tempMonsterList[3].ImageURI;
-			var MonsterFiveImage = tempMonsterList[4].ImageURI;
-			var MonsterSixImage = tempMonsterList[5].ImageURI;
+			var monsterOneImage = tempMonsterList[0].ImageURI;
+			var monsterTwoImage = tempMonsterList[1].ImageURI;
+			var monsterThreeImage = tempMonsterList[2].ImageURI;
+			var monsterFourImage = tempMonsterList[3].ImageURI;
+			var monsterFiveImage = tempMonsterList[4].ImageURI;
+			var monsterSixImage = tempMonsterList[5].ImageURI;
 
-			MonsterOneGrid.Source = MonsterOneImage;
-			MonsterTwoGrid.Source = MonsterTwoImage;
-			MonsterThreeGrid.Source = MonsterThreeImage;
-			MonsterFourGrid.Source = MonsterFourImage;
-			MonsterFiveGrid.Source = MonsterFiveImage;
-			MonsterSixGrid.Source = MonsterSixImage;
+			//Set Monster Image URIs for selected Monsters
+			MonsterOneGrid.Source = monsterOneImage;
+			MonsterTwoGrid.Source = monsterTwoImage;
+			MonsterThreeGrid.Source = monsterThreeImage;
+			MonsterFourGrid.Source = monsterFourImage;
+			MonsterFiveGrid.Source = monsterFiveImage;
+			MonsterSixGrid.Source = monsterSixImage;
 
+			//Grab health for the selected monsters
+			var monsterOneHealth = tempMonsterList[0].GetCurrentHealth();
+			var monsterTwoHealth = tempMonsterList[1].GetCurrentHealth();
+			var monsterThreeHealth = tempMonsterList[2].GetCurrentHealth();
+			var monsterFourHealth = tempMonsterList[3].GetCurrentHealth();
+			var monsterFiveHealth = tempMonsterList[4].GetCurrentHealth();
+			var monsterSixHealth = tempMonsterList[5].GetCurrentHealth();
 
+			//Set health of selected monsters.
+			MonsterOneHealth.Text = monsterOneHealth.ToString();
+			MonsterTwoHealth.Text = monsterTwoHealth.ToString();
+			MonsterThreeHealth.Text = monsterThreeHealth.ToString();
+			MonsterFourHealth.Text = monsterFourHealth.ToString();
+			MonsterFiveHealth.Text = monsterFiveHealth.ToString();
+			MonsterSixHealth.Text = monsterSixHealth.ToString();
 		}
 
 		/// <summary>

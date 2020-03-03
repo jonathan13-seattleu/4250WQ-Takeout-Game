@@ -37,6 +37,7 @@
             </StackLayout>
 
             <StackLayout>
+                <Grid>
                 <Image  Grid.Column="0" Grid.Row="0"  
                         x:Name="CharacterOneGrid"
                         Style="{StaticResource BattlePageCharacterImage}" />
@@ -80,6 +81,7 @@
                        Style="{StaticResource BattleLabelStyleLeft}"/>
 
                 <Image Grid.Column="7" Grid.Row="0" 
+                       
                        x:Name="MonsterOneGrid"
                        Style="{StaticResource BattlePageMonsterImage}"/>
                 <Label Grid.Column="7" Grid.Row="1" 
@@ -87,14 +89,14 @@
                        Style="{StaticResource BattleLabelStyleRight}"/>
 
                 <Image Grid.Column="7" Grid.Row="2" 
-                       x:Name="MonsterTwoGrid" 
+                       x:Name="MonsterTwoGrid"
                        Style="{StaticResource BattlePageMonsterImage}"/>
                 <Label Grid.Column="7" Grid.Row="3" 
                        x:Name="MonsterTwoHealth"
                        Style="{StaticResource BattleLabelStyleRight}"/>
 
                 <Image Grid.Column="7" Grid.Row="4" 
-                       x:Name="MonsterThreeGrid" 
+                       x:Name="MonsterThreeGrid"                       
                        Style="{StaticResource BattlePageMonsterImage}"/>
                 <Label Grid.Column="7" Grid.Row="5" 
                        x:Name="MonsterThreeHealth"
@@ -110,17 +112,17 @@
                 <Image Grid.Column="7" Grid.Row="8" 
                        x:Name="MonsterFiveGrid"
                        Style="{StaticResource BattlePageMonsterImage}"/>
-                <Label Grid.Column="7" Grid.Row="9" 
+                <Label Grid.Column="7" Grid.Row="9"
                        x:Name="MonsterFiveHealth"
                        Style="{StaticResource BattleLabelStyleRight}"/>
 
                 <Image Grid.Column="7" Grid.Row="10" 
-                       x:Name="MonsterSixGrid" 
+                       x:Name="MonsterSixGrid"
                        Style="{StaticResource BattlePageMonsterImage}"/>
                 <Label Grid.Column="7" Grid.Row="11" 
                        x:Name="MonsterSixHealth"
                        Style="{StaticResource BattleLabelStyleRight}"/>
-
+                </Grid>
             </StackLayout>
             <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
                 <StackLayout>
