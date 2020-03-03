@@ -1,16 +1,119 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Game.Views.ScorePage">
+             x:Class="Game.Views.ScorePage"
+             Title="GAME OVER">
 
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource VerticalStack}">
-            
-            <Label Text="Score Page..."></Label>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Vertical">
+                        <Label 
+                            Text="{Binding Data.Name}" 
+                            Style="{StaticResource ValueStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label 
+                            Text="{Binding Data.GameDate}"
+                            Style="{StaticResource ValueStyle}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label 
+                        Text="{Binding Data.ScoreTotal}"
+                        Style="{StaticResource LabelStyle}"
+                        FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="AutoBattle:" 
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               HorizontalTextAlignment="Start" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Data.AutoBattle}" 
+                               Grid.Row="0" 
+                               Grid.Column="1" 
+                               HorizontalTextAlignment="End" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="No. of Rounds:" 
+                               Grid.Row="1" 
+                               Grid.Column="0" 
+                               HorizontalTextAlignment="Start" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Data.RoundCount}" 
+                               Grid.Row="1" 
+                               Grid.Column="1" 
+                               HorizontalTextAlignment="End" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="No. of Turns:" 
+                               Grid.Row="2" 
+                               Grid.Column="0" 
+                               HorizontalTextAlignment="Start" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Data.TurnCount}" 
+                               Grid.Row="2" 
+                               Grid.Column="1" 
+                               HorizontalTextAlignment="End" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="No. of Monsters Slain:" 
+                               Grid.Row="3" 
+                               Grid.Column="0" 
+                               HorizontalTextAlignment="Start" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Data.MonsterSlainNumber}" 
+                               Grid.Row="3" 
+                               Grid.Column="1" 
+                               HorizontalTextAlignment="End" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="Total EXP Earned:" 
+                               Grid.Row="4" 
+                               Grid.Column="0" 
+                               HorizontalTextAlignment="Start" 
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Data.ExperienceGainedTotal}"
+                               Grid.Row="4" Grid.Column="1" 
+                               HorizontalTextAlignment="End" 
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <Label 
+                            Text="Characters at Death:"
+                            Style="{StaticResource LabelStyle}"/>
+                    <Label 
+                        Text="{Binding Data.CharacterAtDeathList}" 
+                        Style="{StaticResource ValueStyle}"/>
 
-            <Button Clicked="CloseButton_Clicked" Text="Close"></Button>
+                    <Label 
+                        Text="Monsters Killed:"
+                        Style="{StaticResource LabelStyle}"/>
+                    <Label 
+                        Text="{Binding Data.MonstersKilledList}" 
+                        Style="{StaticResource ValueStyle}"/>
 
-        </StackLayout>
-        
+                    <Label 
+                        Text="Items Dropped:"
+                        Style="{StaticResource LabelStyle}"/>
+                    <Label 
+                        Text="{Binding Data.ItemsDroppedList}"
+                        Style="{StaticResource ValueStyle}"/>
+                    <Button Clicked="HomeScreenButton_Clicked" Text="Back to Home Screen"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
