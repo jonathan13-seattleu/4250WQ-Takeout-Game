@@ -27,7 +27,7 @@ namespace Game.Views
 			await Navigation.PushAsync(new BattlePage());
 		}
 
-		async private void ItemPool_Clicked(object sender, EventArgs e)
+		async private void ItemsDropped_Clicked(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync(new ItemsDroppedPage());
 		}
@@ -35,11 +35,6 @@ namespace Game.Views
 		async private void NewRound_Clicked(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync(new NewRoundPage());
-		}
-
-		async private void RoundOver_Clicked(object sender, EventArgs e)
-		{
-			await Navigation.PushAsync(new RoundOverPage());
 		}
 
 		async private void Score_Clicked(object sender, EventArgs e)
