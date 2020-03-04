@@ -60,7 +60,7 @@
             <StackLayout>
                 <Button 
             Pressed="Button_Clicked"
-            Text="Auto Assign Items"/>
+            Text="Continue"/>
 
             </StackLayout>
 
