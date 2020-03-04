@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Game.Views.ItemsDroppedPage"
+             Title="The Monstars have dropped something!"
              >
 
     <ContentPage.Content>
@@ -59,8 +60,8 @@
             </ListView>
             <StackLayout>
                 <Button 
-            Pressed="Button_Clicked"
-            Text="Continue"/>
+            Pressed="AutoAssignButton_Clicked"
+            Text="Auto-Assign"/>
 
             </StackLayout>
 

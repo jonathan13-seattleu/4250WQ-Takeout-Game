@@ -29,7 +29,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Clicked(object sender, EventArgs e)
+        private void AutoAssignButton_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Assiging Items", "Assigning Items", "Ok");
         }
