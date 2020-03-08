@@ -56,7 +56,7 @@ namespace Game.Views
             }
             else
             {
-                MessagingCenter.Send(this, "Update", ViewModel.Data);
+                MessagingCenter.Send(this, "Create", ViewModel.Data);
                 await Navigation.PopModalAsync();
             }
         }
@@ -86,6 +86,7 @@ namespace Game.Views
             ViewModel.Data.MaxHealth = DiceHelper.RollDice(Templevel, 10);
 
             MaxHealthValue.Text = string.Format(" {0:G}", ViewModel.Data.MaxHealth);
+            ViewModel.Data.CurrentHealth = ViewModel.Data.MaxHealth;
         }
 
 
