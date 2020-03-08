@@ -49,6 +49,8 @@ namespace Game.Models
 
         // Total Experience
         public int ExperienceTotal { get; set; } = 0;
+        // The Experience available to given up
+        public int ExperienceRemaining { get; set; }
 
         // Total speed, including level and items
         public int Speed { get; set; } = 0;

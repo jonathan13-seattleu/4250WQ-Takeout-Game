@@ -54,24 +54,39 @@ namespace Game.Engine
         /// <returns></returns>
         public int AddMonstersToRound()
         {
+            // TODO: Teams, You need to implement your own Logic can not use mine.
+
+            int TargetLevel = 1;
+
+            if (CharacterList.Count() > 0)
+            {
+                // Get the Min Character Level (linq is soo cool....)
+                TargetLevel = Convert.ToInt32(CharacterList.Min(m => m.Level));
+            }
+
             for (var i = 0; i < MaxNumberPartyMonsters; i++)
             {
-                var data = new MonsterModel { Attack = 10, CurrentHealth = 10 };
+                var data = Helpers.RandomPlayerHelper.GetRandomMonster(TargetLevel);
+
                 // Help identify which Monster it is
                 data.Name += " " + MonsterList.Count() + 1;
+
                 MonsterList.Add(new PlayerInfoModel(data));
             }
 
             return MonsterList.Count();
         }
 
-        /// <summary>
-        /// At the end of the round
-        /// Clear the ItemModel List
-        /// Clear the MonsterModel List
-        /// </summary>
-        /// <returns></returns>
-        public bool EndRound()
+
+    
+
+    /// <summary>
+    /// At the end of the round
+    /// Clear the ItemModel List
+    /// Clear the MonsterModel List
+    /// </summary>
+    /// <returns></returns>
+    public bool EndRound()
         {
             // Have each character pickup items...
             foreach (var character in CharacterList)
