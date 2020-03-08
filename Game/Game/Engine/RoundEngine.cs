@@ -4,6 +4,7 @@ using System.Linq;
 
 using Game.Models;
 using System.Diagnostics;
+using Game.ViewModels;
 
 namespace Game.Engine
 {
@@ -54,9 +55,17 @@ namespace Game.Engine
         /// <returns></returns>
         public int AddMonstersToRound()
         {
+            foreach (var data in MonsterIndexViewModel.Instance.Dataset)
+            {
+                if (MonsterList.Count() >= MaxNumberPartyMonsters)
+                {
+                    break;
+                }
+                MonsterList.Add(new PlayerInfoModel(data));
+            }
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
-            int TargetLevel = 1;
+            /*int TargetLevel = 1;
 
             if (CharacterList.Count() > 0)
             {
@@ -72,7 +81,7 @@ namespace Game.Engine
                 data.Name += " " + MonsterList.Count() + 1;
 
                 MonsterList.Add(new PlayerInfoModel(data));
-            }
+            }*/
 
             return MonsterList.Count();
         }
