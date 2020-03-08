@@ -143,9 +143,12 @@ namespace Game.Services
                     Name = "Bugs Bunny",
                     Description = "Grey Bunny",
                     ImageURI= "bugs_bunny.png",
-                    Level = 0,
+                    Level = 1,
                     MaxHealth = 40,
                     CurrentHealth =40,
+                    Speed = 1,
+                    Attack = 1,
+                    Defense = 1,
                     Head = HeadString,
 
                 },
@@ -157,6 +160,9 @@ namespace Game.Services
                     Level = 4,
                     MaxHealth = 5,
                     CurrentHealth = 5,
+                    Speed = 1,
+                    Attack = 2,
+                    Defense = 3,
                     OffHand = OffHandString,
 
                 },
@@ -168,6 +174,9 @@ namespace Game.Services
                     Level = 2,
                     MaxHealth = 20,
                     CurrentHealth = 20,
+                    Speed = 1,
+                    Attack = 1,
+                    Defense = 2,
                     PrimaryHand = PrimaryHandString
 
                 },
@@ -179,6 +188,9 @@ namespace Game.Services
                     Level = 1,
                     MaxHealth = 12,
                     CurrentHealth = 12,
+                    Speed = 1,
+                    Attack = 1,
+                    Defense = 1,
                     PrimaryHand = PrimaryHandString
                 },
                 new CharacterModel
@@ -189,6 +201,9 @@ namespace Game.Services
                     Level = 1,
                     MaxHealth = 15,
                     CurrentHealth = 15,
+                    Speed = 1,
+                    Attack = 1,
+                    Defense = 1,
                     Feet = FeetString
                 },
                 new CharacterModel
@@ -198,6 +213,9 @@ namespace Game.Services
                     Level = 1,
                     MaxHealth = 10,
                     CurrentHealth = 10,
+                    Speed = 1,
+                    Attack = 1,
+                    Defense = 1,
                     ImageURI = "marvin_the_martian.png",
                     Feet = FeetString
                 },
@@ -208,6 +226,9 @@ namespace Game.Services
                     Level = 5,
                     MaxHealth = 25,
                     CurrentHealth = 25,
+                    Speed = 2,
+                    Attack = 2,
+                    Defense = 4,
                     ImageURI = "michael_jordan.png",
                     Feet = FeetString
 
