@@ -87,8 +87,135 @@ namespace Game.Views
 
             MaxHealthValue.Text = string.Format(" {0:G}", ViewModel.Data.MaxHealth);
             ViewModel.Data.CurrentHealth = ViewModel.Data.MaxHealth;
+            setCharacterAttributes(Templevel);
         }
+        void setCharacterAttributes(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    ViewModel.Data.Speed = 1;
+                    ViewModel.Data.ExperienceTotal = 0;
+                    ViewModel.Data.Defense = 1;
+                    ViewModel.Data.Attack = 1;
+                    break;
+                case 2:
+                    ViewModel.Data.Speed = 1;
+                    ViewModel.Data.ExperienceTotal = 300;
+                    ViewModel.Data.Defense = 2;
+                    ViewModel.Data.Attack = 1;
+                    break;
+                case 3:
+                    ViewModel.Data.Speed = 1;
+                    ViewModel.Data.ExperienceTotal = 900;
+                    ViewModel.Data.Defense = 3;
+                    ViewModel.Data.Attack = 2;
+                    break;
+                case 4:
+                    ViewModel.Data.Speed = 1;
+                    ViewModel.Data.ExperienceTotal = 2700;
+                    ViewModel.Data.Defense = 3;
+                    ViewModel.Data.Attack = 2;
+                    break;
+                case 5:
+                    ViewModel.Data.Speed = 2;
+                    ViewModel.Data.ExperienceTotal = 6500;
+                    ViewModel.Data.Defense = 4;
+                    ViewModel.Data.Attack = 2;
+                    break;
+                case 6:
+                    ViewModel.Data.Speed = 2;
+                    ViewModel.Data.ExperienceTotal = 14000;
+                    ViewModel.Data.Defense = 4;
+                    ViewModel.Data.Attack = 3;
+                    break;
+                case 7:
+                    ViewModel.Data.Speed = 2;
+                    ViewModel.Data.ExperienceTotal = 23000;
+                    ViewModel.Data.Defense = 5;
+                    ViewModel.Data.Attack = 3;
+                    break;
+                case 8:
+                    ViewModel.Data.Speed = 2;
+                    ViewModel.Data.ExperienceTotal = 34000;
+                    ViewModel.Data.Defense = 5;
+                    ViewModel.Data.Attack = 3;
+                    break;
+                case 9:
+                    ViewModel.Data.Speed = 2;
+                    ViewModel.Data.ExperienceTotal = 48000;
+                    ViewModel.Data.Defense = 5;
+                    ViewModel.Data.Attack = 3;
+                    break;
+                case 10:
+                    ViewModel.Data.Speed = 3;
+                    ViewModel.Data.ExperienceTotal = 64000;
+                    ViewModel.Data.Defense = 6;
+                    ViewModel.Data.Attack = 4;
+                    break;
+                case 11:
+                    ViewModel.Data.Speed = 3;
+                    ViewModel.Data.ExperienceTotal = 85000;
+                    ViewModel.Data.Defense = 6;
+                    ViewModel.Data.Attack = 4;
+                    break;
+                case 12:
+                    ViewModel.Data.Speed = 3;
+                    ViewModel.Data.ExperienceTotal = 100000;
+                    ViewModel.Data.Defense = 6;
+                    ViewModel.Data.Attack = 4;
+                    break;
+                case 13:
+                    ViewModel.Data.Speed = 3;
+                    ViewModel.Data.ExperienceTotal = 120000;
+                    ViewModel.Data.Defense = 7;
+                    ViewModel.Data.Attack = 4;
+                    break;
+                case 14:
+                    ViewModel.Data.Speed = 3;
+                    ViewModel.Data.ExperienceTotal = 140000;
+                    ViewModel.Data.Defense = 7;
+                    ViewModel.Data.Attack = 5;
+                    break;
+                case 15:
+                    ViewModel.Data.Speed = 4;
+                    ViewModel.Data.ExperienceTotal = 165000;
+                    ViewModel.Data.Defense = 7;
+                    ViewModel.Data.Attack = 5;
+                    break;
+                case 16:
+                    ViewModel.Data.Speed = 4;
+                    ViewModel.Data.ExperienceTotal = 195000;
+                    ViewModel.Data.Defense = 8;
+                    ViewModel.Data.Attack = 5;
+                    break;
+                case 17:
+                    ViewModel.Data.Speed = 4;
+                    ViewModel.Data.ExperienceTotal = 225000;
+                    ViewModel.Data.Defense = 8;
+                    ViewModel.Data.Attack = 5;
+                    break;
+                case 18:
+                    ViewModel.Data.Speed = 4;
+                    ViewModel.Data.ExperienceTotal = 265000;
+                    ViewModel.Data.Defense = 8;
+                    ViewModel.Data.Attack = 6;
+                    break;
+                case 19:
+                    ViewModel.Data.Speed = 4;
+                    ViewModel.Data.ExperienceTotal = 305000;
+                    ViewModel.Data.Defense = 9;
+                    ViewModel.Data.Attack = 7;
+                    break;
+                case 20:
+                    ViewModel.Data.Speed = 5;
+                    ViewModel.Data.ExperienceTotal = 355000;
+                    ViewModel.Data.Defense = 10;
+                    ViewModel.Data.Attack = 8;
+                    break;
 
+            }
+        }
 
 
 
