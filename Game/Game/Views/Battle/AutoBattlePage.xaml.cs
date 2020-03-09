@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.Engine;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,9 @@ namespace Game.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AutoBattlePage : ContentPage
 	{
+		// Hold the Engine, so it can be swapped out for unit testing
+		public AutoBattleEngine Engine = new AutoBattleEngine();
+
 		/// <summary>
 		/// Constructor
 		/// </summary>

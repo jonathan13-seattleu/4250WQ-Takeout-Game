@@ -10,6 +10,10 @@ namespace Game.Views
     [DesignTimeVisible(false)]
     public partial class AboutPage : ContentPage
     {
+        // Constructor for UnitTests
+        public AboutPage(bool UnitTest) { }
+
+
         /// <summary>
         /// Constructor for About Page
         /// </summary>
@@ -32,7 +36,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DatabaseSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
+        public void DatabaseSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
             // Show or hide the Database Section
             DatabaseSettingsFrame.IsVisible = (e.Value);
@@ -43,7 +47,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DebugSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
+        public void DebugSettingsSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
            // Show or hide the Debug Settings
            DebugSettingsFrame.IsVisible = (e.Value);
@@ -54,7 +58,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void DataSource_Toggled(object sender, EventArgs e)
+        public void DataSource_Toggled(object sender, EventArgs e)
         {
             // Flip the settings
             if (DataSourceValue.IsToggled == true)
@@ -72,7 +76,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void WipeDataList_Clicked(object sender, EventArgs e)
+        public async void WipeDataList_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Delete Data", "Are you sure you want to delete all data?", "Yes", "No");
 

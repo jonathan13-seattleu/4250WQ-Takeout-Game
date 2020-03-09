@@ -36,6 +36,22 @@ namespace Game.Helpers
             ForceRollsToNotRandom = true;
         }
 
+        public static void SetForcedRollValue(int value)
+        {
+            _ForcedRandomValue = value;
+        }
+
+        public static void DisableForcedRolls()
+        {
+            ForceRollsToNotRandom = false;
+        }
+
+        // Turn Random State On
+        public static void EnableForcedRolls()
+        {
+            ForceRollsToNotRandom = true;
+        }
+
         /// <summary>
         /// Method to Roll A Random Dice, a Set number of times
         /// </summary>

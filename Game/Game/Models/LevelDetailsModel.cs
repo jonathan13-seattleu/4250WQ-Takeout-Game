@@ -7,7 +7,7 @@ namespace Game.Models
     /// <summary>
     /// Hold the Details for each Level
     /// </summary>
-    class LevelDetailsModel
+    public class LevelDetailsModel
     {
         // The Level
         public int Level;

@@ -3,8 +3,6 @@ using System.Linq;
 using System.Diagnostics;
 
 using Game.Models;
-using Game.Services;
-using Game.Engine;
 using Game.Helpers;
 using Game.ViewModels;
 
@@ -16,16 +14,17 @@ namespace Game.Engine
      * Should Move, or Stay put (can hit with weapon range?)
      * Death
      * Manage Round...
+     * 
      */
 
     /// <summary>
     /// Engine controls the turns
     /// 
     /// A turn is when a Character takes an action or a Monster takes an action
+    /// 
     /// </summary>
     public class TurnEngine : BaseEngine
     {
-
         #region Algrorithm
         // Attack or Move
         // Roll To Hit
@@ -45,12 +44,29 @@ namespace Game.Engine
         {
             // Choose Action.  Such as Move, Attack etc.
 
-            var result = Attack(Attacker);
+            // INFO: Teams, if you have other actions they would go here.
+
+            bool result = false;
+
+            switch (CurrentAction)
+            {
+                case ActionEnum.Unknown:
+                case ActionEnum.Attack:
+                    result = Attack(Attacker);
+                    break;
+
+
+                case ActionEnum.Move:
+                    // result = Attack(Attacker);
+                    result = true;
+                    break;
+            }
 
             BattleScore.TurnCount++;
 
             return result;
         }
+
 
         /// <summary>
         /// Attack as a Turn
@@ -67,20 +83,20 @@ namespace Game.Engine
         /// <returns></returns>
         public bool Attack(PlayerInfoModel Attacker)
         {
-
-            // For Attack, Choose Who
-            var Target = AttackChoice(Attacker);
-
-            if (Target == null)
+            // INFO: Teams, AttackChoice will auto pick the target, good for auto battle
+            if (BattleScore.AutoBattle)
             {
-                return false;
+                // For Attack, Choose Who
+                CurrentDefender = AttackChoice(Attacker);
+
+                if (CurrentDefender == null)
+                {
+                    return false;
+                }
             }
 
             // Do Attack
-            TurnAsAttack(Attacker, Target);
-
-            CurrentAttacker = new PlayerInfoModel(Attacker);
-            CurrentDefender = new PlayerInfoModel(Target);
+            TurnAsAttack(Attacker, CurrentDefender);
 
             return true;
         }
@@ -109,19 +125,21 @@ namespace Game.Engine
         /// <returns></returns>
         public PlayerInfoModel SelectCharacterToAttack()
         {
-            if (CharacterList == null)
+            if (PlayerList == null)
             {
                 return null;
             }
 
-            if (CharacterList.Count < 1)
+            if (PlayerList.Count < 1)
             {
                 return null;
             }
 
             // Select first in the list
-            var Defender = CharacterList
-                .Where(m => m.Alive)
+
+            // TODO: Teams, You need to implement your own Logic can not use mine.
+            var Defender = PlayerList
+                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Character)
                 .OrderBy(m => m.ListOrder).FirstOrDefault();
 
             return Defender;
@@ -133,20 +151,23 @@ namespace Game.Engine
         /// <returns></returns>
         public PlayerInfoModel SelectMonsterToAttack()
         {
-            if (MonsterList == null)
+            if (PlayerList == null)
             {
                 return null;
             }
 
-            if (MonsterList.Count < 1)
+            if (PlayerList.Count < 1)
             {
                 return null;
             }
 
             // Select first one to hit in the list for now...
             // Attack the Weakness (lowest HP) MonsterModel first 
-            var Defender = MonsterList
-                .Where(m => m.Alive)
+
+            // TODO: Teams, You need to implement your own Logic can not use mine.
+
+            var Defender = PlayerList
+                .Where(m => m.Alive && m.PlayerType == PlayerTypeEnum.Monster)
                 .OrderBy(m => m.CurrentHealth).FirstOrDefault();
 
             return Defender;
@@ -173,23 +194,20 @@ namespace Game.Engine
             }
 
             // Set Messages to empty
-            BattleMessagesModel.TurnMessage = string.Empty;
-            BattleMessagesModel.TurnMessageSpecial = string.Empty;
-            BattleMessagesModel.AttackStatus = string.Empty;
+            BattleMessagesModel.ClearMessages();
 
-            // Remember Current Player
-            BattleMessagesModel.PlayerType = PlayerTypeEnum.Monster;
+            // Do the Attack
+            CalculateAttackStatus(Attacker, Target);
 
-            // Choose who to attack
-
-            BattleMessagesModel.TargetName = Target.Name;
-            BattleMessagesModel.AttackerName = Attacker.Name;
-
-            // Set Attack and Defense
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = Target.GetDefense() + Target.Level;
-
-            BattleMessagesModel.HitStatus = RollToHitTarget(AttackScore, DefenseScore);
+            // Hackathon
+            // Hackathon Scenario 2, Bob alwasys misses
+            if (Attacker.Name.Equals("Bob"))
+            {
+                BattleMessagesModel.HitStatus = HitStatusEnum.Miss;
+                BattleMessagesModel.TurnMessage = "Bob always Misses";
+                Debug.WriteLine(BattleMessagesModel.TurnMessage);
+                return true;
+            }
 
             switch (BattleMessagesModel.HitStatus)
             {
@@ -200,25 +218,93 @@ namespace Game.Engine
 
                 case HitStatusEnum.Hit:
                     // It's a Hit
+
                     //Calculate Damage
                     BattleMessagesModel.DamageAmount = Attacker.GetDamageRollValue();
 
-                    Target.TakeDamage(BattleMessagesModel.DamageAmount);
-                    BattleMessagesModel.CurrentHealth = Target.CurrentHealth;
+                    // Apply the Damage
+                    ApplyDamage(Target);
+
                     BattleMessagesModel.TurnMessageSpecial = BattleMessagesModel.GetCurrentHealthMessage();
 
+                    // Check if Dead and Remove
                     RemoveIfDead(Target);
+
+                    // If it is a character apply the experience earned
+                    CalculateExperience(Attacker, Target);
+
                     break;
             }
 
-            BattleMessagesModel.TurnMessage = Attacker.Name + BattleMessagesModel.AttackStatus + Target.Name + BattleMessagesModel.TurnMessageSpecial;
+            BattleMessagesModel.TurnMessage = Attacker.Name + BattleMessagesModel.AttackStatus + Target.Name + BattleMessagesModel.TurnMessageSpecial + BattleMessagesModel.ExperienceEarned;
             Debug.WriteLine(BattleMessagesModel.TurnMessage);
 
             return true;
         }
 
         /// <summary>
-        /// If Dead process Targed Died
+        /// Apply the Damage to the Target
+        /// </summary>
+        /// <param name="Target"></param>
+        private void ApplyDamage(PlayerInfoModel Target)
+        {
+            Target.TakeDamage(BattleMessagesModel.DamageAmount);
+            BattleMessagesModel.CurrentHealth = Target.CurrentHealth;
+        }
+
+        /// <summary>
+        /// Calculate the Attack, return if it hit or missed.
+        /// </summary>
+        /// <param name="Attacker"></param>
+        /// <param name="Target"></param>
+        /// <returns></returns>
+        public HitStatusEnum CalculateAttackStatus(PlayerInfoModel Attacker, PlayerInfoModel Target)
+        {
+            // Remember Current Player
+            BattleMessagesModel.PlayerType = PlayerTypeEnum.Monster;
+
+            // Choose who to attack
+            BattleMessagesModel.TargetName = Target.Name;
+            BattleMessagesModel.AttackerName = Attacker.Name;
+
+            // Set Attack and Defense
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = Target.GetDefense() + Target.Level;
+
+            BattleMessagesModel.HitStatus = RollToHitTarget(AttackScore, DefenseScore);
+
+            return BattleMessagesModel.HitStatus;
+        }
+
+        /// <summary>
+        /// Calculate Experience
+        /// Level up if needed
+        /// </summary>
+        /// <param name="Attacker"></param>
+        /// <param name="Target"></param>
+        public bool CalculateExperience(PlayerInfoModel Attacker, PlayerInfoModel Target)
+        {
+            if (Attacker.PlayerType == PlayerTypeEnum.Character)
+            {
+                var experienceEarned = Target.CalculateExperienceEarned(BattleMessagesModel.DamageAmount);
+                BattleMessagesModel.ExperienceEarned = " Earned " + experienceEarned + " points";
+
+                var LevelUp = Attacker.AddExperience(experienceEarned);
+                if (LevelUp)
+                {
+                    BattleMessagesModel.LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetMaxHealthTotal;
+                    Debug.WriteLine(BattleMessagesModel.LevelUpMessage);
+                }
+
+                // Add Experinece to the Score
+                BattleScore.ExperienceGainedTotal += experienceEarned;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// If Dead process Target Died
         /// </summary>
         /// <param name="Target"></param>
         public bool RemoveIfDead(PlayerInfoModel Target)
@@ -237,39 +323,49 @@ namespace Game.Engine
         /// Target Died
         /// 
         /// Process for death...
+        /// 
+        /// Returns the count of items dropped at death
         /// </summary>
         /// <param name="Target"></param>
-        private bool TargetDied(PlayerInfoModel Target)
+        public bool TargetDied(PlayerInfoModel Target)
         {
-            // Mark Status in output
-            BattleMessagesModel.TurnMessageSpecial = " and causes death";
+            bool found;
 
-            // Remove target from list...
+            // Mark Status in output
+            BattleMessagesModel.TurnMessageSpecial = " and causes death. ";
+
+            // INFO: Teams, Hookup your Boss if you have one...
 
             // Using a switch so in the future additional PlayerTypes can be added (Boss...)
             switch (Target.PlayerType)
             {
-                    case PlayerTypeEnum.Character:
-                    CharacterList.Remove(Target);
-
-                    // Add the MonsterModel to the killed list
+                case PlayerTypeEnum.Character:
+                    // Add the Character to the killed list
                     BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
 
+                    BattleScore.CharacterModelDeathList.Add(Target);
+
                     DropItems(Target);
+
+                    found = CharacterList.Remove(CharacterList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found = PlayerList.Remove(PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
 
                 case PlayerTypeEnum.Monster:
                 default:
-                    MonsterList.Remove(Target);
-
                     // Add one to the monsters killed count...
                     BattleScore.MonsterSlainNumber++;
 
                     // Add the MonsterModel to the killed list
                     BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
 
+                    BattleScore.MonsterModelDeathList.Add(Target);
+
                     DropItems(Target);
+
+                    found = MonsterList.Remove(MonsterList.Find(m => m.Guid.Equals(Target.Guid)));
+                    found = PlayerList.Remove(PlayerList.Find(m => m.Guid.Equals(Target.Guid)));
 
                     return true;
             }
@@ -279,9 +375,9 @@ namespace Game.Engine
         /// Drop Items
         /// </summary>
         /// <param name="Target"></param>
-        private int DropItems(PlayerInfoModel Target)
+        public int DropItems(PlayerInfoModel Target)
         {
-            var DroppedMessage = " Items Dropped : ";
+            var DroppedMessage = "\nItems Dropped : \n";
 
             // Drop Items to ItemModel Pool
             var myItemList = Target.DropAllItems();
@@ -294,10 +390,8 @@ namespace Game.Engine
             foreach (var ItemModel in myItemList)
             {
                 BattleScore.ItemsDroppedList += ItemModel.FormatOutput() + "\n";
-                DroppedMessage += ItemModel.Name + " , ";
+                DroppedMessage += ItemModel.Name + "\n";
             }
-
-            ItemPool.AddRange(myItemList);
 
             ItemPool.AddRange(myItemList);
 
@@ -307,6 +401,8 @@ namespace Game.Engine
             }
 
             BattleMessagesModel.TurnMessageSpecial += DroppedMessage;
+
+            BattleScore.ItemModelDropList.AddRange(myItemList);
 
             return myItemList.Count();
         }
@@ -326,7 +422,7 @@ namespace Game.Engine
                 BattleMessagesModel.AttackStatus = " rolls 1 to completly miss ";
 
                 // Force Miss
-                BattleMessagesModel.HitStatus = HitStatusEnum.CriticalMiss;
+                BattleMessagesModel.HitStatus = HitStatusEnum.Miss;
                 return BattleMessagesModel.HitStatus;
             }
 
@@ -335,7 +431,7 @@ namespace Game.Engine
                 BattleMessagesModel.AttackStatus = " rolls 20 for lucky hit ";
 
                 // Force Hit
-                BattleMessagesModel.HitStatus = HitStatusEnum.CriticalHit;
+                BattleMessagesModel.HitStatus = HitStatusEnum.Hit;
                 return BattleMessagesModel.HitStatus;
             }
 
@@ -364,6 +460,8 @@ namespace Game.Engine
         /// <returns></returns>
         public List<ItemModel> GetRandomMonsterItemDrops(int round)
         {
+            // TODO: Teams, You need to implement your own modification to the Logic cannot use mine as is.
+
             // You decide how to drop monster items, level, etc.
 
             // The Number drop can be Up to the Round Count, but may be less.  
@@ -374,7 +472,9 @@ namespace Game.Engine
 
             for (var i = 0; i < NumberToDrop; i++)
             {
-                result.Add(new ItemModel());
+                // Get a random Unique Item
+                var data = ItemIndexViewModel.Instance.GetItem(RandomPlayerHelper.GetMonsterUniqueItem());
+                result.Add(data);
             }
 
             return result;

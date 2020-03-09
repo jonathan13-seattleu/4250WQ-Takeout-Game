@@ -46,6 +46,15 @@ namespace Game.Engine
         // Max Number of Monsters
         public int MaxNumberPartyMonsters = 6;
 
+        // The Action 
+        public ActionEnum CurrentAction;
+
+        // Max Number of Rounds for AutoBattle
+        public int MaxRoundCount = 1000;
+
+        // Max Number of Turns for AutoBattle
+        public int MaxTurnCount = 10000;
+
         #endregion Properties
     }
 }

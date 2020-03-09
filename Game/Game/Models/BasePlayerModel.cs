@@ -33,6 +33,69 @@ namespace Game.Models
 
         #endregion GameEngineAttributes
 
+        #region Buffs
+
+        // Add to Health
+        [Ignore]
+        public int BuffHealthValue { get; set; } = 0;
+
+        // Add to Attack
+        [Ignore]
+        public int BuffAttackValue { get; set; } = 0;
+
+        // Add to defense
+        [Ignore]
+        public int BuffDefenseValue { get; set; } = 0;
+
+        // Add to Speed
+        [Ignore]
+        public int BuffSpeedValue { get; set; } = 0;
+
+        /// <summary>
+        /// Clear all the Buffs
+        /// </summary>
+        public void ClearBuffs()
+        {
+            BuffHealthValue = 0;
+            BuffAttackValue = 0;
+            BuffDefenseValue = 0;
+            BuffSpeedValue = 0;
+        }
+
+        /// <summary>
+        /// Add to Health
+        /// </summary>
+        public int BuffHealth()
+        {
+            return BuffHealthValue += 5;
+        }
+
+        /// <summary>
+        /// Add to Health
+        /// </summary>
+        public int BuffAttack()
+        {
+            return BuffAttackValue += 5;
+        }
+
+        /// <summary>
+        /// Add to Health
+        /// </summary>
+        public int BuffDefense()
+        {
+            return BuffDefenseValue += 5;
+        }
+
+        /// <summary>
+        /// Add to Health
+        /// </summary>
+        public int BuffSpeed()
+        {
+            return BuffSpeedValue += 5;
+        }
+
+        #endregion Buffs
+
         #region PlayerAttributes
 
         // Level of character or monster

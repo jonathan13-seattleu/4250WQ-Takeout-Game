@@ -4,6 +4,7 @@ using Game.ViewModels;
 using System;
 using Game.Models;
 using Game.Helpers;
+using System.Linq;
 
 namespace Game.Views
 {
@@ -14,7 +15,10 @@ namespace Game.Views
     public partial class CharacterReadPage : ContentPage
     {
         // View Model for Character
-        readonly GenericViewModel<CharacterModel> ViewModel;
+        public readonly GenericViewModel<CharacterModel> ViewModel;
+
+        // Empty Constructor for UTs
+        public CharacterReadPage(bool UnitTest) { }
 
         /// <summary>
         /// Constructor called with a view model
@@ -36,19 +40,19 @@ namespace Game.Views
         public void AddItemsToDisplay()
         {
 
-            // Get the List of Locations a Character can have
-            var LocationList = ItemLocationEnumHelper.GetListCharacter;
-
-            // Add Each item in the list
-            foreach (var location in LocationList)
+            var FlexList = ItemBox.Children.ToList();
+            foreach (var data in FlexList)
             {
-                var LocationString = ItemLocationEnumHelper.ConvertStringToEnum(location).ToMessage();
-                ItemBox.Children.Add(
-                    GetItemToDisplay(
-                        LocationString,
-                        ViewModel.Data.GetItemByLocation(
-                            ItemLocationEnumHelper.ConvertStringToEnum(location))));
+                ItemBox.Children.Remove(data);
             }
+
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Head));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Necklass));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.PrimaryHand));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.OffHand));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.RightFinger));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.LeftFinger));
+            ItemBox.Children.Add(GetItemToDisplay(ItemLocationEnum.Feet));
         }
 
         /// <summary>
@@ -56,11 +60,20 @@ namespace Game.Views
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
-        public StackLayout GetItemToDisplay(string LocationString, ItemModel data)
+        public StackLayout GetItemToDisplay(ItemLocationEnum location)
         {
+            // Defualt Image is the Plus
+            var ImageSource = "icon_cancel.png";
+            var ClickableButton = true;
+
+            var data = ViewModel.Data.GetItemByLocation(location);
             if (data == null)
             {
-                return new StackLayout();
+                // Show the Default Icon for the Location
+                data = new ItemModel { Location = location, ImageURI = ImageSource };
+
+                // Turn off click action
+                ClickableButton = false;
             }
 
             // Hookup the Image Button to show the Item picture
@@ -70,14 +83,17 @@ namespace Game.Views
                 Source = data.ImageURI
             };
 
-            // Add a event to the user can click the item and see more
-            ItemButton.Clicked += (sender, args) => ShowPopup(data);
+            if (ClickableButton)
+            {
+                // Add a event to the user can click the item and see more
+                ItemButton.Clicked += (sender, args) => ShowPopup(data);
+            }
 
             // Add the Display Text for the item
             var ItemLabel = new Label
             {
-                Text = LocationString,
-                Style = (Style)Application.Current.Resources["ValueStyle"],
+                Text = location.ToMessage(),
+                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
                 HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center
             };
@@ -128,7 +144,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Update_Clicked(object sender, EventArgs e)
+        public async void Update_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new CharacterUpdatePage(new GenericViewModel<CharacterModel>(ViewModel.Data))));
             await Navigation.PopAsync();
@@ -139,7 +155,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Delete_Clicked(object sender, EventArgs e)
+        public async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new CharacterDeletePage(new GenericViewModel<CharacterModel>(ViewModel.Data))));
             await Navigation.PopAsync();

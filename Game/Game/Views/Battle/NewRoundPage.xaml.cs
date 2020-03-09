@@ -23,7 +23,7 @@ namespace Game.Views
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		async void BeginButton_Clicked(object sender, EventArgs e)
+		public async void BeginButton_Clicked(object sender, EventArgs e)
 		{
 			await Navigation.PushModalAsync(new NavigationPage(new BattlePage()));
 			await Navigation.PopAsync();

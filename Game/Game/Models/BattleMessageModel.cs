@@ -32,6 +32,9 @@ namespace Game.Models
         // Turn Special Message
         public string TurnMessageSpecial = string.Empty;
 
+        // Turn Experience Earned Message
+        public string ExperienceEarned = string.Empty;
+
         // Level Up Message
         public string LevelUpMessage = string.Empty;
 
@@ -42,10 +45,10 @@ namespace Game.Models
         public int CurrentHealth = 0;
 
         // Beginning of the Html Block for html formatting
-        const string htmlHead = @"<html><body bgcolor=""#E8D0B6""><p>";
+        public string htmlHead = @"<html><body bgcolor=""#E8D0B6""><p>";
 
         // Ending of the Html Block for Html formatting
-        const string htmlTail = @"</p></body></html>";
+        public string htmlTail = @"</p></body></html>";
 
 
         /// <summary>
@@ -143,5 +146,25 @@ namespace Game.Models
             myResult = htmlHead + htmlBody + htmlTail;
             return myResult;
         }
+        public bool ClearMessages()
+        {
+
+            PlayerType = PlayerTypeEnum.Unknown;
+            HitStatus = HitStatusEnum.Unknown;
+            AttackerName = string.Empty;
+            TargetName = string.Empty;
+            AttackStatus = string.Empty;
+            TurnMessage = string.Empty;
+            TurnMessageSpecial = string.Empty;
+            ExperienceEarned = string.Empty;
+            LevelUpMessage = string.Empty;
+
+            DamageAmount = 0;
+            CurrentHealth = 0;
+
+            return true;
+        }
+
+
     }
 }

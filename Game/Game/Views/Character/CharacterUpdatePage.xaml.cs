@@ -15,6 +15,8 @@ namespace Game.Views
     {
         // View Model for Item
         readonly GenericViewModel<CharacterModel> ViewModel;
+        // Empty Constructor for UTs
+        public CharacterUpdatePage(bool UnitTest) { }
 
         /// <summary>
         /// Constructor that takes and existing data item
@@ -36,7 +38,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Save_Clicked(object sender, EventArgs e)
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             // If the image in the data box is empty, use the default one..
             if (string.IsNullOrEmpty(ViewModel.Data.ImageURI))
@@ -65,7 +67,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Cancel_Clicked(object sender, EventArgs e)
+        public async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
@@ -75,7 +77,7 @@ namespace Game.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-      void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+      public void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             LevelValue.Text = String.Format("{0}", e.NewValue);
 

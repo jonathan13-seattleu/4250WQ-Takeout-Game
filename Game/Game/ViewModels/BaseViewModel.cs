@@ -152,6 +152,17 @@ namespace Game.ViewModels
         {
             return new List<T>();
         }
+        public async Task<bool> DataStoreWipeDataListAsync()
+        {
+            Dataset.Clear();
+
+            await DataStore.WipeDataListAsync();
+
+            // Load the Sample Data
+            var result = await LoadDefaultDataAsync();
+
+            return result;
+        }
 
         #endregion DataSourceManagement
 

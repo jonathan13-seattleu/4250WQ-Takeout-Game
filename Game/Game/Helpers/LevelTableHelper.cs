@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Game.Models;
+using System.Collections.Generic;
 
-namespace Game.Models
+namespace Game.Helpers
 {
     /// <summary>
     /// Helper to manage the Level Table Data
     /// </summary>
-    class LevelTableHelper
+    public class LevelTableHelper
     {
         #region Singleton
         // Make this a singleton so it only exist one time because holds all the data records in memory
