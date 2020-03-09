@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
-using System;
+using System.Threading.Tasks;
 
 using Game.Models;
 using Game.ViewModels;
@@ -42,7 +42,6 @@ namespace Game.Engine
         /// <returns></returns>
         public ScoreModel GetScoreObject() { return BattleScore; }
 
-
         /// <summary>
         /// Run Auto Battle
         /// </summary>
@@ -55,7 +54,7 @@ namespace Game.Engine
 
             // Auto Battle, does all the steps that a human would do.
 
-            // Perpare for Battle
+            // Prepare for Battle
 
             CreateCharacterParty();
 
@@ -65,6 +64,14 @@ namespace Game.Engine
             // Fight Loop. Continue until Game is Over...
             do
             {
+                // Check for excessive duration.
+                if (DetectInfinateLoop())
+                {
+                    Debug.WriteLine("Aborting, More than Max Rounds");
+                    EndBattle();
+                    return false;
+                }
+
                 Debug.WriteLine("Next Turn");
 
                 // Do the turn...
@@ -85,6 +92,29 @@ namespace Game.Engine
             EndBattle();
 
             return true;
+        }
+
+        /// <summary>
+        /// Check if the Engine is not ending
+        /// 
+        /// Too many Rounds
+        /// Too many Turns in a round
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool DetectInfinateLoop()
+        {
+            if (BattleScore.RoundCount > MaxRoundCount)
+            {
+                return true;
+            }
+
+            if (BattleScore.TurnCount > MaxTurnCount)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -114,28 +144,5 @@ namespace Game.Engine
 
             return true;
         }
-        /// <summary>
-        /// Check if the Engine is not ending
-        /// 
-        /// Too many Rounds
-        /// Too many Turns in a round
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool DetectInfinateLoop()
-        {
-            if (BattleScore.RoundCount > MaxRoundCount)
-            {
-                return true;
-            }
-
-            if (BattleScore.TurnCount > MaxTurnCount)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
     }
 }
