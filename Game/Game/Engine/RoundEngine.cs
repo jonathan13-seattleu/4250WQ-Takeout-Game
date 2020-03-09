@@ -5,6 +5,7 @@ using System.Linq;
 using Game.Models;
 using System.Diagnostics;
 using Game.ViewModels;
+using Game.Helpers;
 
 namespace Game.Engine
 {
@@ -55,14 +56,9 @@ namespace Game.Engine
         /// <returns></returns>
         public int AddMonstersToRound()
         {
-            /*foreach (var data in MonsterIndexViewModel.Instance.Dataset)
-            {
-                if (MonsterList.Count() >= MaxNumberPartyMonsters)
-                {
-                    break;
-                }
-                MonsterList.Add(new PlayerInfoModel(data));
-            }*/
+            var monsterModel = MonsterIndexViewModel.Instance;
+            Random rnd = new Random();
+ 
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
             int TargetLevel = 1;
@@ -75,10 +71,14 @@ namespace Game.Engine
 
             for (var i = 0; i < MaxNumberPartyMonsters; i++)
             {
-                var data = Helpers.RandomPlayerHelper.GetRandomMonster(TargetLevel);
-
-                // Help identify which Monster it is
-                data.Name += " " + MonsterList.Count() + 1;
+                int index = rnd.Next(0, monsterModel.Dataset.Count());
+                var data = monsterModel.Dataset[index];
+                data.Level = TargetLevel;
+                data.Speed = getAttributeLevel();
+                data.Defense = getAttributeLevel();
+                data.Attack = getAttributeLevel();
+                data.MaxHealth = DiceHelper.RollDice(TargetLevel, 10);
+                data.CurrentHealth = data.MaxHealth;
 
                 MonsterList.Add(new PlayerInfoModel(data));
             }
@@ -86,7 +86,10 @@ namespace Game.Engine
             return MonsterList.Count();
         }
 
-
+        int getAttributeLevel()
+        {
+            return DiceHelper.RollDice(1, 10) - 1;
+        }
     
 
     /// <summary>
