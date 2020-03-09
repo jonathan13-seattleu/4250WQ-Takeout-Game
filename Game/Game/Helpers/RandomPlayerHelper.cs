@@ -127,7 +127,7 @@ namespace Game.Helpers
         public static string GetMonsterName()
         {
 
-            List<String> FirstNameList = new List<String> { "Arg", "Deg", "Ase", "Xes", "Zez", "Klk", "Oi", "Oni", "Tanu" };
+            List<String> FirstNameList = new List<String> { "Nawt", "Bang", "Blanko", "Bupkus", "Pound", "Mr.SwackHammer"};
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -142,7 +142,7 @@ namespace Game.Helpers
         /// <returns></returns>
         public static string GetMonsterDescription()
         {
-            List<String> StringList = new List<String> { "eats Elf", "the Elf hater", "Elf destoryer", "Elf Hunter", "Elf Killer", "Can't we all get along?" };
+            List<String> StringList = new List<String> { "Pink Monster", "Green Monster", "Blue Monster", "Purple Monster", "Orange Monster", "Mr. Swackhammer" };
 
             var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
 
