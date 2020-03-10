@@ -214,8 +214,6 @@ namespace Game.Engine
             // Then by Alphabetic on Name (Assending)
             // Then by First in list order (Assending
 
-            int index = 0;
-
             PlayerList = PlayerList.OrderByDescending(a => a.GetSpeed())
                 .ThenByDescending(a => a.Level)
                 .ThenByDescending(a => a.ExperienceTotal)
@@ -223,6 +221,13 @@ namespace Game.Engine
                 .ThenBy(a => a.Name)
                 .ThenBy(a => a.ListOrder)
                 .ToList();
+
+            /*
+             * The first character in the player list gets their base Attack, Speed, Defense 
+             * values buffed by 2x for the time they are the first in the list.
+             */
+            int index = 0;
+
             var firstCharacter = PlayerList[index];
             int currentSpeed = firstCharacter.Speed;
             int currentAttack = firstCharacter.Attack;
@@ -233,6 +238,18 @@ namespace Game.Engine
             firstCharacter.Defense = (currentDefense * 2);
 
             PlayerList[index] = firstCharacter;
+
+            /*
+             * Every 5th round, the sort order for turn order changes and list is sorted by Characters first, 
+             * then lowest health, then lowest speed.
+             */
+            if (BattleScore.RoundCount % 5 == 0)
+            {
+                PlayerList = PlayerList.OrderByDescending(a => a.PlayerType )
+                .ThenByDescending(a => a.CurrentHealth)
+                .ThenByDescending(a => a.Speed)
+                .ToList();
+            }
 
             return PlayerList;
         }
