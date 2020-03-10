@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Game.Models;
-
-namespace Game.Models
+﻿namespace Game.Models
 {
     /// <summary>
     /// Manages the Message formatting for the UI to Display
@@ -12,7 +6,7 @@ namespace Game.Models
     public class BattleMessagesModel
     {
         // Is the player a character or a monster
-        public PlayerTypeEnum PlayerType;
+        public PlayerTypeEnum PlayerType = PlayerTypeEnum.Unknown;
 
         // The Status of the action
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
@@ -38,6 +32,8 @@ namespace Game.Models
         // Level Up Message
         public string LevelUpMessage = string.Empty;
 
+        public string DroppedMessage = string.Empty;
+
         // Amount of Damage
         public int DamageAmount = 0;
 
@@ -50,6 +46,25 @@ namespace Game.Models
         // Ending of the Html Block for Html formatting
         public string htmlTail = @"</p></body></html>";
 
+
+        public bool ClearMessages()
+        {
+
+            PlayerType = PlayerTypeEnum.Unknown;
+            HitStatus = HitStatusEnum.Unknown;
+            AttackerName = string.Empty;
+            TargetName = string.Empty;
+            AttackStatus = string.Empty;
+            TurnMessage = string.Empty;
+            TurnMessageSpecial = string.Empty;
+            ExperienceEarned = string.Empty;
+            LevelUpMessage = string.Empty;
+
+            DamageAmount = 0;
+            CurrentHealth = 0;
+
+            return true;
+        }
 
         /// <summary>
         /// Return formatted string
@@ -146,25 +161,5 @@ namespace Game.Models
             myResult = htmlHead + htmlBody + htmlTail;
             return myResult;
         }
-        public bool ClearMessages()
-        {
-
-            PlayerType = PlayerTypeEnum.Unknown;
-            HitStatus = HitStatusEnum.Unknown;
-            AttackerName = string.Empty;
-            TargetName = string.Empty;
-            AttackStatus = string.Empty;
-            TurnMessage = string.Empty;
-            TurnMessageSpecial = string.Empty;
-            ExperienceEarned = string.Empty;
-            LevelUpMessage = string.Empty;
-
-            DamageAmount = 0;
-            CurrentHealth = 0;
-
-            return true;
-        }
-
-
     }
 }

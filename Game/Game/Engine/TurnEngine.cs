@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Game.Models;
 using Game.Helpers;
 using Game.ViewModels;
+using System;
 
 namespace Game.Engine
 {
@@ -48,6 +49,60 @@ namespace Game.Engine
 
             bool result = false;
 
+            // Determine What Monsters can do...
+            if (Attacker.PlayerType == PlayerTypeEnum.Monster)
+            {
+                /*
+                 * Order of Priority
+                 * If can attack Then Attack
+                 * Next use Ability or Move
+                 */
+
+                // Assume Move if nothing else happens
+                CurrentAction = ActionEnum.Move;
+
+                /*// See if Desired Target is within Range, and if so attack away
+                if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
+                {
+                    CurrentAction = ActionEnum.Attack;
+                }*/
+
+                // Simple Logic is Roll to Try Ability. 50% says try
+                /*else*/ if (DiceHelper.RollDice(1, 10) > 5)
+                {
+                    CurrentAction = ActionEnum.Ability;
+                }
+            }/*
+            else
+            {
+                if (false)
+                {
+                    if (BattleScore.AutoBattle)
+                    {
+                        /*
+                         * Order of Priority
+                         * If can attack Then Attack
+                         * Next use Ability or Move
+                         */
+
+                        // Assume Move if nothing else happens
+                        /*CurrentAction = ActionEnum.Move;
+
+                        // See if Desired Target is within Range, and if so attack away
+                        if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
+                        {
+                            CurrentAction = ActionEnum.Attack;
+                        }
+
+                        // Simple Logic is Roll to Try Ability. 50% says try
+                        else if (DiceHelper.RollDice(1, 10) > 5)
+                        {
+                            CurrentAction = ActionEnum.Ability;
+                        }
+                    }
+                }
+            }*/
+
             switch (CurrentAction)
             {
                 case ActionEnum.Unknown:
@@ -55,10 +110,12 @@ namespace Game.Engine
                     result = Attack(Attacker);
                     break;
 
+                /*case ActionEnum.Ability:
+                    result = UseAbility(Attacker);
+                    break;*/
 
                 case ActionEnum.Move:
-                    // result = Attack(Attacker);
-                    result = true;
+                    result = MoveAsTurn(Attacker);
                     break;
             }
 
@@ -67,6 +124,131 @@ namespace Game.Engine
             return result;
         }
 
+        /// <summary>
+        /// Find a Desired Target
+        /// Move close to them
+        /// Get to move the number of Speed
+        /// </summary>
+        /// <param name="Attacker"></param>
+        /// <returns></returns>
+        public bool MoveAsTurn(PlayerInfoModel Attacker)
+        {
+
+            /*
+             * TODO: TEAMS Work out your own move logic if you are implementing move
+             * 
+             * Mike's Logic
+             * The monster or charcter will move to a different square if one is open
+             * Get X,Y for destired Target
+             * Take 1 square closer to Monster X if needed and open 
+             * Take 1 square closer to Monster Y if needed and open
+             * If desired square is occupied, give up
+             */
+
+            if (BattleScore.AutoBattle)
+            {
+                // For Attack, Choose Who
+                CurrentDefender = AttackChoice(Attacker);
+
+                if (CurrentDefender == null)
+                {
+                    return false;
+                }
+
+                /*// Get X, Y for Defender
+                var locationDefender = MapModel.GetLocationForPlayer(CurrentDefender);
+                if (locationDefender == null)
+                {
+                    return false;
+                }
+
+                var locationAttacker = MapModel.GetLocationForPlayer(Attacker);
+                if (locationAttacker == null)
+                {
+                    return false;
+                }*/
+
+                // Move toward them
+
+                /*
+                 * First Try moving X closer to them by one square
+                 * 
+                 * If that can't be done, then try moving Y closer to them by one square
+                 * 
+                 */
+
+                /*var MoveX = locationAttacker.Column + (locationDefender.Column - locationAttacker.Column);
+
+                // see if location MoveX, Attacker.Y is empty, if so go there
+                if (MapModel.IsEmptySquare(MoveX, locationAttacker.Row))
+                {
+                    Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name, locationAttacker.Column, locationAttacker.Row, MoveX, locationAttacker.Row));
+                    return MapModel.MovePlayerOnMap(locationAttacker, MoveX, locationAttacker.Row);
+                }
+
+                var MoveY = locationAttacker.Row + (locationDefender.Row - locationAttacker.Row);
+
+                // see if location MoveX, Attacker.Y is empty, if so go there
+                if (MapModel.IsEmptySquare(locationAttacker.Column, MoveY))
+                {
+                    Debug.WriteLine(string.Format("{0} moves from {1},{2} to {3},{4}", locationAttacker.Player.Name, locationAttacker.Column, locationAttacker.Row, locationAttacker.Column, MoveY));
+                    return MapModel.MovePlayerOnMap(locationAttacker, locationAttacker.Column, MoveY);
+                }*/
+
+                return false;
+            }
+
+            return true;
+        }
+
+        /*/// <summary>
+        /// Use the Ability
+        /// </summary>
+        /// <param name="Attacker"></param>
+        /// <returns></returns>
+        public bool UseAbility(PlayerInfoModel Attacker)
+        {
+            var avaible = Attacker.AbilityTracker.TryGetValue(CurrentActionAbility, out int remaining);
+            if (avaible == false)
+            {
+                // does not exist
+                return false;
+            }
+
+            if (remaining < 1)
+            {
+                // out of tries
+                return false;
+            }
+
+            switch (CurrentActionAbility)
+            {
+                case AbilityEnum.Heal:
+                case AbilityEnum.Bandage:
+                    Attacker.BuffHealth();
+                    break;
+
+                case AbilityEnum.Toughness:
+                case AbilityEnum.Barrier:
+                    Attacker.BuffDefense();
+                    break;
+
+                case AbilityEnum.Curse:
+                case AbilityEnum.Focus:
+                    Attacker.BuffAttack();
+                    break;
+
+                case AbilityEnum.Quick:
+                case AbilityEnum.Nimble:
+                    Attacker.BuffSpeed();
+                    break;
+            }
+
+            // Reduce the count
+            Attacker.AbilityTracker[CurrentActionAbility] = remaining - 1;
+
+            return true;
+        }*/
 
         /// <summary>
         /// Attack as a Turn
@@ -209,6 +391,9 @@ namespace Game.Engine
                 return true;
             }
 
+            // See if the Battle Settings Overrides the Roll
+            BattleMessagesModel.HitStatus = BattleSettingsOverride(Attacker);
+
             switch (BattleMessagesModel.HitStatus)
             {
                 case HitStatusEnum.Miss:
@@ -240,6 +425,55 @@ namespace Game.Engine
             Debug.WriteLine(BattleMessagesModel.TurnMessage);
 
             return true;
+        }
+
+        /// <summary>
+        /// See if the Battle Settings will Override the Hit
+        /// </summary>
+        /// <param name="Attacker"></param>
+        /// <returns></returns>
+        public HitStatusEnum BattleSettingsOverride(PlayerInfoModel Attacker)
+        {
+            // See if Monsters always Hit or Miss
+            if (Attacker.PlayerType == PlayerTypeEnum.Monster)
+            {
+                return BattleSettingsOverrideHitStatusEnum();
+            }
+
+            // Character
+            return BattleSettingsOverrideHitStatusEnum();
+        }
+
+        /// <summary>
+        /// Return the Override for the HitStatus
+        /// </summary>
+        /// <returns></returns>
+        public HitStatusEnum BattleSettingsOverrideHitStatusEnum()
+        {
+            switch (BattleSettingsModel.MonsterHitEnum)
+            {
+                case HitStatusEnum.Hit:
+                    BattleMessagesModel.AttackStatus = " somehow Hit ";
+                    return HitStatusEnum.Hit;
+
+                case HitStatusEnum.CriticalHit:
+                    BattleMessagesModel.AttackStatus = " somehow Critical Hit ";
+                    return HitStatusEnum.CriticalHit;
+
+                case HitStatusEnum.Miss:
+                    BattleMessagesModel.AttackStatus = " somehow Missed ";
+                    return HitStatusEnum.Miss;
+
+                case HitStatusEnum.CriticalMiss:
+                    BattleMessagesModel.AttackStatus = " somehow Critical Missed ";
+                    return HitStatusEnum.CriticalMiss;
+
+                case HitStatusEnum.Unknown:
+                case HitStatusEnum.Default:
+                default:
+                    // Return what it was
+                    return BattleMessagesModel.HitStatus;
+            }
         }
 
         /// <summary>
@@ -334,6 +568,9 @@ namespace Game.Engine
             // Mark Status in output
             BattleMessagesModel.TurnMessageSpecial = " and causes death. ";
 
+            /*// Removing the 
+            MapModel.RemovePlayerFromMap(Target);*/
+
             // INFO: Teams, Hookup your Boss if you have one...
 
             // Using a switch so in the future additional PlayerTypes can be added (Boss...)
@@ -400,7 +637,7 @@ namespace Game.Engine
                 DroppedMessage = " Nothing dropped. ";
             }
 
-            BattleMessagesModel.TurnMessageSpecial += DroppedMessage;
+            BattleMessagesModel.DroppedMessage = DroppedMessage;
 
             BattleScore.ItemModelDropList.AddRange(myItemList);
 

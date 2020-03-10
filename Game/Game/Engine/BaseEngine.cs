@@ -31,11 +31,20 @@ namespace Game.Engine
         // Current Player who is the Defender
         public PlayerInfoModel CurrentDefender;
 
+        // The Action 
+        public ActionEnum CurrentAction;
+
+        /*// When the current action is an ability, what ability was selected
+        public AbilityEnum CurrentActionAbility;
+
+        // When the current action is an ability, what ability was selected
+        public CordinatesModel CurrentMapLocation;
+
+        // When the current action is an ability, what ability was selected
+        public CordinatesModel MoveMapLocation;*/
+
         // Hold the list of players (MonsterModel, and character by guid), and order by speed
         public List<PlayerInfoModel> PlayerList = new List<PlayerInfoModel>();
-
-        // Player currently engaged
-        public PlayerInfoModel PlayerCurrent;
 
         // Current Round State
         public RoundEnum RoundStateEnum = RoundEnum.Unknown;
@@ -46,15 +55,17 @@ namespace Game.Engine
         // Max Number of Monsters
         public int MaxNumberPartyMonsters = 6;
 
-        // The Action 
-        public ActionEnum CurrentAction;
-
         // Max Number of Rounds for AutoBattle
         public int MaxRoundCount = 1000;
 
         // Max Number of Turns for AutoBattle
         public int MaxTurnCount = 10000;
 
+        /*// Hold the MapModel
+        public MapModel MapModel = new MapModel();*/
+
+        // Hold the Battle Settings
+        public BattleSettingsModel BattleSettingsModel = new BattleSettingsModel();
         #endregion Properties
     }
 }

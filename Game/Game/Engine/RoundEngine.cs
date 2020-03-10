@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Game.Models;
-using System.Diagnostics;
 using Game.ViewModels;
-using Game.Helpers;
 
 namespace Game.Engine
 {
+    /// <summary>
+    /// Manages the Rounds
+    /// </summary>
     public class RoundEngine : TurnEngine
     {
         /// <summary>
@@ -19,21 +20,32 @@ namespace Game.Engine
         {
             ItemPool.Clear();
             MonsterList.Clear();
-
             return true;
         }
 
-        // Call to make a new set of monsters...
+        /// <summary>
+        /// Call to make a new set of monsters...
+        /// </summary>
+        /// <returns></returns>
         public bool NewRound()
         {
             // End the existing round
             EndRound();
+
+            // Remove Character Buffs
+            RemoveCharacterBuffs();
 
             // Populate New Monsters...
             AddMonstersToRound();
 
             // Make the PlayerList
             MakePlayerList();
+
+            // Set Order for the Round
+            OrderPlayerListByTurnOrder();
+
+            /*// Populate MapModel with Characters and Monsters
+            MapModel.PopulateMapModel(PlayerList);*/
 
             // Update Score for the RoundCount
             BattleScore.RoundCount++;
@@ -51,6 +63,7 @@ namespace Game.Engine
             * I don't have crudi monsters yet so will add 6 new ones...
             * If you have crudi monsters, then pick from the list
             * Consdier how you will scale the monsters up to be appropriate for the characters to fight
+            * 
             */
         /// </summary>
         /// <returns></returns>
@@ -58,7 +71,7 @@ namespace Game.Engine
         {
             var monsterModel = MonsterIndexViewModel.Instance;
             Random rnd = new Random();
- 
+
             // TODO: Teams, You need to implement your own Logic can not use mine.
 
             int TargetLevel = 1;
@@ -71,14 +84,10 @@ namespace Game.Engine
 
             for (var i = 0; i < MaxNumberPartyMonsters; i++)
             {
-                int index = rnd.Next(0, monsterModel.Dataset.Count());
-                var data = monsterModel.Dataset[index];
-                data.Level = TargetLevel;
-                data.Speed = getAttributeLevel();
-                data.Defense = getAttributeLevel();
-                data.Attack = getAttributeLevel();
-                data.MaxHealth = DiceHelper.RollDice(TargetLevel, 10);
-                data.CurrentHealth = data.MaxHealth;
+                var data = Helpers.RandomPlayerHelper.GetRandomMonster(TargetLevel);
+
+                // Help identify which Monster it is
+                data.Name += " " + MonsterList.Count() + 1;
 
                 MonsterList.Add(new PlayerInfoModel(data));
             }
@@ -86,30 +95,39 @@ namespace Game.Engine
             return MonsterList.Count();
         }
 
-        int getAttributeLevel()
+        /// <summary>
+        /// At the end of the round
+        /// Clear the ItemModel List
+        /// Clear the MonsterModel List
+        /// </summary>
+        /// <returns></returns>
+        public bool EndRound()
         {
-            return DiceHelper.RollDice(1, 10) - 1;
-        }
-    
-
-    /// <summary>
-    /// At the end of the round
-    /// Clear the ItemModel List
-    /// Clear the MonsterModel List
-    /// </summary>
-    /// <returns></returns>
-    public bool EndRound()
-        {
-            // Have each character pickup items...
-            foreach (var character in CharacterList)
+            // In Auto Battle this happens and the characters get their items, In manual mode need to do it manualy
+            if (BattleScore.AutoBattle)
             {
-                PickupItemsFromPool(character);
+                PickupItemsForAllCharacters();
             }
 
             // Reset Monster and Item Lists
             ClearLists();
 
             return true;
+        }
+
+        /// <summary>
+        /// For each character pickup the items
+        /// </summary>
+        public void PickupItemsForAllCharacters()
+        {
+            // In Auto Battle this happens and the characters get their items
+            // When called manualy, make sure to do the character pickup before calling EndRound
+
+            // Have each character pickup items...
+            foreach (var character in CharacterList)
+            {
+                PickupItemsFromPool(character);
+            }
         }
 
         /// <summary>
@@ -140,12 +158,18 @@ namespace Game.Engine
                 return RoundEnum.NewRound;
             }
 
-            // Decide Who gets next turn
-            // Remember who just went...
-            PlayerCurrent = GetNextPlayerTurn();
+            if (BattleScore.AutoBattle)
+            {
+                // Decide Who gets next turn
+                // Remember who just went...
+                CurrentAttacker = GetNextPlayerTurn();
+
+                // Only Attack for now
+                CurrentAction = ActionEnum.Attack;
+            }
 
             // Do the turn....
-            TakeTurn(PlayerCurrent);
+            TakeTurn(CurrentAttacker);
 
             RoundStateEnum = RoundEnum.NextTurn;
 
@@ -158,13 +182,23 @@ namespace Game.Engine
         /// <returns></returns>
         public PlayerInfoModel GetNextPlayerTurn()
         {
-            // Recalculate Order
-            OrderPlayerListByTurnOrder();
+            // Remove the Dead
+            RemoveDeadPlayersFromList();
 
             // Get Next Player
             var PlayerCurrent = GetNextPlayerInList();
 
             return PlayerCurrent;
+        }
+
+        /// <summary>
+        /// Remove Dead Players from the List
+        /// </summary>
+        /// <returns></returns>
+        public List<PlayerInfoModel> RemoveDeadPlayersFromList()
+        {
+            PlayerList = PlayerList.Where(m => m.Alive == true).ToList();
+            return PlayerList;
         }
 
         /// <summary>
@@ -180,12 +214,9 @@ namespace Game.Engine
             // Then by Alphabetic on Name (Assending)
             // Then by First in list order (Assending
 
-            // Work with the Class variable PlayerList
-            PlayerList = MakePlayerList();
-
-            PlayerList = PlayerList.OrderByDescending(a => a.Speed)
+            PlayerList = PlayerList.OrderByDescending(a => a.GetSpeed())
                 .ThenByDescending(a => a.Level)
-                .ThenByDescending(a => a.ExperiencePoints)
+                .ThenByDescending(a => a.ExperienceTotal)
                 .ThenByDescending(a => a.PlayerType)
                 .ThenBy(a => a.Name)
                 .ThenBy(a => a.ListOrder)
@@ -202,7 +233,7 @@ namespace Game.Engine
             // Start from a clean list of players
             PlayerList.Clear();
 
-            // Remeber the Insert order, used for Sorting
+            // Remember the Insert order, used for Sorting
             var ListOrder = 0;
 
             foreach (var data in CharacterList)
@@ -224,7 +255,6 @@ namespace Game.Engine
             {
                 if (data.Alive)
                 {
-
                     PlayerList.Add(
                         new PlayerInfoModel(data)
                         {
@@ -256,13 +286,13 @@ namespace Game.Engine
             }
 
             // No current player, so set the first one
-            if (PlayerCurrent == null)
+            if (CurrentAttacker == null)
             {
                 return PlayerList.FirstOrDefault();
             }
 
             // Find current player in the list
-            var index = PlayerList.FindIndex(m => m.Guid.Equals(PlayerCurrent.Guid));
+            var index = PlayerList.FindIndex(m => m.Guid.Equals(CurrentAttacker.Guid));
 
             // If at the end of the list, return the first element
             if (index == PlayerList.Count() - 1)
@@ -280,16 +310,23 @@ namespace Game.Engine
         /// <param name="character"></param>
         public bool PickupItemsFromPool(PlayerInfoModel character)
         {
-            // Have the character, walk the items in the pool, and decide if any are better than current one.
 
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.Head);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklass);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.PrimaryHand);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.OffHand);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.RightFinger);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.LeftFinger);
-            GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
+            // TODO: Teams, You need to implement your own Logic if not using auto apply
 
+            // I use the same logic for Auto Battle as I do for Manual Battle
+
+            //if (BattleScore.AutoBattle)
+            {
+                // Have the character, walk the items in the pool, and decide if any are better than current one.
+
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.Head);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklass);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.PrimaryHand);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.OffHand);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.RightFinger);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.LeftFinger);
+                GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
+            }
             return true;
         }
 
@@ -315,29 +352,67 @@ namespace Game.Engine
             var CharacterItem = character.GetItemByLocation(setLocation);
             if (CharacterItem == null)
             {
-                // If no ItemModel in the slot then put on the first in the list
-                character.AddItem(setLocation, myList.FirstOrDefault().Id);
-                return false;
+                SwapCharacterItem(character, setLocation, myList.FirstOrDefault());
+                return true;
             }
 
             foreach (var PoolItem in myList)
             {
                 if (PoolItem.Value > CharacterItem.Value)
                 {
-                    // Put on the new ItemModel, which drops the one back to the pool
-                    var droppedItem = character.AddItem(setLocation, PoolItem.Id);
-
-                    // Remove the ItemModel just put on from the pool
-                    ItemPool.Remove(PoolItem);
-
-                    if (droppedItem != null)
-                    {
-                        // Add the dropped ItemModel to the pool
-                        ItemPool.Add(droppedItem);
-                    }
+                    SwapCharacterItem(character, setLocation, PoolItem);
+                    return true;
                 }
             }
 
+            return true;
+        }
+
+        /// <summary>
+        /// Swap the Item the character has for one from the pool
+        /// 
+        /// Drop the current item back into the Pool
+        /// 
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="setLocation"></param>
+        /// <param name="PoolItem"></param>
+        /// <returns></returns>
+        public ItemModel SwapCharacterItem(PlayerInfoModel character, ItemLocationEnum setLocation, ItemModel PoolItem)
+        {
+            // Put on the new ItemModel, which drops the one back to the pool
+            var droppedItem = character.AddItem(setLocation, PoolItem.Id);
+
+            // Add the PoolItem to the list of selected items
+            BattleScore.ItemModelSelectList.Add(PoolItem);
+
+            // Remove the ItemModel just put on from the pool
+            ItemPool.Remove(PoolItem);
+
+            if (droppedItem != null)
+            {
+                // Add the dropped ItemModel to the pool
+                ItemPool.Add(droppedItem);
+            }
+
+            return droppedItem;
+        }
+
+        /// <summary>
+        /// For all characters in player list, remove their buffs
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoveCharacterBuffs()
+        {
+            foreach (var data in PlayerList)
+            {
+                data.ClearBuffs();
+            }
+
+            foreach (var data in CharacterList)
+            {
+                data.ClearBuffs();
+            }
             return true;
         }
     }

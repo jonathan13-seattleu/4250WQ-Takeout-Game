@@ -7,17 +7,20 @@
     {
         Unknown = 0,
 
+        // Default for settings mode to use
+        Default = 1,
+
         // Miss
-        Miss = 1,
+        Miss = 10,
 
         // Critical Miss, miss and something bad happens
-        CriticalMiss = 10,
+        CriticalMiss = 15,
 
         // Hit
-        Hit = 5,
+        Hit = 20,
 
         // Critical Hit, bonus after hit happens
-        CriticalHit = 15
+        CriticalHit = 25
     }
 
     /// <summary>
@@ -25,6 +28,11 @@
     /// </summary>
     public static class HitStatusEnumExtensions
     {
+        /// <summary>
+        /// Display a String for the Enums
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string ToMessage(this HitStatusEnum value)
         {
             // Default String
@@ -48,6 +56,7 @@
                     Message = " misses really badly";
                     break;
 
+                case HitStatusEnum.Default:
                 case HitStatusEnum.Unknown:
                 default:
                     break;
