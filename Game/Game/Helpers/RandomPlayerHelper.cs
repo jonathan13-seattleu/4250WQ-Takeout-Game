@@ -19,51 +19,6 @@ namespace Game.Helpers
             return DiceHelper.RollDice(level, 10);
         }
 
-        public static MonsterModel GetRandomMonster(int MaxLevel)
-        {
-            // If there are no Monsters in the system, return a default one
-            if (MonsterIndexViewModel.Instance.Dataset.Count == 0)
-            {
-                return new MonsterModel();
-            }
-
-            var rnd = DiceHelper.RollDice(1, MonsterIndexViewModel.Instance.Dataset.Count);
-
-            var result = new MonsterModel(MonsterIndexViewModel.Instance.Dataset.ElementAt(rnd - 1))
-            {
-                Level = DiceHelper.RollDice(1, MaxLevel),
-
-                // Randomize Name
-                Name = GetMonsterName(),
-                Description = GetMonsterDescription(),
-
-                // Randomize the Attributes
-                Attack = GetAbilityValue(),
-                Speed = GetAbilityValue(),
-                Defense = GetAbilityValue(),
-
-                ImageURI = GetMonsterImage(),
-
-            };
-
-            // Adjust values based on Difficulty
-
-            // Get the new Max Health
-            result.MaxHealth = DiceHelper.RollDice(result.Level, 10);
-
-
-            // Level up to the new level
-            result.LevelUpToValue(result.Level);
-
-            // Set ExperienceRemaining so Monsters can both use this method
-            result.ExperienceRemaining = LevelTableHelper.Instance.LevelDetailsList[result.Level + 1].Experience;
-
-            // Enter Battle at full health
-            result.CurrentHealth = result.MaxHealth;
-
-            return result;
-        }
-
         /// <summary>
         /// Get A Random Difficulty
         /// </summary>
@@ -76,28 +31,13 @@ namespace Game.Helpers
         }
 
         /// <summary>
-        /// Get A Random Difficulty
-        /// </summary>
-        /// <returns></returns>
-        /*public static DifficultyEnum GetMonsterDifficultyValue()
-        {
-            var DifficultyList = DifficultyEnumHelper.GetListMonster;
-
-            var RandomDifficulty = DifficultyList.ElementAt(DiceHelper.RollDice(1, DifficultyList.Count()) - 1);
-
-            var result = DifficultyEnumHelper.ConvertStringToEnum(RandomDifficulty);
-
-            return result;
-        }*/
-
-        /// <summary>
         /// Get Random Image
         /// </summary>
         /// <returns></returns>
         public static string GetMonsterImage()
         {
 
-            List<String> FirstNameList = new List<String> { "nawt_monster.png", "bang_monster.png", "blanko_monster.png", "bupkus_monster.png", "pound_monster.png", "mr._swackhammer_monster.png" };
+            List<String> FirstNameList = new List<String> { "troll1.png", "troll2.png", "troll3.png", "troll4.png", "troll5.png", "troll6.png" };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -127,7 +67,7 @@ namespace Game.Helpers
         public static string GetMonsterName()
         {
 
-            List<String> FirstNameList = new List<String> { "Nawt", "Bang", "Blanko", "Bupkus", "Pound", "Mr.SwackHammer"};
+            List<String> FirstNameList = new List<String> { "Arg", "Deg", "Ase", "Xes", "Zez", "Klk", "Oi", "Oni", "Tanu" };
 
             var result = FirstNameList.ElementAt(DiceHelper.RollDice(1, FirstNameList.Count()) - 1);
 
@@ -142,7 +82,7 @@ namespace Game.Helpers
         /// <returns></returns>
         public static string GetMonsterDescription()
         {
-            List<String> StringList = new List<String> { "Pink Monster", "Green Monster", "Blue Monster", "Purple Monster", "Orange Monster", "Mr. Swackhammer" };
+            List<String> StringList = new List<String> { "eats Elf", "the Elf hater", "Elf destoryer", "Elf Hunter", "Elf Killer", "Can't we all get along?" };
 
             var result = StringList.ElementAt(DiceHelper.RollDice(1, StringList.Count()) - 1);
 
@@ -238,30 +178,79 @@ namespace Game.Helpers
                 Level = DiceHelper.RollDice(1, MaxLevel),
 
                 // Randomize Name
-                Name = RandomPlayerHelper.GetCharacterName(),
-                Description = RandomPlayerHelper.GetCharacterDescription(),
+                Name = GetCharacterName(),
+                Description = GetCharacterDescription(),
 
                 // Randomize the Attributes
-                Attack = RandomPlayerHelper.GetAbilityValue(),
-                Speed = RandomPlayerHelper.GetAbilityValue(),
-                Defense = RandomPlayerHelper.GetAbilityValue(),
+                Attack = GetAbilityValue(),
+                Speed = GetAbilityValue(),
+                Defense = GetAbilityValue(),
 
                 // Randomize an Item for Location
-                Head = RandomPlayerHelper.GetItem(ItemLocationEnum.Head),
-                Necklass = RandomPlayerHelper.GetItem(ItemLocationEnum.Necklass),
-                PrimaryHand = RandomPlayerHelper.GetItem(ItemLocationEnum.PrimaryHand),
-                OffHand = RandomPlayerHelper.GetItem(ItemLocationEnum.OffHand),
-                RightFinger = RandomPlayerHelper.GetItem(ItemLocationEnum.Finger),
-                LeftFinger = RandomPlayerHelper.GetItem(ItemLocationEnum.Finger),
-                Feet = RandomPlayerHelper.GetItem(ItemLocationEnum.Feet),
+                Head = GetItem(ItemLocationEnum.Head),
+                Necklass = GetItem(ItemLocationEnum.Necklass),
+                PrimaryHand = GetItem(ItemLocationEnum.PrimaryHand),
+                OffHand = GetItem(ItemLocationEnum.OffHand),
+                RightFinger = GetItem(ItemLocationEnum.Finger),
+                LeftFinger = GetItem(ItemLocationEnum.Finger),
+                Feet = GetItem(ItemLocationEnum.Feet),
 
-                ImageURI = RandomPlayerHelper.GetCharacterImage()
+                ImageURI = GetCharacterImage()
             };
 
             result.MaxHealth = DiceHelper.RollDice(MaxLevel, 10);
 
             // Level up to the new level
             result.LevelUpToValue(result.Level);
+
+            // Enter Battle at full health
+            result.CurrentHealth = result.MaxHealth;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create Random Character for the battle
+        /// </summary>
+        /// <param name="MaxLevel"></param>
+        /// <returns></returns>
+        public static MonsterModel GetRandomMonster(int MaxLevel)
+        {
+            // If there are no Monsters in the system, return a default one
+            if (MonsterIndexViewModel.Instance.Dataset.Count == 0)
+            {
+                return new MonsterModel();
+            }
+
+            var rnd = DiceHelper.RollDice(1, MonsterIndexViewModel.Instance.Dataset.Count);
+
+            var result = new MonsterModel(MonsterIndexViewModel.Instance.Dataset.ElementAt(rnd - 1))
+            {
+                Level = DiceHelper.RollDice(1, MaxLevel),
+
+                // Randomize Name
+                Name = GetMonsterName(),
+                Description = GetMonsterDescription(),
+
+                // Randomize the Attributes
+                Attack = GetAbilityValue(),
+                Speed = GetAbilityValue(),
+                Defense = GetAbilityValue(),
+
+                ImageURI = GetMonsterImage(),
+
+            };
+
+
+            // Get the new Max Health
+            result.MaxHealth = DiceHelper.RollDice(result.Level, 10);
+
+
+            // Level up to the new level
+            result.LevelUpToValue(result.Level);
+
+            // Set ExperienceRemaining so Monsters can both use this method
+            result.ExperienceRemaining = LevelTableHelper.Instance.LevelDetailsList[result.Level + 1].Experience;
 
             // Enter Battle at full health
             result.CurrentHealth = result.MaxHealth;
