@@ -12,7 +12,7 @@ namespace Scenario
     [TestFixture]
     public class HackathonScenarioTests
     {
-        BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
+        readonly BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
 
         AutoBattleEngine AutoBattleEngine;
         BattleEngine BattleEngine;
@@ -60,7 +60,7 @@ namespace Scenario
             // Act
 
             // Assert
-           
+
 
             // Act
             var result = EngineViewModel;
@@ -139,7 +139,7 @@ namespace Scenario
         }
 
         [Test]
-        public async Task HackathonScenario_Scenario_2_Character_Bob_Should_Miss()
+        public void HackathonScenario_Scenario_2_Character_Bob_Should_Miss()
         {
             /* 
              * Scenario Number:  
@@ -222,7 +222,7 @@ namespace Scenario
         }
 
         [Test]
-        public async Task HackathonScenario_Scenario_2_Character_Not_Bob_Should_Hit()
+        public void HackathonScenario_Scenario_2_Character_Not_Bob_Should_Hit()
         {
             /* 
              * Scenario Number:  
