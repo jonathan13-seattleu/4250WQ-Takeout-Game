@@ -29,22 +29,6 @@ namespace Game.Engine
         /// <returns></returns>
         public bool NewRound()
         {
-            /*
-             * Check the round number.  If it is round 13, then bad things happen to characters.  
-             * They will randomly drop items, loose heath, may even fall over dead.  
-             * You decide how unlucky their day will be.
-             */
-            if (BattleScore.RoundCount == 13)
-            {
-                foreach (PlayerInfoModel item in PlayerList)
-                {
-                    if (item.PlayerType == PlayerTypeEnum.Character)
-                    {
-                        item.CurrentHealth -= 13;
-                    }
-                }
-            }
-
             // End the existing round
             EndRound();
 
@@ -299,6 +283,22 @@ namespace Game.Engine
             firstCharacter.Defense = (currentDefense * 2);
 
             PlayerList[index] = firstCharacter;
+
+            /*
+             * Check the round number.  If it is round 13, then bad things happen to characters.  
+             * They will randomly drop items, loose heath, may even fall over dead.  
+             * You decide how unlucky their day will be.
+             */
+            if (BattleScore.RoundCount == 13)
+            {
+                foreach (PlayerInfoModel item in PlayerList)
+                {
+                    if (item.PlayerType == PlayerTypeEnum.Character)
+                    {
+                        item.CurrentHealth -= 13;
+                    }
+                }
+            }
 
             return PlayerList;
         }

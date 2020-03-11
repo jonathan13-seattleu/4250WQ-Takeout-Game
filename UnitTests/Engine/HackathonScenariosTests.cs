@@ -614,6 +614,7 @@ namespace Scenario
             //Assert
             Assert.AreEqual(PlayerTypeEnum.Monster, result[0].PlayerType);
         }
+
         [Test]
         public void HackathonScenario_Scenario_31_Monsters_Should_Be_Buffed()
         {
@@ -709,6 +710,164 @@ namespace Scenario
             Assert.AreEqual(((tempAttack + playerList[1].GetAttackLevelBonus) * 10), playerList[1].Attack);
             Assert.AreEqual(((tempDefense + playerList[1].GetDefenseLevelBonus) * 10), playerList[1].Defense);
 
+        }
+
+        [Test]
+        public void HackathonScenario_Scenario_33_Characters_Should_Lose_Health()
+        {
+            /* 
+             * Scenario Number:  
+             *      33
+             *      
+             * Description: 
+             *      Check the round number.  If it is round 13, then bad things happen to characters.  
+             *      They will randomly drop items, loose heath, may even fall over dead.  
+             *      You decide how unlucky their day will be.
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Default Test
+             *                 
+             * Test Algrorithm:
+             *      Create 2 Characters.
+             *      Add them to the Player List.
+             *      Initiate a new Round
+             * Test Conditions:
+             *      Test Character's Current Health change.
+             *      RoundCount is 13.
+             *  
+             *  Validation
+             *      Verify Characters lose 13 Current Health points.
+             *      
+             */
+
+            //Arrange
+
+            // Set Round Count
+
+            BattleEngine.BattleScore.RoundCount = 13;
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 2;
+            int tempCurrentHealth = 100;
+
+            var CharacterPlayer1 = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+
+            var CharacterPlayer2 = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Daffy",
+                            });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer1);
+            BattleEngine.PlayerList.Add(CharacterPlayer2);
+
+            //Act
+            var result = BattleEngine.OrderPlayerListByTurnOrder();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(tempCurrentHealth - 13, result[0].GetCurrentHealthTotal);
+            Assert.AreEqual(tempCurrentHealth - 13, result[1].GetCurrentHealthTotal);
+        }
+
+        [Test]
+        public void HackathonScenario_Scenario_33_Characters_Should_NOT_Lose_Health()
+        {
+            /* 
+             * Scenario Number:  
+             *      33
+             *      
+             * Description: 
+             *      Check the round number.  If it is round 13, then bad things happen to characters.  
+             *      They will randomly drop items, loose heath, may even fall over dead.  
+             *      You decide how unlucky their day will be.
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Default Test
+             *                 
+             * Test Algrorithm:
+             *      Create 2 Characters.
+             *      Add them to the Player List.
+             *      Initiate a new Round
+             * Test Conditions:
+             *      Test Character's Current Health change.
+             *      RoundCount is 13.
+             *  
+             *  Validation
+             *      Verify Characters do not lose 13 Current Health points.
+             *      
+             */
+
+            //Arrange
+
+            // Set Round Count
+
+            BattleEngine.BattleScore.RoundCount = 12;
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 2;
+            int tempCurrentHealth = 100;
+
+            var CharacterPlayer1 = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+
+            var CharacterPlayer2 = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Daffy",
+                            });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer1);
+            BattleEngine.PlayerList.Add(CharacterPlayer2);
+
+            //Act
+            var result = BattleEngine.OrderPlayerListByTurnOrder();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(tempCurrentHealth, result[0].GetCurrentHealthTotal);
+            Assert.AreEqual(tempCurrentHealth, result[1].GetCurrentHealthTotal);
         }
     }
 }
