@@ -87,6 +87,8 @@
             ImageURI = data.ImageURI;
             CurrentHealth = data.GetCurrentHealthTotal;
             MaxHealth = data.GetMaxHealthTotal;
+            Attack = data.GetAttack();
+            Defense = data.GetDefense();
 
             // Set the strings for the items
             Head = data.Head;

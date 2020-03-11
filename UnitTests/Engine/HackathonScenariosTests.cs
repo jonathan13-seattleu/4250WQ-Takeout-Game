@@ -22,7 +22,7 @@ namespace Scenario
         {
             AutoBattleEngine = EngineViewModel.AutoBattleEngine;
             BattleEngine = EngineViewModel.Engine;
-            
+
         }
 
         [TearDown]
@@ -300,6 +300,7 @@ namespace Scenario
             Assert.AreEqual(true, result);
             Assert.AreEqual(HitStatusEnum.Hit, BattleEngine.BattleMessagesModel.HitStatus);
         }
+
         [Test]
         public void HackathonScenario_Scenario_30_First_Character_Should_Have_Buff()
         {
@@ -308,7 +309,8 @@ namespace Scenario
              *      30
              *      
              * Description: 
-             *      The first player in the player list gets their base attack, speed, defense values buffed by 2X for the first time they are first in the list.
+             *      The first player in the player list gets their base attack, speed, defense 
+             *      values buffed by 2X for the first time they are first in the list.
              * 
              * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
              *      See Defualt Test
@@ -334,7 +336,7 @@ namespace Scenario
             int tempSpeed = 200;
             int tempAttack = 1;
             int tempDefense = 1;
-            
+
             var CharacterPlayer1 = new PlayerInfoModel(
                             new CharacterModel
                             {
@@ -374,10 +376,11 @@ namespace Scenario
             DiceHelper.DisableForcedRolls();
 
             //Assert
-            Assert.AreEqual(((tempSpeed + result[0].GetSpeedLevelBonus) *2), result[0].Speed);
+            Assert.AreEqual(((tempSpeed + result[0].GetSpeedLevelBonus) * 2), result[0].Speed);
             Assert.AreEqual(((tempAttack + result[0].GetAttackLevelBonus) * 2), result[0].Attack);
             Assert.AreEqual(((tempDefense + result[0].GetDefenseLevelBonus) * 2), result[0].Defense);
         }
+
         [Test]
         public void HackathonScenario_Scenario_30_Second_Character_Should__Not_Have_Buff()
         {
@@ -386,7 +389,8 @@ namespace Scenario
              *      30
              *      
              * Description: 
-             *      The first player in the player list gets their base attack, speed, defense values buffed by 2X for the first time they are first in the list.
+             *      The first player in the player list gets their base attack, speed, defense 
+             *      values buffed by 2X for the first time they are first in the list.
              * 
              * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
              *      See Defualt Test
@@ -440,10 +444,6 @@ namespace Scenario
 
             BattleEngine.PlayerList.Add(CharacterPlayer1);
             BattleEngine.PlayerList.Add(CharacterPlayer2);
-
-            // Set Monster Conditions
-
-
 
             //Act
             var result = BattleEngine.OrderPlayerListByTurnOrder();
@@ -457,6 +457,162 @@ namespace Scenario
             Assert.AreEqual(((tempDefense + result[1].GetDefenseLevelBonus)), result[1].Defense);
         }
 
+        [Test]
+        public void HackathonScenario_Scenario_32_First_Player_Should_Be_Character()
+        {
+            /* 
+             * Scenario Number:  
+             *      32
+             *      
+             * Description: 
+             *      Every 5th round, the sort order for turn order changes and list is sorted by Characters first, 
+             *      then lowest health, then lowest speed.
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Default Test
+             *                 
+             * Test Algrorithm:
+             *      Create 1 Character and 1 Monster.
+             *      Add them to the Player List.
+             *      Order the Player List. 
+             * Test Conditions:
+             *      Test with Characters with low speed and Monsters with high speed.
+             *      RoundCount is 5.
+             *  
+             *  Validation
+             *      Verify Characters come before Monsters in the PlayerList.
+             *      
+             */
 
+            //Arrange
+
+            // Set Round Count
+
+            BattleEngine.BattleScore.RoundCount = 5;
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 2;
+
+            var CharacterPlayer = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer);
+
+            // Set Monster Conditions
+
+            var MonsterPlayer = new PlayerInfoModel(
+                            new MonsterModel
+                            {
+                                Speed = 500,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Daffy",
+                            });
+
+            BattleEngine.PlayerList.Add(MonsterPlayer);
+
+            //Act
+            var result = BattleEngine.OrderPlayerListByTurnOrder();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(PlayerTypeEnum.Character, result[0].PlayerType);
+        }
+
+        [Test]
+        public void HackathonScenario_Scenario_32_First_Player_Should_Not_Be_Character()
+        {
+            /* 
+             * Scenario Number:  
+             *      32
+             *      
+             * Description: 
+             *      Every 5th round, the sort order for turn order changes and list is sorted by Characters first, 
+             *      then lowest health, then lowest speed.
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Default Test
+             *                 
+             * Test Algrorithm:
+             *      Create 1 Character and 1 Monster.
+             *      Add them to the Player List.
+             *      Order the Player List. 
+             * Test Conditions:
+             *      Test with Characters with low speed and Monsters with high speed.
+             *      RoundCount is 5.
+             *  
+             *  Validation
+             *      Verify Monsters come before Characters in the PlayerList.
+             *      
+             */
+
+            //Arrange
+
+            // Set Round Count
+
+            BattleEngine.BattleScore.RoundCount = 4;
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 2;
+
+            var CharacterPlayer = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 100,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer);
+
+            // Set Monster Conditions
+
+            var MonsterPlayer = new PlayerInfoModel(
+                            new MonsterModel
+                            {
+                                Speed = 500,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Daffy",
+                            });
+
+            BattleEngine.PlayerList.Add(MonsterPlayer);
+
+            //Act
+            var result = BattleEngine.OrderPlayerListByTurnOrder();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(PlayerTypeEnum.Monster, result[0].PlayerType);
+        }
     }
 }
