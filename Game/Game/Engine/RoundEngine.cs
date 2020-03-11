@@ -76,7 +76,7 @@ namespace Game.Engine
 
                 int TargetLevel = 1;
                 int MaxLevel = 20;
-                int index = rnd.Next(0, monsterModel.Dataset.Count());
+                int index = rnd.Next(0, MaxNumberPartyMonsters-1);
                 var data = monsterModel.Dataset[index];
                 
                 
@@ -92,18 +92,6 @@ namespace Game.Engine
                  */
                 for (var i = 0; i < MaxNumberPartyMonsters; i++)
                 {
-                    if(BattleScore.RoundCount >= 100)
-                {
-                    data.Level = MaxLevel;
-                    data.Speed = (getAttributeLevel() * 10);
-                    data.Defense = (getAttributeLevel() * 10);
-                    data.Attack = (getAttributeLevel() * 10);
-                    data.CurrentHealth = (data.CurrentHealth * 10);
-                    data.MaxHealth = (data.MaxHealth * 10);
-
-                }
-                else
-                {
                     data.Level = TargetLevel;
                     data.Speed = getAttributeLevel();
                     data.Defense = getAttributeLevel();
@@ -111,7 +99,6 @@ namespace Game.Engine
                     data.MaxHealth = DiceHelper.RollDice(TargetLevel, 10);
                     data.CurrentHealth = data.MaxHealth;
 
-                }
 
                 MonsterList.Add(new PlayerInfoModel(data));
                 }
@@ -188,6 +175,7 @@ namespace Game.Engine
                 RoundStateEnum = RoundEnum.NewRound;
                 return RoundEnum.NewRound;
             }
+
 
             if (BattleScore.AutoBattle)
             {
@@ -299,6 +287,22 @@ namespace Game.Engine
                     }
                 }
             }
+            int MaxLevel = 20;
+            foreach(PlayerInfoModel monster in PlayerList)
+            {
+                if (BattleScore.RoundCount >= 100)
+                {
+                    monster.Level = MaxLevel;
+                    monster.Speed = (monster.GetSpeed() * 10);
+                    monster.Defense = (monster.GetDefense() * 10);
+                    monster.Attack = (monster.GetAttack() * 10);
+                    monster.CurrentHealth = (monster.CurrentHealth * 10);
+                    monster.MaxHealth = (monster.MaxHealth * 10);
+                }
+                MonsterList.Add(new PlayerInfoModel(monster));
+            }
+            
+
 
             return PlayerList;
         }
