@@ -251,9 +251,9 @@ namespace Game.Engine
              */
             if (BattleScore.RoundCount % 5 == 0)
             {
-                PlayerList = PlayerList.OrderByDescending(a => a.PlayerType)
-                .ThenByDescending(a => a.CurrentHealth)
-                .ThenByDescending(a => a.Speed)
+                PlayerList = PlayerList.OrderBy(a => a.PlayerType)
+                .ThenBy(a => a.CurrentHealth)
+                .ThenBy(a => a.Speed)
                 .ToList();
             }
             else
