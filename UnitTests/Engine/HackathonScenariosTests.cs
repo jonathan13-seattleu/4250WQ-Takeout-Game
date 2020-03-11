@@ -614,5 +614,101 @@ namespace Scenario
             //Assert
             Assert.AreEqual(PlayerTypeEnum.Monster, result[0].PlayerType);
         }
+        [Test]
+        public void HackathonScenario_Scenario_31_Monsters_Should_Be_Buffed()
+        {
+            /* 
+             * Scenario Number:  
+             *      31
+             *      
+             * Description: 
+             *      After round 100, the monster's attributes should be buffed 10x what they normally are. 
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Default Test
+             *                 
+             * Test Algrorithm:
+             *      Create 1 Character and 1 Monster.
+             *      Add them to the Player List.
+             *      Order the Player List. 
+             * Test Conditions:
+             *      Test with Characters with low speed and Monsters with high speed.
+             *      RoundCount is 5.
+             *  
+             *  Validation
+             *      Verify Monsters come before Characters in the PlayerList.
+             *      
+             */
+
+            //Arrange
+
+            // Set Round Count
+            int tempSpeed = 200;
+            int tempAttack = 1;
+            int tempDefense = 1;
+
+            BattleEngine.BattleScore.RoundCount = 100;
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 4;
+
+            var CharacterPlayer = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 200,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer);
+
+            // Set Monster Conditions
+
+            var MonsterPlayer1 = new PlayerInfoModel(
+                            new MonsterModel
+                            {
+                                Speed = 200,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Daffy",
+                            });
+            var MonsterPlayer2 = new PlayerInfoModel(
+                new MonsterModel
+                {
+                    Speed = 200,
+                    Level = 1,
+                    CurrentHealth = 100,
+                    ExperienceTotal = 100,
+                    ExperienceRemaining = 1,
+                    Defense = 1,
+                    Attack = 1,
+                    Name = "Duck",
+                });
+
+            BattleEngine.PlayerList.Add(MonsterPlayer1);
+            BattleEngine.PlayerList.Add(MonsterPlayer2);
+
+            //Act
+            var result = BattleEngine.AddMonstersToRound();
+            var playerList = BattleEngine.PlayerList;
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(((tempSpeed + playerList[1].GetSpeedLevelBonus) * 10), playerList[1].Speed);
+            Assert.AreEqual(((tempAttack + playerList[1].GetAttackLevelBonus) * 10), playerList[1].Attack);
+            Assert.AreEqual(((tempDefense + playerList[1].GetDefenseLevelBonus) * 10), playerList[1].Defense);
+
+        }
     }
 }
