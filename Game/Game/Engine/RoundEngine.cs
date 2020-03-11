@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Game.Helpers;
 using Game.Models;
 using Game.ViewModels;
 
@@ -69,30 +69,61 @@ namespace Game.Engine
         /// <returns></returns>
         public int AddMonstersToRound()
         {
-            var monsterModel = MonsterIndexViewModel.Instance;
-            Random rnd = new Random();
+                var monsterModel = MonsterIndexViewModel.Instance;
+                Random rnd = new Random();
 
-            // TODO: Teams, You need to implement your own Logic can not use mine.
+                // TODO: Teams, You need to implement your own Logic can not use mine.
 
-            int TargetLevel = 1;
-
+                int TargetLevel = 1;
+                int MaxLevel = 20;
+                int index = rnd.Next(0, monsterModel.Dataset.Count());
+                var data = monsterModel.Dataset[index];
+                
+                
             if (CharacterList.Count() > 0)
-            {
-                // Get the Min Character Level (linq is soo cool....)
-                TargetLevel = Convert.ToInt32(CharacterList.Min(m => m.Level));
-            }
+                {
+                    // Get the Min Character Level (linq is soo cool....)
+                    TargetLevel = Convert.ToInt32(CharacterList.Min(m => m.Level));
+                    MaxLevel = Convert.ToInt32(CharacterList.Max(m => m.Level));    
+                }
+                /* Hack 31 has been implemented. If the round count is > 100
+                 * then the monster's speed, defense, attack, current health, and max health 
+                 * are buffed 10x
+                 */
+                for (var i = 0; i < MaxNumberPartyMonsters; i++)
+                {
+                    if(BattleScore.RoundCount >= 100)
+                {
+                    data.Level = MaxLevel;
+                    data.Speed = (getAttributeLevel() * 10);
+                    data.Defense = (getAttributeLevel() * 10);
+                    data.Attack = (getAttributeLevel() * 10);
+                    data.CurrentHealth = (data.CurrentHealth * 10);
+                    data.MaxHealth = (data.MaxHealth * 10);
 
-            for (var i = 0; i < MaxNumberPartyMonsters; i++)
-            {
-                var data = Helpers.RandomPlayerHelper.GetRandomMonster(TargetLevel);
+                }
+                else
+                {
+                    data.Level = TargetLevel;
+                    data.Speed = getAttributeLevel();
+                    data.Defense = getAttributeLevel();
+                    data.Attack = getAttributeLevel();
+                    data.MaxHealth = DiceHelper.RollDice(TargetLevel, 10);
+                    data.CurrentHealth = data.MaxHealth;
 
-                // Help identify which Monster it is
-                data.Name += " " + MonsterList.Count() + 1;
+                }
 
                 MonsterList.Add(new PlayerInfoModel(data));
-            }
+                }
 
-            return MonsterList.Count();
+                return MonsterList.Count();
+            
+
+        }
+        int getAttributeLevel()
+        {
+            return DiceHelper.RollDice(1, 10) - 1;
+
         }
 
         /// <summary>
