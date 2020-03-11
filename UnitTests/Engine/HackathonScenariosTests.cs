@@ -378,6 +378,85 @@ namespace Scenario
             Assert.AreEqual(((tempAttack + result[0].GetAttackLevelBonus) * 2), result[0].Attack);
             Assert.AreEqual(((tempDefense + result[0].GetDefenseLevelBonus) * 2), result[0].Defense);
         }
+        [Test]
+        public void HackathonScenario_Scenario_30_Second_Character_Should__Not_Have_Buff()
+        {
+            /* 
+             * Scenario Number:  
+             *      30
+             *      
+             * Description: 
+             *      The first player in the player list gets their base attack, speed, defense values buffed by 2X for the first time they are first in the list.
+             * 
+             * Changes Required (Classes, Methods etc.)  List Files, Methods, and Describe Changes: 
+             *      See Defualt Test
+             *                 
+             * Test Algrorithm:
+             *      Create 2 Characters named Bugs and Michael.
+             *      Add them to the Player List.
+             *      Order the Player List. 
+             * Test Conditions:
+             *      Control Dice roll so natural hit
+             *      Test with Character of not named Bob
+             *  
+             *  Validation
+             *      Verify Enum is Hit
+             *      
+             */
+
+            //Arrange
+
+            // Set Character Conditions
+
+            BattleEngine.MaxNumberPartyCharacters = 2;
+            int tempSpeed = 200;
+            int tempAttack = 1;
+            int tempDefense = 1;
+
+            var CharacterPlayer1 = new PlayerInfoModel(
+                            new CharacterModel
+                            {
+                                Speed = 200,
+                                Level = 1,
+                                CurrentHealth = 100,
+                                ExperienceTotal = 100,
+                                ExperienceRemaining = 1,
+                                Defense = 1,
+                                Attack = 1,
+                                Name = "Bugs",
+                            });
+            var CharacterPlayer2 = new PlayerInfoModel(
+                new CharacterModel
+                {
+                    Speed = 200,
+                    Level = 1,
+                    CurrentHealth = 100,
+                    ExperienceTotal = 100,
+                    ExperienceRemaining = 1,
+                    Attack = 1,
+                    Defense = 1,
+                    Name = "Michael",
+                });
+
+            BattleEngine.PlayerList.Add(CharacterPlayer1);
+            BattleEngine.PlayerList.Add(CharacterPlayer2);
+
+            // Set Monster Conditions
+
+
+
+            //Act
+            var result = BattleEngine.OrderPlayerListByTurnOrder();
+
+            //Reset
+            DiceHelper.DisableForcedRolls();
+
+            //Assert
+            Assert.AreEqual(((tempSpeed + result[1].GetSpeedLevelBonus)), result[1].Speed);
+            Assert.AreEqual(((tempAttack + result[1].GetAttackLevelBonus)), result[1].Attack);
+            Assert.AreEqual(((tempDefense + result[1].GetDefenseLevelBonus)), result[1].Defense);
+        }
+
 
     }
 }
