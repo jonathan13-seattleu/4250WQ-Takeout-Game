@@ -66,6 +66,11 @@ namespace Game.Engine
 
         // Hold the Battle Settings
         public BattleSettingsModel BattleSettingsModel = new BattleSettingsModel();
+
+        // Hold the Battle State, Unknown is default
+        public BattleStateEnum BattleStateEnum = BattleStateEnum.Unknown;
+
+
         #endregion Properties
     }
 }

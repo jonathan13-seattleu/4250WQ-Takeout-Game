@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 using System.Linq;
 using Game.Models;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Game.Views
 {
@@ -213,6 +214,96 @@ namespace Game.Views
 				return;
 			}
 
+		}
+
+		/// <summary>
+		/// Game is over
+		/// 
+		/// Show Buttons
+		/// 
+		/// Clean up the Engine
+		/// 
+		/// Show the Score
+		/// 
+		/// Clear the Board
+		/// 
+		/// </summary>
+		public void GameOver()
+		{
+			// Save the Score to the Score View Model, by sending a message to it.
+			var Score = EngineViewModel.Engine.BattleScore;
+			MessagingCenter.Send(this, "AddData", Score);
+
+		}
+
+		/// <summary>
+		/// Show the Round Over page
+		/// 
+		/// Round Over is where characters get items
+		/// 
+		/// </summary>
+		public async void ShowModalRoundOverPage()
+		{
+			await Navigation.PushModalAsync(new NewRoundPage());
+		}
+
+		/// <summary>
+		/// Draw the UI for
+		///
+		/// Attacker vs Defender Mode
+		/// 
+		/// </summary>
+		public void DrawGameAttackerDefenderBoard()
+		{
+			AttackerHealth.Text = EngineViewModel.Engine.CurrentAttacker.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentAttacker.GetMaxHealthTotal.ToString();
+			DefenderHealth.Text = EngineViewModel.Engine.CurrentDefender.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentDefender.GetMaxHealthTotal.ToString();
+
+		}
+
+		/// <summary>
+		/// Decide The Turn and who to Attack
+		/// </summary>
+		public void SetAttackerAndDefender()
+		{
+			EngineViewModel.Engine.CurrentAttacker = EngineViewModel.Engine.GetNextPlayerTurn();
+
+			switch (EngineViewModel.Engine.CurrentAttacker.PlayerType)
+			{
+				case PlayerTypeEnum.Character:
+					// User would select who to attack
+
+					// for now just auto selecting
+					EngineViewModel.Engine.CurrentDefender = EngineViewModel.Engine.AttackChoice(EngineViewModel.Engine.CurrentAttacker);
+					break;
+
+				case PlayerTypeEnum.Monster:
+				default:
+
+					// Monsters turn, so auto pick a Character to Attack
+					EngineViewModel.Engine.CurrentDefender = EngineViewModel.Engine.AttackChoice(EngineViewModel.Engine.CurrentAttacker);
+					break;
+			}
+		}
+
+		/// <summary>
+		/// Builds up the output message
+		/// </summary>
+		/// <param name="message"></param>
+		public void GameMessage()
+		{
+			AttackResult.IsVisible = true;
+			// Output The Message that happened.
+			AttackResult.Text = string.Format("{0} \n{1}", EngineViewModel.Engine.BattleMessagesModel.TurnMessage, AttackResult.Text);
+
+			Debug.WriteLine(AttackResult.Text);
+
+			if (!string.IsNullOrEmpty(EngineViewModel.Engine.BattleMessagesModel.LevelUpMessage))
+			{
+				AttackResult.Text = string.Format("{0} \n{1}", EngineViewModel.Engine.BattleMessagesModel.LevelUpMessage, AttackResult.Text);
+			}
+
+			//htmlSource.Html = EngineViewModel.Engine.BattleMessagesModel.GetHTMLFormattedTurnMessage();
+			//HtmlBox.Source = HtmlBox.Source = htmlSource;
 		}
 
 		/// <summary>
