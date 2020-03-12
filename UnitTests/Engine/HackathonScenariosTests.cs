@@ -826,6 +826,8 @@ namespace Scenario
             // Set Character Conditions
 
             BattleEngine.MaxNumberPartyCharacters = 2;
+            BattleEngine.PlayerList.Clear();
+
             int tempCurrentHealth = 100;
 
             var CharacterPlayer1 = new PlayerInfoModel(
@@ -901,6 +903,7 @@ namespace Scenario
             // Set Round Count
 
             BattleEngine.BattleScore.RoundCount = 12;
+            BattleEngine.PlayerList.Clear();
 
             // Set Character Conditions
 
