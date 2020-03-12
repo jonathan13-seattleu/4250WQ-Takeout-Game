@@ -114,9 +114,9 @@ namespace Game.Engine
                     result = UseAbility(Attacker);
                     break;*/
 
-                case ActionEnum.Move:
+                /*case ActionEnum.Move:
                     result = MoveAsTurn(Attacker);
-                    break;
+                    break;*/
             }
 
             BattleScore.TurnCount++;
@@ -131,7 +131,7 @@ namespace Game.Engine
         /// </summary>
         /// <param name="Attacker"></param>
         /// <returns></returns>
-        public bool MoveAsTurn(PlayerInfoModel Attacker)
+        /*public bool MoveAsTurn(PlayerInfoModel Attacker)
         {
 
             /*
@@ -145,7 +145,7 @@ namespace Game.Engine
              * If desired square is occupied, give up
              */
 
-            if (BattleScore.AutoBattle)
+            /*if (BattleScore.AutoBattle)
             {
                 // For Attack, Choose Who
                 CurrentDefender = AttackChoice(Attacker);
@@ -155,7 +155,7 @@ namespace Game.Engine
                     return false;
                 }
 
-                /*// Get X, Y for Defender
+                /*//*/ Get X, Y for Defender
                 var locationDefender = MapModel.GetLocationForPlayer(CurrentDefender);
                 if (locationDefender == null)
                 {
@@ -195,11 +195,11 @@ namespace Game.Engine
                     return MapModel.MovePlayerOnMap(locationAttacker, locationAttacker.Column, MoveY);
                 }*/
 
-                return false;
+                /*return false;
             }
 
             return true;
-        }
+        }*/
 
         /*/// <summary>
         /// Use the Ability
