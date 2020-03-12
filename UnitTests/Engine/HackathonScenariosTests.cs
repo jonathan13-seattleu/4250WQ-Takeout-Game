@@ -649,9 +649,10 @@ namespace Scenario
             int tempDefense = 1;
             int tempCurrentHealth = 100;
             int maxHealth = 1000;
-            BattleEngine.MaxNumberPartyMonsters = 2;
+            //BattleEngine.MaxNumberPartyMonsters = 2;
+            BattleEngine.MaxNumberPartyCharacters = 2;
             BattleEngine.BattleScore.RoundCount = 100;
-
+            BattleEngine.PlayerList.Clear();
 
             // Set Monster Conditions
 
@@ -696,7 +697,7 @@ namespace Scenario
             Assert.AreEqual(((tempAttack + result[1].GetAttackLevelBonus) * 10) + 10, result[1].Attack);
             Assert.AreEqual(((tempDefense + result[1].GetDefenseLevelBonus) * 10)+ 10, result[1].Defense);
             Assert.AreEqual((tempCurrentHealth * 10), result[1].CurrentHealth);
-            Assert.AreEqual((maxHealth * 10), result[1].MaxHealth);
+            Assert.AreEqual((maxHealth * 10), result[1].GetMaxHealthTotal);
 
 
         }
@@ -736,6 +737,7 @@ namespace Scenario
             int maxHealth = 1000;
             BattleEngine.MaxNumberPartyMonsters = 2;
             BattleEngine.BattleScore.RoundCount = 99;
+            BattleEngine.PlayerList.Clear();
 
 
             // Set Monster Conditions

@@ -297,7 +297,7 @@ namespace Game.Engine
                     monster.Defense = (monster.GetDefense() * 10);
                     monster.Attack = (monster.GetAttack() * 10);
                     monster.CurrentHealth = (monster.CurrentHealth * 10);
-                    monster.MaxHealth = (monster.MaxHealth * 10);
+                    monster.MaxHealth = (monster.GetMaxHealthTotal * 10);
                 }
                 MonsterList.Add(new PlayerInfoModel(monster));
             }
