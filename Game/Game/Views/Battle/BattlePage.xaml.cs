@@ -168,14 +168,51 @@ namespace Game.Views
 		/// <param name="e"></param>
 		public void AttackButton_Clicked(object sender, EventArgs e)
 		{
-			//Battle engine will be called and appropriate text will be displayed based on the result.
-			DisplayAlert("Temporary Attack dialog for battle", "Attack !!!", "OK");
-			AttackResult.Text = "The result of the attack";
-			AttackResult.IsVisible = true;
-			MonsterDied.IsVisible = true;
-			CharacterDied.IsVisible = true;
-			CharacterLevelUp.IsVisible = true;
-			
+			EngineViewModel.Engine.BattleStateEnum = BattleStateEnum.Battling;
+
+			// Get the turn, set the current player and attacker to match
+			SetAttackerAndDefender();
+
+			// Hold the current state
+			var RoundCondition = EngineViewModel.Engine.RoundNextTurn();
+
+			// Output the Message of what happened.
+			GameMessage();
+
+			// Show the outcome on the Board
+			DrawGameAttackerDefenderBoard();
+
+			if (RoundCondition == RoundEnum.NewRound)
+			{
+				EngineViewModel.Engine.BattleStateEnum = BattleStateEnum.NewRound;
+
+				// Pause
+				Task.Delay(WaitTime);
+
+				Debug.WriteLine("New Round");
+
+				// Show the Round Over, after that is cleared, it will show the New Round Dialog
+				ShowModalRoundOverPage();
+				return;
+			}
+
+			// Check for Game Over
+			if (RoundCondition == RoundEnum.GameOver)
+			{
+				EngineViewModel.Engine.BattleStateEnum = BattleStateEnum.GameOver;
+
+				// Wrap up
+				EngineViewModel.Engine.EndBattle();
+
+				// Pause
+				Task.Delay(WaitTime);
+
+				Debug.WriteLine("Game Over");
+
+				GameOver();
+				return;
+			}
+
 		}
 
 		/// <summary>
