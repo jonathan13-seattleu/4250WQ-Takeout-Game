@@ -142,16 +142,16 @@ namespace Game.Views
 
 			if (EngineViewModel.Engine.CurrentAttacker != null)
 			{
-				AttackerImage.Source = EngineViewModel.Engine.CurrentAttacker.ImageURI;
-				AttackerName.Text = EngineViewModel.Engine.CurrentAttacker.Name;
-				AttackerHealth.Text = EngineViewModel.Engine.CurrentAttacker.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentAttacker.GetMaxHealthTotal.ToString();
+				AttackerImage.Source = "icon_new.png";
+				AttackerName.Text = "Attacker";
+				AttackerHealth.Text = "Attacker Health";
 			}
 
 			if (EngineViewModel.Engine.CurrentDefender != null)
 			{
-				DefenderImage.Source = EngineViewModel.Engine.CurrentDefender.ImageURI;
-				DefenderName.Text = EngineViewModel.Engine.CurrentDefender.Name;
-				DefenderHealth.Text = EngineViewModel.Engine.CurrentDefender.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentDefender.GetMaxHealthTotal.ToString();
+				DefenderImage.Source = "icon_new.png";
+				DefenderName.Text = "Defender";
+				DefenderHealth.Text = "Defender Health";
 
 
 			}
@@ -266,6 +266,21 @@ namespace Game.Views
 		public void SetAttackerAndDefender()
 		{
 			EngineViewModel.Engine.CurrentAttacker = EngineViewModel.Engine.GetNextPlayerTurn();
+			if (EngineViewModel.Engine.CurrentAttacker != null)
+			{
+				AttackerImage.Source = EngineViewModel.Engine.CurrentAttacker.ImageURI;
+				AttackerName.Text = EngineViewModel.Engine.CurrentAttacker.Name;
+				AttackerHealth.Text = EngineViewModel.Engine.CurrentAttacker.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentAttacker.GetMaxHealthTotal.ToString();
+			}
+
+			if (EngineViewModel.Engine.CurrentDefender != null)
+			{
+				DefenderImage.Source = EngineViewModel.Engine.CurrentDefender.ImageURI;
+				DefenderName.Text = EngineViewModel.Engine.CurrentDefender.Name;
+				DefenderHealth.Text = EngineViewModel.Engine.CurrentDefender.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentDefender.GetMaxHealthTotal.ToString();
+
+
+			}
 
 			switch (EngineViewModel.Engine.CurrentAttacker.PlayerType)
 			{
