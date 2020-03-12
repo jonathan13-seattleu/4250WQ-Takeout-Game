@@ -71,13 +71,8 @@ namespace Game.Engine
         {
                 var monsterModel = MonsterIndexViewModel.Instance;
                 Random rnd = new Random();
-
-                // TODO: Teams, You need to implement your own Logic can not use mine.
-
                 int TargetLevel = 1;
                 int MaxLevel = 20;
-                int index = rnd.Next(0, MaxNumberPartyMonsters-1);
-                var data = monsterModel.Dataset[index];
                 
                 
             if (CharacterList.Count() > 0)
@@ -92,6 +87,8 @@ namespace Game.Engine
                  */
                 for (var i = 0; i < MaxNumberPartyMonsters; i++)
                 {
+					int index = rnd.Next(0, MaxNumberPartyMonsters - 1);
+                    var data = monsterModel.Dataset[index];
                     data.Level = TargetLevel;
                     data.Speed = getAttributeLevel();
                     data.Defense = getAttributeLevel();
@@ -99,8 +96,7 @@ namespace Game.Engine
                     data.MaxHealth = DiceHelper.RollDice(TargetLevel, 10);
                     data.CurrentHealth = data.MaxHealth;
 
-
-                MonsterList.Add(new PlayerInfoModel(data));
+                    MonsterList.Add(new PlayerInfoModel(data));
                 }
 
                 return MonsterList.Count();
