@@ -58,26 +58,28 @@ namespace Game.Engine
                  * Next use Ability or Move
                  */
 
+                CurrentAction = ActionEnum.Attack;
+
                 // Assume Move if nothing else happens
                 //CurrentAction = ActionEnum.Move;
 
-                /*// See if Desired Target is within Range, and if so attack away
-                if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
+                // See if Desired Target is within Range, and if so attack away
+/*if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
                 {
                     CurrentAction = ActionEnum.Attack;
                 }*/
 
                 // Simple Logic is Roll to Try Ability. 50% says try
-                /*else*/ if (DiceHelper.RollDice(1, 10) > 5)
+                /*if (DiceHelper.RollDice(1, 10) > 5)
                 {
                     CurrentAction = ActionEnum.Ability;
-                }
-            }/*
-            else
+                }*/
+            }
+            /*else
             {
                 if (false)
                 {
-                    if (BattleScore.AutoBattle)
+                    /*if (BattleScore.AutoBattle)
                     {
                         /*
                          * Order of Priority
@@ -85,44 +87,45 @@ namespace Game.Engine
                          * Next use Ability or Move
                          */
 
-                        // Assume Move if nothing else happens
-                        /*CurrentAction = ActionEnum.Move;
+                // Assume Move if nothing else happens
+                //CurrentAction = ActionEnum.Move;
 
-                        // See if Desired Target is within Range, and if so attack away
-                        if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
-                        {
-                            CurrentAction = ActionEnum.Attack;
-                        }
-
-                        // Simple Logic is Roll to Try Ability. 50% says try
-                        else if (DiceHelper.RollDice(1, 10) > 5)
-                        {
-                            CurrentAction = ActionEnum.Ability;
-                        }
-                    }
+                // See if Desired Target is within Range, and if so attack away
+                /*if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
+                {
+                    CurrentAction = ActionEnum.Attack;
                 }
-            }*/
 
-            switch (CurrentAction)
-            {
-                case ActionEnum.Unknown:
-                case ActionEnum.Attack:
-                    result = Attack(Attacker);
-                    break;
-
-                /*case ActionEnum.Ability:
-                    result = UseAbility(Attacker);
-                    break;*/
-
-                /*case ActionEnum.Move:
-                    result = MoveAsTurn(Attacker);
-                    break;*/
+                // Simple Logic is Roll to Try Ability. 50% says try
+                else if (DiceHelper.RollDice(1, 10) > 5)
+                {
+                    CurrentAction = ActionEnum.Ability;
+                }
             }
+        }*/
+    
 
-            BattleScore.TurnCount++;
+                switch (CurrentAction)
+                {
+                    case ActionEnum.Unknown:
+                    case ActionEnum.Attack:
+                        result = Attack(Attacker);
+                        break;
 
-            return result;
-        }
+                        /*case ActionEnum.Ability:
+                            result = UseAbility(Attacker);
+                            break;
+
+                        case ActionEnum.Move:
+                            result = MoveAsTurn(Attacker);
+                            break;*/
+                }
+
+                BattleScore.TurnCount++;
+
+                return result;
+            }
+        
 
         /// <summary>
         /// Find a Desired Target
