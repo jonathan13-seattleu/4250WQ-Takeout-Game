@@ -291,7 +291,10 @@ namespace Game.Views
 		/// <param name="message"></param>
 		public void GameMessage()
 		{
+			ClearMessages();
+
 			AttackResult.IsVisible = true;
+			
 			// Output The Message that happened.
 			AttackResult.Text = string.Format("{0} \n{1}", EngineViewModel.Engine.BattleMessagesModel.TurnMessage, AttackResult.Text);
 
@@ -304,6 +307,16 @@ namespace Game.Views
 
 			//htmlSource.Html = EngineViewModel.Engine.BattleMessagesModel.GetHTMLFormattedTurnMessage();
 			//HtmlBox.Source = HtmlBox.Source = htmlSource;
+		}
+
+		/// <summary>
+		///  Clears the messages on the UX
+		/// </summary>
+		public void ClearMessages()
+		{
+			AttackResult.Text = "";
+			htmlSource.Html = EngineViewModel.Engine.BattleMessagesModel.GetHTMLBlankMessage();
+			//HtmlBox.Source = htmlSource;
 		}
 
 		/// <summary>
