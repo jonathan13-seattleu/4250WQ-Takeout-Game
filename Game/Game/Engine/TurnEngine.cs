@@ -59,7 +59,7 @@ namespace Game.Engine
                  */
 
                 // Assume Move if nothing else happens
-                CurrentAction = ActionEnum.Move;
+                //CurrentAction = ActionEnum.Move;
 
                 /*// See if Desired Target is within Range, and if so attack away
                 if (MapModel.IsTargetInRange(Attacker, AttackChoice(Attacker)))
