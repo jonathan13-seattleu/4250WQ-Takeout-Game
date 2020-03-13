@@ -42,7 +42,7 @@ namespace Game.Views
                         break;
 
                     case (int)MenuItemEnum.Battle:
-                        MenuPages.Add(id, new NavigationPage(new BattleHome()));
+                        MenuPages.Add(id, new NavigationPage(new PickCharactersPage()));
                         break;
 
                     case (int)MenuItemEnum.About:
