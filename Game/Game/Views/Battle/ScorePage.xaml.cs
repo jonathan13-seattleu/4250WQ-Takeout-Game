@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Game.ViewModels;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,12 +12,18 @@ namespace Game.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ScorePage: ContentPage
 	{
+		public BattleEngineViewModel EngineViewModel = BattleEngineViewModel.Instance;
+
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		public ScorePage ()
 		{
 			InitializeComponent ();
+			RoundCount.Text = EngineViewModel.Engine.BattleScore.MonsterModelDeathList.Count().ToString();
+			TurnCount.Text = EngineViewModel.Engine.BattleScore.TurnCount.ToString();
+			RoundCount.Text = EngineViewModel.Engine.BattleScore.RoundCount.ToString();
+			ExperienceGainedTotal.Text = EngineViewModel.Engine.BattleScore.ExperienceGainedTotal.ToString();
 		}
 
 		/// <summary>
