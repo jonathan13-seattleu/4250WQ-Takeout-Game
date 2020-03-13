@@ -255,6 +255,10 @@ namespace Game.Views
 		/// </summary>
 		public void DrawGameAttackerDefenderBoard()
 		{
+			if (EngineViewModel.Engine.CurrentDefender == null)
+			{
+				return;
+			}
 			AttackerHealth.Text = EngineViewModel.Engine.CurrentAttacker.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentAttacker.GetMaxHealthTotal.ToString();
 			DefenderHealth.Text = EngineViewModel.Engine.CurrentDefender.GetCurrentHealthTotal.ToString() + " / " + EngineViewModel.Engine.CurrentDefender.GetMaxHealthTotal.ToString();
 
