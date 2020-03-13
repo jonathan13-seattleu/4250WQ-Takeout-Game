@@ -490,7 +490,33 @@ namespace Game.Models
             return false;
         }
 
-        public int CalculateExperienceEarned(int damage) { return 0; }
+        public int CalculateExperienceEarned(int damage) 
+        {
+            if (damage < 1)
+            {
+                return 0;
+            }
+
+            int remainingHealth = Math.Max(CurrentHealth - damage, 0); // Go to 0 is OK...
+            double rawPercent = (double)remainingHealth / (double)CurrentHealth;
+            double deltaPercent = 1 - rawPercent;
+            var pointsAllocate = (int)Math.Floor(ExperienceRemaining * deltaPercent);
+
+            // Catch rounding of low values, and force to 1.
+            if (pointsAllocate < 1)
+            {
+                pointsAllocate = 1;
+            }
+
+            // Take away the points from remaining experience
+            ExperienceRemaining -= pointsAllocate;
+            if (ExperienceRemaining < 0)
+            {
+                pointsAllocate = 0;
+            }
+
+            return pointsAllocate;
+        }
 
         // Level Up
         public bool LevelUp()
