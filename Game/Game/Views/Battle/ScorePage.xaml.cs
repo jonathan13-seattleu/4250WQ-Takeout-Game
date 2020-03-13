@@ -33,7 +33,7 @@ namespace Game.Views
 		/// <param name="e"></param>
 		public async void HomeScreenButton_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PopModalAsync();
+			await Navigation.PushModalAsync(new NavigationPage(new HomePage()));
 		}
 	}
 }
