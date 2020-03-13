@@ -61,6 +61,14 @@
             Attack = data.GetAttack();
             Defense = data.GetDefense();
 
+            // Set the Base Attributes
+            Speed = data.Speed;
+            Defense = data.Defense;
+            Attack = data.Attack;
+            MaxHealth = data.MaxHealth;
+            CurrentHealth = data.CurrentHealth;
+
+
             // Set the strings for the items
             Head = data.Head;
             Feet = data.Feet;
@@ -89,6 +97,13 @@
             MaxHealth = data.GetMaxHealthTotal;
             Attack = data.GetAttack();
             Defense = data.GetDefense();
+            CurrentHealth = data.GetCurrentHealthTotal;
+
+            Speed = data.Speed;
+            Defense = data.Defense;
+            Attack = data.Attack;
+            MaxHealth = data.MaxHealth;
+            CurrentHealth = data.CurrentHealth;
 
             // Set the strings for the items
             Head = data.Head;
