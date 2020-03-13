@@ -244,7 +244,7 @@ namespace Game.Views
 		/// </summary>
 		public async void ShowModalRoundOverPage()
 		{
-			await Navigation.PushModalAsync(new NewRoundPage());
+			await Navigation.PushModalAsync(new ItemsDroppedPage());
 		}
 
 		/// <summary>
