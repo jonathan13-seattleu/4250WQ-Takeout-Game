@@ -228,12 +228,12 @@ namespace Game.Views
 		/// Clear the Board
 		/// 
 		/// </summary>
-		public void GameOver()
+		public async void GameOver()
 		{
 			// Save the Score to the Score View Model, by sending a message to it.
 			var Score = EngineViewModel.Engine.BattleScore;
 			MessagingCenter.Send(this, "AddData", Score);
-
+			await Navigation.PushModalAsync(new ScorePage());
 		}
 
 		/// <summary>
