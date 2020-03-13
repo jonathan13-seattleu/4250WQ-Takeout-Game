@@ -706,13 +706,31 @@ namespace Game.Engine
             var NumberToDrop = (DiceHelper.RollDice(1, round + 1) - 1);
 
             var result = new List<ItemModel>();
+            //If NumberToDrop is even, then get as many random items as possible up to NumberToDrop
+            if(NumberToDrop % 2 == 0)
+            {
+                for (var i = 0; i < NumberToDrop; i++)
+                {
+                    // Get a random Unique Item
+                    var data = ItemIndexViewModel.Instance.GetItem(RandomPlayerHelper.GetMonsterUniqueItem());
+                    result.Add(data);
+                }
 
-            for (var i = 0; i < NumberToDrop; i++)
+            }
+            //If NumberToDrop is odd, then only drop one item.
+            else
             {
                 // Get a random Unique Item
                 var data = ItemIndexViewModel.Instance.GetItem(RandomPlayerHelper.GetMonsterUniqueItem());
                 result.Add(data);
+
             }
+            /*for (var i = 0; i < NumberToDrop; i++)
+            {
+                // Get a random Unique Item
+                var data = ItemIndexViewModel.Instance.GetItem(RandomPlayerHelper.GetMonsterUniqueItem());
+                result.Add(data);
+            }*/
 
             return result;
         }
