@@ -40,12 +40,14 @@
                                Grid.Row="0" 
                                Grid.Column="0" 
                                HorizontalTextAlignment="Start" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               />
                         <Label Text="{Binding Data.AutoBattle}" 
                                Grid.Row="0" 
                                Grid.Column="1" 
                                HorizontalTextAlignment="End" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               x:Name="AutoBattle "/>
                         <Label Text="No. of Rounds:" 
                                Grid.Row="1" 
                                Grid.Column="0" 
@@ -55,7 +57,8 @@
                                Grid.Row="1" 
                                Grid.Column="1" 
                                HorizontalTextAlignment="End" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               x:Name="RoundCount"/>
                         <Label Text="No. of Turns:" 
                                Grid.Row="2" 
                                Grid.Column="0" 
@@ -65,7 +68,8 @@
                                Grid.Row="2" 
                                Grid.Column="1" 
                                HorizontalTextAlignment="End" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               x:Name="TurnCount"/>
                         <Label Text="No. of Monsters Slain:" 
                                Grid.Row="3" 
                                Grid.Column="0" 
@@ -75,7 +79,8 @@
                                Grid.Row="3" 
                                Grid.Column="1" 
                                HorizontalTextAlignment="End" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               x:Name="MonsterSlainNumber"/>
                         <Label Text="Total EXP Earned:" 
                                Grid.Row="4" 
                                Grid.Column="0" 
@@ -84,7 +89,8 @@
                         <Label Text="{Binding Data.ExperienceGainedTotal}"
                                Grid.Row="4" Grid.Column="1" 
                                HorizontalTextAlignment="End" 
-                               VerticalTextAlignment="Center" />
+                               VerticalTextAlignment="Center" 
+                               x:Name="ExperienceGainedTotal"/>
                     </Grid>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
