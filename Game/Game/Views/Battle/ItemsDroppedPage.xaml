@@ -33,12 +33,14 @@
                                         Source="{Binding ImageURI}"
                                         Style="{StaticResource ImageSmallStyle}"
                                         IsVisible="True"
-                                        VerticalOptions="CenterAndExpand"/>
+                                        VerticalOptions="CenterAndExpand"
+                                        x:Name="ItemImage"/>
 
                                 <Label Grid.Column="1" Grid.Row="0"
                                        Text="{Binding Name}" 
                                        Style="{StaticResource ListStyle}"
-                                       IsVisible="True"/>
+                                       IsVisible="True"
+                                       x:Name="ItemName"/>
 
                                 <StackLayout Grid.Column="1" Grid.Row="1"
                                     Orientation="Horizontal">
@@ -46,10 +48,12 @@
                                     <Label 
                                        Text="{Binding Attribute}" 
                                        Style="{StaticResource ListStyle}"
-                                        IsVisible="True"/>
+                                        IsVisible="True"
+                                        x:Name="ItemAttribute"/>
 
                                     <Label Text="{Binding Value}" 
-                                        Style="{StaticResource ListStyle}"/>
+                                        Style="{StaticResource ListStyle}"
+                                           x:Name="ItemValue"/>
 
                                 </StackLayout>
 
