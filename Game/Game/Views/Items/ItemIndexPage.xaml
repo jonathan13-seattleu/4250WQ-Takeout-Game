@@ -77,7 +77,7 @@
                 <Button 
                     Text="Get Item"
                     HorizontalOptions="Center"
-                    Clicked="GetButton_Clicked"/>
+                    Clicked="GetButton_ClickedAsync"/>
                 <Button
                     Text="Post Item"
                     HorizontalOptions="Center"

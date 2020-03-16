@@ -3,6 +3,9 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Game.Models;
 using Game.ViewModels;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Game.Services;
 
 namespace Game.Views
 {
@@ -84,14 +87,100 @@ namespace Game.Views
             BindingContext = ViewModel;
         }
 
-        private void GetButton_Clicked(object sender, EventArgs e)
+        private async void GetButton_ClickedAsync(object sender, EventArgs e)
         {
+            var result = await GetItemsGet();
+            await DisplayAlert("Returned List", result, "OK");
+        }
+
+        private async void PostItem_Clicked(object sender, EventArgs e)
+        {
+            var result = await GetItemsPost();
+            await DisplayAlert("Returned List", result, "OK");
 
         }
 
-        private void PostItem_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Get Items using the HTTP Post command
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetItemsPost()
         {
+            var result = "No Results";
+            var dataList = new List<ItemModel>();
 
+            var number = Convert.ToInt32(1);
+            var level = 6;  // Max Value of 6
+            var attribute = AttributeEnum.Unknown;  // Any Attribute
+            var location = ItemLocationEnum.Unknown;    // Any Location
+            var random = true;  // Random between 1 and Level
+            var updateDataBase = true;  // Add them to the DB
+            var category = 0;   // What category to filter down to, 0 is all
+
+            // will return shoes value 10 of speed.
+            // Example  result = await ItemsController.Instance.GetItemsFromGame(1, 10, AttributeEnum.Speed, ItemLocationEnum.Feet, false, true);
+            dataList = await ItemService.GetItemsFromServerPostAsync(number, level, attribute, location, category, random, updateDataBase);
+
+            if (dataList == null)
+            {
+                return result;
+            }
+
+            if (dataList.Count == 0)
+            {
+                return result;
+            }
+
+            // Reset the output
+            result = "";
+
+            foreach (var ItemModel in dataList)
+            {
+                // Add them line by one, use \n to force new line for output display.
+                result += ItemModel.FormatOutput() + "\n";
+            }
+
+            return result;
         }
+
+
+        /// <summary>
+        /// Call the server call for Get Items using HTTP Get
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetItemsGet()
+        {
+            // Call to the ItemModel Service and have it Get the Items
+            // The ServerItemValue Code stands for the batch of items to get
+            // as the group to request.  1, 2, 3, 100 (All), or if not specified All
+
+            var result = "No Results";
+
+            var value = Convert.ToInt32(1);
+            var dataList = await Services.ItemService.GetItemsFromServerGetAsync(value);
+
+            if (dataList == null)
+            {
+                return result;
+            }
+
+            if (dataList.Count == 0)
+            {
+                return result;
+            }
+
+            // Reset the output
+            result = "";
+
+            foreach (var ItemModel in dataList)
+            {
+                // Add them line by one, use \n to force new line for output display.
+                // Build up the output string by adding formatted ItemModel Output
+                result += ItemModel.FormatOutput() + "\n";
+            }
+
+            return result;
+        }
+
     }
 }
