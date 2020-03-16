@@ -83,5 +83,15 @@ namespace Game.Views
 
             BindingContext = ViewModel;
         }
+
+        private void GetButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PostItem_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
