@@ -1,4 +1,6 @@
-﻿namespace Game.Models
+﻿using Game.Helpers;
+
+namespace Game.Models
 {
     /// <summary>
     /// Player for the game.
@@ -24,6 +26,7 @@
             Guid = data.Guid;
             Alive = data.Alive;
             ExperiencePoints = data.ExperienceTotal;
+            ExperienceRemaining = data.ExperienceRemaining;
             Level = data.Level;
             Name = data.Name;
             Description = data.Description;
@@ -51,6 +54,7 @@
             Guid = data.Guid;
             Alive = data.Alive;
             ExperiencePoints = data.ExperienceTotal;
+            ExperienceRemaining = data.ExperienceRemaining;
             Level = data.Level;
             Name = data.Name;
             Description = data.Description;
@@ -76,6 +80,13 @@
             RightFinger = data.RightFinger;
             LeftFinger = data.LeftFinger;
             Feet = data.Feet;
+
+            // Give the copy a differet quid, so it can be used in the battles as a copy
+            Guid = System.Guid.NewGuid().ToString();
+
+            // Set current experience to be 1 above minimum.
+            ExperienceTotal = LevelTableHelper.Instance.LevelDetailsList[Level - 1].Experience + 1;
+
         }
 
         /// <summary>
@@ -88,6 +99,7 @@
             Guid = data.Guid;
             Alive = data.Alive;
             ExperiencePoints = data.ExperienceTotal;
+            ExperienceRemaining = data.ExperienceRemaining;
             Level = data.Level;
             Name = data.Name;
             Description = data.Description;
@@ -112,6 +124,13 @@
             RightFinger = data.RightFinger;
             LeftFinger = data.LeftFinger;
             Feet = data.Feet;
+
+            // Give the copy a differet quid, so it can be used in the battles as a copy
+            Guid = System.Guid.NewGuid().ToString();
+
+            // Set amount to give to be 1 below max for that level.
+            ExperienceRemaining = LevelTableHelper.Instance.LevelDetailsList[Level + 1].Experience - 1;
+
         }
 
         public override string FormatOutput()

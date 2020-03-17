@@ -150,6 +150,7 @@ namespace Game.Services
                     Attack = 1,
                     Defense = 1,
                     Head = HeadString,
+                    PrimaryHand = PrimaryHandString,
 
                 },
                 new CharacterModel
@@ -164,6 +165,7 @@ namespace Game.Services
                     Attack = 2,
                     Defense = 3,
                     OffHand = OffHandString,
+                    PrimaryHand = PrimaryHandString,
 
                 },
                 new CharacterModel
@@ -191,7 +193,8 @@ namespace Game.Services
                     Speed = 1,
                     Attack = 1,
                     Defense = 1,
-                    PrimaryHand = PrimaryHandString
+                    PrimaryHand = PrimaryHandString,
+                    
                 },
                 new CharacterModel
                 {
@@ -204,7 +207,8 @@ namespace Game.Services
                     Speed = 1,
                     Attack = 1,
                     Defense = 1,
-                    Feet = FeetString
+                    Feet = FeetString,
+                    PrimaryHand = PrimaryHandString,
                 },
                 new CharacterModel
                 {
@@ -217,7 +221,8 @@ namespace Game.Services
                     Attack = 1,
                     Defense = 1,
                     ImageURI = "marvin_the_martian.png",
-                    Feet = FeetString
+                    Feet = FeetString,
+                    PrimaryHand = PrimaryHandString,
                 },
                 new CharacterModel
                 {
@@ -230,7 +235,8 @@ namespace Game.Services
                     Attack = 2,
                     Defense = 4,
                     ImageURI = "michael_jordan.png",
-                    Feet = FeetString
+                    Feet = FeetString,
+                    PrimaryHand = PrimaryHandString
 
                 },
             };

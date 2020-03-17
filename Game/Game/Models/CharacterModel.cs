@@ -20,6 +20,8 @@ namespace Game.Models
             Name = "New Character";
             Description = "Character Description";
             Level = 1;
+            ExperienceTotal = 0;
+            ExperienceRemaining = Helpers.LevelTableHelper.Instance.LevelDetailsList[Level + 1].Experience - 1;
             ImageURI = "icon_new.png";
         }
 
