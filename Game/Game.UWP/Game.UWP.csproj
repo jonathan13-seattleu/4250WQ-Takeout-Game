@@ -104,6 +104,24 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="basketball_court_02.png" />
     <Content Include="gameover.jpg" />
     <Content Include="referee.png" />
@@ -176,6 +194,16 @@
     <Content Include="score.png" />
     <Content Include="scoreboard.png" />
     <Content Include="space_jam.png" />
+    <Content Include="space_jam_resize.png" />
+    <Content Include="space_jam_resize_100.png" />
+    <Content Include="space_jam_resize_1240.png" />
+    <Content Include="space_jam_resize_200.png" />
+    <Content Include="space_jam_resize_2480.png" />
+    <Content Include="space_jam_resize_50.png" />
+    <Content Include="space_jam_resize_63.png" />
+    <Content Include="space_jam_resize_75.png" />
+    <Content Include="space_jam_resize_775.png" />
+    <Content Include="space_jam_resize_930.png" />
     <Content Include="splashscreen.jpg" />
     <Content Include="tasmanian_devil.png" />
     <Content Include="troll.png" />
