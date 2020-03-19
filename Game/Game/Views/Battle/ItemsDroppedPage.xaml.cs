@@ -22,10 +22,13 @@ namespace Game.Views
         {
             InitializeComponent();
             BindingContext = ViewModel = ItemIndexViewModel.Instance;
-            getItemDetails();
+            GetItemDetails();
         }
-        
-        public void getItemDetails()
+
+        /// <summary>
+        /// This function gets data from the ItemModelDropList to be displayed on the page.
+        /// </summary>
+        public void GetItemDetails()
         {
             foreach(var data in BattleEngineViewModel.Instance.Engine.BattleScore.ItemModelDropList.Distinct())
             {
