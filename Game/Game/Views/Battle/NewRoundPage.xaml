@@ -7,49 +7,30 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource VerticalStack}">
 
+            <ScrollView>
+
             <StackLayout Style="{StaticResource HorizontalStack}"
                      Spacing="80">
 
-                <StackLayout Style="{StaticResource VerticalStack}">
+                    <StackLayout Style="{StaticResource VerticalStack}">
 
-                    <Label Text="Here are the remaining Home Players:"></Label>
+                        <Label Text="Here are the remaining Home Players:"></Label>
 
-                    <ListView 
-                                x:Name="PartyCharacterListView" 
-                                ItemsSource="{Binding PartyCharacterList}"
-                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                                RefreshCommand="{Binding LoadItemsCommand}"
-                                CachingStrategy="RecycleElement"
-                                HasUnevenRows="true"
-                                Margin="5,0,5,0"
-                                RowHeight="80">
+                        <FlexLayout x:Name="PartyListFrame"
+                                    JustifyContent="Start"
+                                    AlignContent="Start"
+                                    Wrap="Wrap"/>
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Image  Source="{Binding ImageURI}"
-                                            Style="{StaticResource ImageMediumStyle}"
-                                            VerticalOptions="CenterAndExpand"/>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    </StackLayout>
 
                 </StackLayout>
 
-                <StackLayout Style="{StaticResource VerticalStack}">
-                
-                    <Label Text="Here are the remaining Away Players:"></Label>
-                
-                </StackLayout>
-
-            
-
-            </StackLayout>
+            </ScrollView>
 
             <Button Clicked="BeginButton_Clicked" Text="Begin Round"/>
 
         </StackLayout>
+            
 
     </ContentPage.Content>
 </ContentPage>
