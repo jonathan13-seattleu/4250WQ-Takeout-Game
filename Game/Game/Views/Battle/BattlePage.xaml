@@ -125,23 +125,28 @@
                 </Grid>
             </StackLayout>
             <StackLayout Style="{StaticResource CurrentBattleHorizontalStack}">
-                <StackLayout>
-                    <Button Text="Attack" Clicked="AttackButton_Clicked"/>
-                </StackLayout>
-                <StackLayout>
-                    <Label IsVisible="False" x:Name="AttackResult"/>
-                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout>
+                        <Button Text="Attack" Clicked="AttackButton_Clicked"/>
+                    </StackLayout>
 
-                <StackLayout>
-                    <Label Text="Monster Died" IsVisible="False" x:Name="MonsterDied"/>
-                </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label IsVisible="False" x:Name="AttackResult"/>
+                        </StackLayout>
 
-                <StackLayout>
-                    <Label Text="Character Died" IsVisible="False" x:Name="CharacterDied"/>
-                </StackLayout>
+                        <StackLayout>
+                            <Label Text="Monster Died" IsVisible="False" x:Name="MonsterDied"/>
+                        </StackLayout>
 
-                <StackLayout>
-                    <Label Text="Character Level Up" IsVisible="False" x:Name="CharacterLevelUp"/>
+                        <StackLayout>
+                            <Label Text="Character Died" IsVisible="False" x:Name="CharacterDied"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Character Level Up" IsVisible="False" x:Name="CharacterLevelUp"/>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
