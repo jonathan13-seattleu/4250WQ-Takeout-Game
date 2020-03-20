@@ -1,4 +1,5 @@
-﻿using Game.ViewModels;
+﻿using Game.Models;
+using Game.ViewModels;
 using System;
 using System.Linq;
 using Xamarin.Forms;
@@ -20,18 +21,173 @@ namespace Game.Views
 		public ScorePage ()
 		{
 			InitializeComponent ();
+
+			// Draw the Characters
+			foreach (var data in EngineViewModel.Engine.BattleScore.CharacterModelDeathList)
+			{
+				CharacterListFrame.Children.Add(CreateCharacterDisplayBox(data));
+			}
+
+            // Draw the Monsters
+            foreach (var data in EngineViewModel.Engine.BattleScore.MonsterModelDeathList.Distinct())
+            {
+                MonsterListFrame.Children.Add(CreateMonsterDisplayBox(data));
+            }
+
+            // Draw the Items
+            foreach (var data in EngineViewModel.Engine.BattleScore.ItemModelDropList.Distinct())
+            {
+                ItemListFrame.Children.Add(CreateItemDisplayBox(data));
+            }
+
+            AutoBattle.Text = EngineViewModel.Engine.BattleScore.AutoBattle.ToString();
+			TotalScore.Text = EngineViewModel.Engine.BattleScore.ExperienceGainedTotal.ToString();
 			RoundCount.Text = EngineViewModel.Engine.BattleScore.MonsterModelDeathList.Count().ToString();
 			TurnCount.Text = EngineViewModel.Engine.BattleScore.TurnCount.ToString();
 			RoundCount.Text = EngineViewModel.Engine.BattleScore.RoundCount.ToString();
 			ExperienceGainedTotal.Text = EngineViewModel.Engine.BattleScore.ExperienceGainedTotal.ToString();
+			MonsterSlainNumber.Text = EngineViewModel.Engine.BattleScore.MonsterSlainNumber.ToString();
 		}
 
-		/// <summary>
-		/// Attack Action
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		public async void HomeScreenButton_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Return a stack layout for the Characters
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public StackLayout CreateCharacterDisplayBox(PlayerInfoModel data)
+        {
+            if (data == null)
+            {
+                data = new PlayerInfoModel();
+            }
+
+            // Hookup the image
+            var PlayerImage = new Image
+            {
+                Style = (Style)Application.Current.Resources["ImageBattleMediumStyle"],
+                Source = data.ImageURI
+            };
+
+            // Add the Level
+            var PlayerLevelLabel = new Label
+            {
+                Text = "Level : " + data.Level,
+                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Padding = 0,
+                LineBreakMode = LineBreakMode.TailTruncation,
+                CharacterSpacing = 1,
+                LineHeight = 1,
+                MaxLines = 1,
+            };
+
+            // Put the Image Button and Text inside a layout
+            var PlayerStack = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["ScoreCharacterInfoBox"],
+                HorizontalOptions = LayoutOptions.Center,
+                Padding = 0,
+                Spacing = 0,
+                Children = {
+                    PlayerImage,
+                    PlayerLevelLabel,
+                },
+            };
+
+            return PlayerStack;
+        }
+
+        /// <summary>
+        /// Return a stack layout for the Monsters
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public StackLayout CreateMonsterDisplayBox(PlayerInfoModel data)
+        {
+            if (data == null)
+            {
+                data = new PlayerInfoModel();
+            }
+
+            // Hookup the image
+            var PlayerImage = new Image
+            {
+                Style = (Style)Application.Current.Resources["PlayerBattleSmallStyle"],
+                Source = data.ImageURI
+            };
+
+            // Add the Level
+            var PlayerLevelLabel = new Label
+            {
+                Text = "Level : " + data.Level,
+                Style = (Style)Application.Current.Resources["ValueStyleMicro"],
+                HorizontalOptions = LayoutOptions.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Padding = 0,
+                LineBreakMode = LineBreakMode.TailTruncation,
+                CharacterSpacing = 1,
+                LineHeight = 1,
+                MaxLines = 1,
+            };
+
+            // Put the Image Button and Text inside a layout
+            var PlayerStack = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["ScoreMonsterInfoBox"],
+                HorizontalOptions = LayoutOptions.Center,
+                Padding = 0,
+                Spacing = 0,
+                Children = {
+                    PlayerImage,
+                    PlayerLevelLabel,
+                },
+            };
+
+            return PlayerStack;
+        }
+
+        /// <summary>
+        /// Return a stack layout with the Player information inside
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public StackLayout CreateItemDisplayBox(ItemModel data)
+        {
+            if (data == null)
+            {
+                data = new ItemModel();
+            }
+
+            // Hookup the image
+            var PlayerImage = new Image
+            {
+                Style = (Style)Application.Current.Resources["ImageBattleSmallStyle"],
+                Source = data.ImageURI
+            };
+
+            // Put the Image Button and Text inside a layout
+            var PlayerStack = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["ScoreItemInfoBox"],
+                HorizontalOptions = LayoutOptions.Center,
+                Padding = 0,
+                Spacing = 0,
+                Children = {
+                    PlayerImage,
+                },
+            };
+
+            return PlayerStack;
+        }
+
+
+        /// <summary>
+        /// Attack Action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public async void HomeScreenButton_Clicked(object sender, EventArgs e)
 		{
 			await Navigation.PushModalAsync(new NavigationPage(new HomePage()));
 		}

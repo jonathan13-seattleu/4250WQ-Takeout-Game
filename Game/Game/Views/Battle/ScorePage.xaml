@@ -20,7 +20,8 @@
                         Text="{Binding Data.ScoreTotal}"
                         Style="{StaticResource LabelStyle}"
                         FontSize="Large"
-                        HorizontalTextAlignment="Center"/>
+                        HorizontalTextAlignment="Center"
+                        x:Name="TotalScore"/>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
                     <Grid>
@@ -47,7 +48,7 @@
                                Grid.Column="1" 
                                HorizontalTextAlignment="End" 
                                VerticalTextAlignment="Center" 
-                               x:Name="AutoBattle "/>
+                               x:Name="AutoBattle"/>
                         <Label Text="No. of Rounds:" 
                                Grid.Row="1" 
                                Grid.Column="0" 
@@ -97,23 +98,26 @@
                     <Label 
                             Text="Characters at Death:"
                             Style="{StaticResource LabelStyle}"/>
-                    <Label 
-                        Text="{Binding Data.CharacterAtDeathList}" 
-                        Style="{StaticResource ValueStyle}"/>
+                    <FlexLayout x:Name="CharacterListFrame"
+                                    JustifyContent="Start"
+                                    AlignContent="Start"
+                                    Wrap="Wrap"/>
 
                     <Label 
                         Text="Monsters Killed:"
                         Style="{StaticResource LabelStyle}"/>
-                    <Label 
-                        Text="{Binding Data.MonstersKilledList}" 
-                        Style="{StaticResource ValueStyle}"/>
+                    <FlexLayout x:Name="MonsterListFrame"
+                                    JustifyContent="Start"
+                                    AlignContent="Start"
+                                    Wrap="Wrap"/>
 
                     <Label 
                         Text="Items Dropped:"
                         Style="{StaticResource LabelStyle}"/>
-                    <Label 
-                        Text="{Binding Data.ItemsDroppedList}"
-                        Style="{StaticResource ValueStyle}"/>
+                    <FlexLayout x:Name="ItemListFrame"
+                                    JustifyContent="Start"
+                                    AlignContent="Start"
+                                    Wrap="Wrap"/>
                     <Button Clicked="HomeScreenButton_Clicked" Text="Back to Home Screen"></Button>
                 </StackLayout>
             </StackLayout>
